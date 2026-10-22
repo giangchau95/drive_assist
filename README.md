@@ -167,6 +167,7 @@ Gỡ `com.geely.drivemem` xóa **toàn bộ dữ liệu của app** (database th
 | "Could not check: HTTP 404" | Repo chưa public / chưa có `update/version.json` trên nhánh `main` |
 | Báo "Still not updated" sau 90 giây | Cài thất bại — thử lại; xem `adb logcat -s ModeHelper` |
 | Cài đè báo lỗi chữ ký | APK không ký bằng `keystore/debug.ks` |
+| "ModeHelper is outdated" khi Uninstall all | Chạy lại installer một lần để cập nhật ModeHelper-lite |
 
 ---
 
