@@ -27,7 +27,7 @@ Nếu có dongle ELM327 (Bluetooth), bật trong **⬇ → Settings & update →
 
 Khi tắt (hoặc không có dongle), điện năng được ước tính theo SoC và biểu đồ tiêu thụ theo tốc độ sẽ trống.
 
-**An toàn:** app chỉ gửi lệnh **đọc** (UDS : , , , , ) tới BMS  mỗi ~2 giây, không có lệnh ghi/điều khiển nào. Lưu ý thực tế: dongle luôn cắm cổng OBD sẽ tiêu thụ ít điện 12V khi đỗ lâu, và dongle ELM327 giả/kém chất lượng có thể gây lỗi giao tiếp bus — hãy dùng dongle tốt, và rút ra nếu xe đỗ nhiều ngày.
+**An toàn:** app chỉ gửi lệnh **đọc** (UDS `0x22 ReadDataByIdentifier`: `224B36`, `224B21`, `224B22`, `224B48`, `22DF01`) tới BMS `0x7E2` mỗi ~2 giây, không có lệnh ghi/điều khiển nào. Lưu ý thực tế: dongle luôn cắm cổng OBD sẽ tiêu thụ ít điện 12V khi đỗ lâu, và dongle ELM327 giả/kém chất lượng có thể gây lỗi giao tiếp bus — hãy dùng dongle tốt, và rút ra nếu xe đỗ nhiều ngày.
 Dongle Bluetooth Classic phải được ghép đôi trước trong màn hình Bluetooth của xe; dongle BLE không cần ghép đôi.
 
 ---
