@@ -5,7 +5,7 @@
 .method public constructor <init>()V
   .registers 1
   .prologue
-  .line 19
+  .line 18
     invoke-direct { p0 }, Landroid/app/Application;-><init>()V
     return-void
 .end method
@@ -13,32 +13,30 @@
 .method public onCreate()V
   .registers 1
   .prologue
-  .line 21
+  .line 20
     invoke-super { p0 }, Landroid/app/Application;->onCreate()V
-  .line 22
+  .line 21
     invoke-static { p0 }, Lcom/geely/drivemem/car/CarActor;->get(Landroid/content/Context;)Lcom/geely/drivemem/car/CarActor;
-  .line 23
+  .line 22
     invoke-static { p0 }, Lcom/geely/drivemem/util/DbMigration;->runOnce(Landroid/content/Context;)V
-  .line 24
+  .line 23
     invoke-static { p0 }, Lcom/geely/drivemem/sensors/TelemetryRollup;->runIfDue(Landroid/content/Context;)V
-  .line 25
+  .line 24
     invoke-static { }, Lcom/geely/drivemem/state/CarState;->ensureSubscribed()V
-  .line 26
+  .line 25
     invoke-static { p0 }, Lcom/geely/drivemem/state/ChargeSession;->ensureSubscribed(Landroid/content/Context;)V
-  .line 27
+  .line 26
     invoke-static { p0 }, Lcom/geely/drivemem/sensors/TelemetrySampler;->ensureSubscribed(Landroid/content/Context;)V
-  .line 28
+  .line 27
     invoke-static { p0 }, Lcom/geely/drivemem/state/TripSession;->ensureSubscribed(Landroid/content/Context;)V
-  .line 29
+  .line 28
     invoke-static { p0 }, Lcom/geely/drivemem/state/ParkSession;->ensureSubscribed(Landroid/content/Context;)V
-  .line 30
+  .line 29
     invoke-static { p0 }, Lcom/geely/drivemem/state/ParkingState;->ensureSubscribed(Landroid/content/Context;)V
-  .line 31
+  .line 30
     invoke-static { p0 }, Lcom/geely/drivemem/state/ValetSession;->ensureSubscribed(Landroid/content/Context;)V
-  .line 32
+  .line 31
     invoke-static { p0 }, Lcom/geely/drivemem/sensors/EnergyIntegrator;->ensureSubscribed(Landroid/content/Context;)V
-  .line 33
-    invoke-static { p0 }, Lcom/geely/drivemem/sensors/Obd2Reader;->ensureStarted(Landroid/content/Context;)V
-  .line 34
+  .line 32
     return-void
 .end method

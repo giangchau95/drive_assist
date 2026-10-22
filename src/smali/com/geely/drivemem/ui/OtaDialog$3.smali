@@ -13,65 +13,78 @@
 
 .field final synthetic val$a:Landroid/app/Activity;
 
-.field final synthetic val$obdBtn:[Landroid/widget/TextView;
+.field final synthetic val$busy:[Z
 
-.field final synthetic val$obdStatus:Landroid/widget/TextView;
+.field final synthetic val$dialog:Landroid/app/AlertDialog;
 
-.method constructor <init>(Landroid/app/Activity;Landroid/widget/TextView;[Landroid/widget/TextView;)V
+.field final synthetic val$l:Lcom/geely/drivemem/ui/OtaDialog$Listener;
+
+.field final synthetic val$latest:[Lcom/geely/drivemem/net/OtaUpdater$Info;
+
+.field final synthetic val$notes:Landroid/widget/TextView;
+
+.field final synthetic val$status:Landroid/widget/TextView;
+
+.field final synthetic val$updateBtn:[Landroid/widget/TextView;
+
+.method constructor <init>([ZLandroid/widget/TextView;Landroid/widget/TextView;[Landroid/widget/TextView;Landroid/app/Activity;Landroid/app/AlertDialog;[Lcom/geely/drivemem/net/OtaUpdater$Info;Lcom/geely/drivemem/ui/OtaDialog$Listener;)V
   .annotation system Ldalvik/annotation/Signature;
     value = {
       "()V"
     }
   .end annotation
-  .registers 4
+  .registers 9
   .prologue
-  .line 122
-    iput-object p1, p0, Lcom/geely/drivemem/ui/OtaDialog$3;->val$a:Landroid/app/Activity;
-    iput-object p2, p0, Lcom/geely/drivemem/ui/OtaDialog$3;->val$obdStatus:Landroid/widget/TextView;
-    iput-object p3, p0, Lcom/geely/drivemem/ui/OtaDialog$3;->val$obdBtn:[Landroid/widget/TextView;
+  .line 130
+    iput-object p1, p0, Lcom/geely/drivemem/ui/OtaDialog$3;->val$busy:[Z
+    iput-object p2, p0, Lcom/geely/drivemem/ui/OtaDialog$3;->val$status:Landroid/widget/TextView;
+    iput-object p3, p0, Lcom/geely/drivemem/ui/OtaDialog$3;->val$notes:Landroid/widget/TextView;
+    iput-object p4, p0, Lcom/geely/drivemem/ui/OtaDialog$3;->val$updateBtn:[Landroid/widget/TextView;
+    iput-object p5, p0, Lcom/geely/drivemem/ui/OtaDialog$3;->val$a:Landroid/app/Activity;
+    iput-object p6, p0, Lcom/geely/drivemem/ui/OtaDialog$3;->val$dialog:Landroid/app/AlertDialog;
+    iput-object p7, p0, Lcom/geely/drivemem/ui/OtaDialog$3;->val$latest:[Lcom/geely/drivemem/net/OtaUpdater$Info;
+    iput-object p8, p0, Lcom/geely/drivemem/ui/OtaDialog$3;->val$l:Lcom/geely/drivemem/ui/OtaDialog$Listener;
     invoke-direct { p0 }, Ljava/lang/Object;-><init>()V
     return-void
 .end method
 
 .method public run()V
-  .registers 5
+  .registers 4
   .prologue
-    const/4 v3, 0
-  .line 124
-    iget-object v0, p0, Lcom/geely/drivemem/ui/OtaDialog$3;->val$a:Landroid/app/Activity;
-    invoke-static { v0 }, Lcom/geely/drivemem/util/Prefs;->getObd2Enabled(Landroid/content/Context;)Z
-    move-result v1
-  .line 125
-    iget-object v2, p0, Lcom/geely/drivemem/ui/OtaDialog$3;->val$obdStatus:Landroid/widget/TextView;
-    if-nez v1, :L3
-    const-string v0, "OBD2: Off"
+    const/4 v2, 0
+  .line 132
+    iget-object v0, p0, Lcom/geely/drivemem/ui/OtaDialog$3;->val$busy:[Z
+    aget-boolean v0, v0, v2
+    if-eqz v0, :L1
   :L0
-    invoke-virtual { v2, v0 }, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
-  .line 127
-    iget-object v0, p0, Lcom/geely/drivemem/ui/OtaDialog$3;->val$obdBtn:[Landroid/widget/TextView;
-    aget-object v0, v0, v3
-    if-eqz v0, :L2
-    iget-object v0, p0, Lcom/geely/drivemem/ui/OtaDialog$3;->val$obdBtn:[Landroid/widget/TextView;
-    aget-object v2, v0, v3
-    if-eqz v1, :L5
-    const-string v0, "Turn off"
-  :L1
-    invoke-virtual { v2, v0 }, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
-  :L2
-  .line 128
+  .line 161
     return-void
-  :L3
-  .line 126
-    invoke-static { }, Lcom/geely/drivemem/sensors/Obd2Reader;->isConnected()Z
-    move-result v0
-    if-eqz v0, :L4
-    const-string v0, "OBD2: On \u2014 connected"
+  :L1
+  .line 133
+    iget-object v0, p0, Lcom/geely/drivemem/ui/OtaDialog$3;->val$busy:[Z
+    const/4 v1, 1
+    aput-boolean v1, v0, v2
+  .line 134
+    iget-object v0, p0, Lcom/geely/drivemem/ui/OtaDialog$3;->val$status:Landroid/widget/TextView;
+    sget v1, Lcom/geely/drivemem/util/Style;->TEXT:I
+    invoke-virtual { v0, v1 }, Landroid/widget/TextView;->setTextColor(I)V
+  .line 135
+    iget-object v0, p0, Lcom/geely/drivemem/ui/OtaDialog$3;->val$status:Landroid/widget/TextView;
+    const-string v1, "Checking for updates\u2026"
+    invoke-virtual { v0, v1 }, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
+  .line 136
+    iget-object v0, p0, Lcom/geely/drivemem/ui/OtaDialog$3;->val$notes:Landroid/widget/TextView;
+    const-string v1, ""
+    invoke-virtual { v0, v1 }, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
+  .line 137
+    iget-object v0, p0, Lcom/geely/drivemem/ui/OtaDialog$3;->val$updateBtn:[Landroid/widget/TextView;
+    aget-object v0, v0, v2
+    const/16 v1, 8
+    invoke-virtual { v0, v1 }, Landroid/widget/TextView;->setVisibility(I)V
+  .line 138
+    iget-object v0, p0, Lcom/geely/drivemem/ui/OtaDialog$3;->val$a:Landroid/app/Activity;
+    new-instance v1, Lcom/geely/drivemem/ui/OtaDialog$3$1;
+    invoke-direct { v1, p0 }, Lcom/geely/drivemem/ui/OtaDialog$3$1;-><init>(Lcom/geely/drivemem/ui/OtaDialog$3;)V
+    invoke-static { v0, v1 }, Lcom/geely/drivemem/net/OtaUpdater;->check(Landroid/content/Context;Lcom/geely/drivemem/net/OtaUpdater$Callback;)V
     goto :L0
-  :L4
-    const-string v0, "OBD2: On \u2014 searching for dongle\u2026"
-    goto :L0
-  :L5
-  .line 127
-    const-string v0, "Turn on"
-    goto :L1
 .end method

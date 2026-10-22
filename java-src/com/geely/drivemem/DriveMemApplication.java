@@ -2,7 +2,6 @@ package com.geely.drivemem;
 
 import com.geely.drivemem.car.CarActor;
 import com.geely.drivemem.sensors.EnergyIntegrator;
-import com.geely.drivemem.sensors.Obd2Reader;
 import com.geely.drivemem.sensors.TelemetryRollup;
 import com.geely.drivemem.sensors.TelemetrySampler;
 import com.geely.drivemem.state.CarState;
@@ -30,6 +29,5 @@ public final class DriveMemApplication extends Application {
         ParkingState.ensureSubscribed(this);
         ValetSession.ensureSubscribed(this);
         EnergyIntegrator.ensureSubscribed(this);
-        Obd2Reader.ensureStarted(this);   // no-op unless the OBD2 switch is on
     }
 }

@@ -25,7 +25,7 @@
   .end annotation
   .registers 4
   .prologue
-  .line 56
+  .line 55
     iput-object p1, p0, Lcom/geely/drivemem/ui/OtaDialog$2;->val$d:Landroid/app/AlertDialog;
     iput-object p2, p0, Lcom/geely/drivemem/ui/OtaDialog$2;->val$a:Landroid/app/Activity;
     iput-object p3, p0, Lcom/geely/drivemem/ui/OtaDialog$2;->val$status:Landroid/widget/TextView;
@@ -36,33 +36,33 @@
 .method public run()V
   .registers 4
   .prologue
-  .line 58
+  .line 57
     iget-object v0, p0, Lcom/geely/drivemem/ui/OtaDialog$2;->val$d:Landroid/app/AlertDialog;
     invoke-virtual { v0 }, Landroid/app/AlertDialog;->dismiss()V
-  .line 59
+  .line 58
     iget-object v0, p0, Lcom/geely/drivemem/ui/OtaDialog$2;->val$a:Landroid/app/Activity;
     invoke-static { v0 }, Lcom/geely/drivemem/net/OtaUpdater;->uninstallAll(Landroid/content/Context;)Ljava/lang/String;
     move-result-object v0
-  .line 60
+  .line 59
     if-eqz v0, :L1
-  .line 61
+  .line 60
     iget-object v1, p0, Lcom/geely/drivemem/ui/OtaDialog$2;->val$status:Landroid/widget/TextView;
     const-string v2, "#FF453A"
     invoke-static { v2 }, Landroid/graphics/Color;->parseColor(Ljava/lang/String;)I
     move-result v2
     invoke-virtual { v1, v2 }, Landroid/widget/TextView;->setTextColor(I)V
-  .line 62
+  .line 61
     iget-object v1, p0, Lcom/geely/drivemem/ui/OtaDialog$2;->val$status:Landroid/widget/TextView;
     invoke-virtual { v1, v0 }, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
   :L0
-  .line 67
+  .line 66
     return-void
   :L1
-  .line 64
+  .line 63
     iget-object v0, p0, Lcom/geely/drivemem/ui/OtaDialog$2;->val$status:Landroid/widget/TextView;
     sget v1, Lcom/geely/drivemem/util/Style;->TEXT:I
     invoke-virtual { v0, v1 }, Landroid/widget/TextView;->setTextColor(I)V
-  .line 65
+  .line 64
     iget-object v0, p0, Lcom/geely/drivemem/ui/OtaDialog$2;->val$status:Landroid/widget/TextView;
     const-string v1, "Uninstalling\u2026 the app will close."
     invoke-virtual { v0, v1 }, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V

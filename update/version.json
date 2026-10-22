@@ -1,6 +1,6 @@
 {
-  "versionCode": 29877589,
-  "versionName": "1.1.0-stats-29877589",
+  "versionCode": 29877593,
+  "versionName": "1.1.0-stats-29877593",
   "apkUrl": "https://raw.githubusercontent.com/giangchau95/drive_assist/main/update/drive_assist.apk",
-  "changelog": "Optional OBD2 dongle support (off by default): measured battery energy and the consumption-by-speed chart. Toggle it in the Settings & update dialog (arrow button)."
+  "changelog": "Removed the optional OBD2 switch (no dongle needed). Energy is estimated from SoC."
 }
