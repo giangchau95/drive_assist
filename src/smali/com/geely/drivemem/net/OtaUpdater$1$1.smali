@@ -27,7 +27,7 @@
   .end annotation
   .registers 5
   .prologue
-  .line 113
+  .line 116
     iput-object p1, p0, Lcom/geely/drivemem/net/OtaUpdater$1$1;->this$0:Lcom/geely/drivemem/net/OtaUpdater$1;
     iput-object p2, p0, Lcom/geely/drivemem/net/OtaUpdater$1$1;->val$fi:Lcom/geely/drivemem/net/OtaUpdater$Info;
     iput-boolean p3, p0, Lcom/geely/drivemem/net/OtaUpdater$1$1;->val$newer:Z
@@ -39,7 +39,7 @@
 .method public run()V
   .registers 5
   .prologue
-  .line 114
+  .line 117
     iget-object v0, p0, Lcom/geely/drivemem/net/OtaUpdater$1$1;->this$0:Lcom/geely/drivemem/net/OtaUpdater$1;
     iget-object v0, v0, Lcom/geely/drivemem/net/OtaUpdater$1;->val$cb:Lcom/geely/drivemem/net/OtaUpdater$Callback;
     iget-object v1, p0, Lcom/geely/drivemem/net/OtaUpdater$1$1;->val$fi:Lcom/geely/drivemem/net/OtaUpdater$Info;
