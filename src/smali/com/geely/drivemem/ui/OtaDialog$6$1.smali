@@ -1,6 +1,6 @@
 .class Lcom/geely/drivemem/ui/OtaDialog$6$1;
 .super Ljava/lang/Object;
-.implements Ljava/lang/Runnable;
+.implements Lcom/geely/drivemem/net/OtaUpdater$Callback;
 .source "OtaDialog.java"
 
 .annotation system Ldalvik/annotation/EnclosingMethod;
@@ -16,42 +16,115 @@
 .method constructor <init>(Lcom/geely/drivemem/ui/OtaDialog$6;)V
   .registers 2
   .prologue
-  .line 190
+  .line 192
     iput-object p1, p0, Lcom/geely/drivemem/ui/OtaDialog$6$1;->this$0:Lcom/geely/drivemem/ui/OtaDialog$6;
     invoke-direct { p0 }, Ljava/lang/Object;-><init>()V
     return-void
 .end method
 
-.method public run()V
-  .registers 4
+.method public onResult(Lcom/geely/drivemem/net/OtaUpdater$Info;ZLjava/lang/String;)V
+  .registers 8
   .prologue
-    const/4 v2, 0
-  .line 192
+    const/4 v3, 0
+  .line 194
+    iget-object v0, p0, Lcom/geely/drivemem/ui/OtaDialog$6$1;->this$0:Lcom/geely/drivemem/ui/OtaDialog$6;
+    iget-object v0, v0, Lcom/geely/drivemem/ui/OtaDialog$6;->val$busy:[Z
+    aput-boolean v3, v0, v3
+  .line 195
     iget-object v0, p0, Lcom/geely/drivemem/ui/OtaDialog$6$1;->this$0:Lcom/geely/drivemem/ui/OtaDialog$6;
     iget-object v0, v0, Lcom/geely/drivemem/ui/OtaDialog$6;->val$dialog:Landroid/app/AlertDialog;
     invoke-virtual { v0 }, Landroid/app/AlertDialog;->isShowing()Z
     move-result v0
     if-nez v0, :L1
   :L0
-  .line 196
+  .line 213
     return-void
   :L1
-  .line 193
+  .line 196
+    if-nez p1, :L2
+  .line 197
     iget-object v0, p0, Lcom/geely/drivemem/ui/OtaDialog$6$1;->this$0:Lcom/geely/drivemem/ui/OtaDialog$6;
     iget-object v0, v0, Lcom/geely/drivemem/ui/OtaDialog$6;->val$status:Landroid/widget/TextView;
-    const-string v1, "#FF9F0A"
+    const-string v1, "#FF453A"
     invoke-static { v1 }, Landroid/graphics/Color;->parseColor(Ljava/lang/String;)I
     move-result v1
     invoke-virtual { v0, v1 }, Landroid/widget/TextView;->setTextColor(I)V
-  .line 194
+  .line 198
     iget-object v0, p0, Lcom/geely/drivemem/ui/OtaDialog$6$1;->this$0:Lcom/geely/drivemem/ui/OtaDialog$6;
     iget-object v0, v0, Lcom/geely/drivemem/ui/OtaDialog$6;->val$status:Landroid/widget/TextView;
-    const-string v1, "Still not updated. The install may have failed \u2014 close and try again."
+    new-instance v1, Ljava/lang/StringBuilder;
+    invoke-direct { v1 }, Ljava/lang/StringBuilder;-><init>()V
+    const-string v2, "Could not check: "
+    invoke-virtual { v1, v2 }, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    move-result-object v1
+    invoke-virtual { v1, p3 }, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    move-result-object v1
+    invoke-virtual { v1 }, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+    move-result-object v1
     invoke-virtual { v0, v1 }, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
-  .line 195
-    iget-object v0, p0, Lcom/geely/drivemem/ui/OtaDialog$6$1;->this$0:Lcom/geely/drivemem/ui/OtaDialog$6;
-    iget-object v0, v0, Lcom/geely/drivemem/ui/OtaDialog$6;->val$checkBtn:[Landroid/widget/TextView;
-    aget-object v0, v0, v2
-    invoke-virtual { v0, v2 }, Landroid/widget/TextView;->setVisibility(I)V
     goto :L0
+  :L2
+  .line 201
+    iget-object v0, p0, Lcom/geely/drivemem/ui/OtaDialog$6$1;->this$0:Lcom/geely/drivemem/ui/OtaDialog$6;
+    iget-object v0, v0, Lcom/geely/drivemem/ui/OtaDialog$6;->val$latest:[Lcom/geely/drivemem/net/OtaUpdater$Info;
+    aput-object p1, v0, v3
+  .line 202
+    if-eqz p2, :L4
+  .line 203
+    iget-object v0, p0, Lcom/geely/drivemem/ui/OtaDialog$6$1;->this$0:Lcom/geely/drivemem/ui/OtaDialog$6;
+    iget-object v0, v0, Lcom/geely/drivemem/ui/OtaDialog$6;->val$status:Landroid/widget/TextView;
+    const-string v1, "#30D158"
+    invoke-static { v1 }, Landroid/graphics/Color;->parseColor(Ljava/lang/String;)I
+    move-result v1
+    invoke-virtual { v0, v1 }, Landroid/widget/TextView;->setTextColor(I)V
+  .line 204
+    iget-object v0, p0, Lcom/geely/drivemem/ui/OtaDialog$6$1;->this$0:Lcom/geely/drivemem/ui/OtaDialog$6;
+    iget-object v0, v0, Lcom/geely/drivemem/ui/OtaDialog$6;->val$status:Landroid/widget/TextView;
+    new-instance v1, Ljava/lang/StringBuilder;
+    invoke-direct { v1 }, Ljava/lang/StringBuilder;-><init>()V
+    const-string v2, "New version available: "
+    invoke-virtual { v1, v2 }, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    move-result-object v1
+    iget-object v2, p1, Lcom/geely/drivemem/net/OtaUpdater$Info;->versionName:Ljava/lang/String;
+    invoke-virtual { v1, v2 }, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    move-result-object v1
+    invoke-virtual { v1 }, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+    move-result-object v1
+    invoke-virtual { v0, v1 }, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
+  .line 205
+    iget-object v0, p0, Lcom/geely/drivemem/ui/OtaDialog$6$1;->this$0:Lcom/geely/drivemem/ui/OtaDialog$6;
+    iget-object v0, v0, Lcom/geely/drivemem/ui/OtaDialog$6;->val$notes:Landroid/widget/TextView;
+    iget-object v1, p1, Lcom/geely/drivemem/net/OtaUpdater$Info;->changelog:Ljava/lang/String;
+    invoke-virtual { v0, v1 }, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
+  .line 206
+    iget-object v0, p0, Lcom/geely/drivemem/ui/OtaDialog$6$1;->this$0:Lcom/geely/drivemem/ui/OtaDialog$6;
+    iget-object v0, v0, Lcom/geely/drivemem/ui/OtaDialog$6;->val$updateBtn:[Landroid/widget/TextView;
+    aget-object v0, v0, v3
+    invoke-virtual { v0, v3 }, Landroid/widget/TextView;->setVisibility(I)V
+  :L3
+  .line 212
+    iget-object v0, p0, Lcom/geely/drivemem/ui/OtaDialog$6$1;->this$0:Lcom/geely/drivemem/ui/OtaDialog$6;
+    iget-object v0, v0, Lcom/geely/drivemem/ui/OtaDialog$6;->val$l:Lcom/geely/drivemem/ui/OtaDialog$Listener;
+    if-eqz v0, :L0
+    iget-object v0, p0, Lcom/geely/drivemem/ui/OtaDialog$6$1;->this$0:Lcom/geely/drivemem/ui/OtaDialog$6;
+    iget-object v0, v0, Lcom/geely/drivemem/ui/OtaDialog$6;->val$l:Lcom/geely/drivemem/ui/OtaDialog$Listener;
+    invoke-interface { v0, p2 }, Lcom/geely/drivemem/ui/OtaDialog$Listener;->onUpdateAvailable(Z)V
+    goto :L0
+  :L4
+  .line 208
+    iget-object v0, p0, Lcom/geely/drivemem/ui/OtaDialog$6$1;->this$0:Lcom/geely/drivemem/ui/OtaDialog$6;
+    iget-object v0, v0, Lcom/geely/drivemem/ui/OtaDialog$6;->val$status:Landroid/widget/TextView;
+    sget v1, Lcom/geely/drivemem/util/Style;->TEXT:I
+    invoke-virtual { v0, v1 }, Landroid/widget/TextView;->setTextColor(I)V
+  .line 209
+    iget-object v0, p0, Lcom/geely/drivemem/ui/OtaDialog$6$1;->this$0:Lcom/geely/drivemem/ui/OtaDialog$6;
+    iget-object v0, v0, Lcom/geely/drivemem/ui/OtaDialog$6;->val$status:Landroid/widget/TextView;
+    const-string v1, "You are on the latest version."
+    invoke-virtual { v0, v1 }, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
+  .line 210
+    iget-object v0, p0, Lcom/geely/drivemem/ui/OtaDialog$6$1;->this$0:Lcom/geely/drivemem/ui/OtaDialog$6;
+    iget-object v0, v0, Lcom/geely/drivemem/ui/OtaDialog$6;->val$notes:Landroid/widget/TextView;
+    iget-object v1, p1, Lcom/geely/drivemem/net/OtaUpdater$Info;->changelog:Ljava/lang/String;
+    invoke-virtual { v0, v1 }, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
+    goto :L3
 .end method

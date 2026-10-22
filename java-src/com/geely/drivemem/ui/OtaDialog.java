@@ -12,6 +12,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.geely.drivemem.net.OtaUpdater;
+import com.geely.drivemem.sensors.Obd2Reader;
 import com.geely.drivemem.util.Style;
 
 /** "Software update" dialog: Check for updates / Update now. */
@@ -81,7 +82,7 @@ public final class OtaDialog {
         card.setLayoutParams(new ViewGroup.LayoutParams(Style.dp(a, 760), ViewGroup.LayoutParams.WRAP_CONTENT));
 
         TextView title = new TextView(a);
-        title.setText("Software update");
+        title.setText("Settings & update");
         title.setTextColor(Style.TEXT);
         title.setTextSize(30f);
         title.setTypeface(Typeface.DEFAULT_BOLD);
@@ -94,6 +95,59 @@ public final class OtaDialog {
         installed.setTextSize(22f);
         installed.setPadding(0, Style.dp(a, 8), 0, Style.dp(a, 12));
         card.addView(installed);
+
+        // ---- OBD2 (optional, default off) ----
+        TextView obdTitle = new TextView(a);
+        obdTitle.setText("OBD2 dongle (optional)");
+        obdTitle.setTextColor(Style.TEXT);
+        obdTitle.setTextSize(24f);
+        obdTitle.setTypeface(Typeface.DEFAULT_BOLD);
+        card.addView(obdTitle);
+        TextView obdInfo = new TextView(a);
+        obdInfo.setText("Read-only: reads battery SoC, voltage, current and temperature from the BMS "
+            + "through an ELM327 dongle. Gives measured energy and the consumption-by-speed chart. "
+            + "Pair the dongle first in the car's Bluetooth settings (BLE dongles need no pairing).");
+        obdInfo.setTextColor(Style.TEXT_DIM);
+        obdInfo.setTextSize(19f);
+        obdInfo.setPadding(0, Style.dp(a, 4), 0, Style.dp(a, 8));
+        card.addView(obdInfo);
+        LinearLayout obdRow = new LinearLayout(a);
+        obdRow.setOrientation(LinearLayout.HORIZONTAL);
+        obdRow.setGravity(android.view.Gravity.CENTER_VERTICAL);
+        final TextView obdStatus = new TextView(a);
+        obdStatus.setTextSize(22f);
+        obdStatus.setTextColor(Style.TEXT);
+        obdRow.addView(obdStatus, new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f));
+        final TextView[] obdBtn = new TextView[1];
+        final Runnable refreshObd = new Runnable() {
+            @Override public void run() {
+                boolean on = com.geely.drivemem.util.Prefs.getObd2Enabled(a);
+                obdStatus.setText(!on ? "OBD2: Off"
+                    : Obd2Reader.isConnected() ? "OBD2: On \u2014 connected" : "OBD2: On \u2014 searching for dongle\u2026");
+                if (obdBtn[0] != null) obdBtn[0].setText(on ? "Turn off" : "Turn on");
+            }
+        };
+        obdBtn[0] = Style.cardButton(a, "Turn on", false, new Runnable() {
+            @Override public void run() {
+                Obd2Reader.setEnabled(a, !com.geely.drivemem.util.Prefs.getObd2Enabled(a));
+                new Handler().postDelayed(refreshObd, 300);
+                refreshObd.run();
+            }
+        });
+        obdRow.addView(obdBtn[0]);
+        card.addView(obdRow);
+        final Obd2Reader.Listener obdListener = new Obd2Reader.Listener() {
+            @Override public void onObd2ConnectedChanged(boolean connected) {
+                a.runOnUiThread(refreshObd);
+            }
+        };
+        Obd2Reader.subscribe(obdListener);
+        refreshObd.run();
+        View divider = new View(a);
+        divider.setBackgroundColor(0x33FFFFFF);
+        LinearLayout.LayoutParams dlp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 1);
+        dlp.topMargin = Style.dp(a, 14); dlp.bottomMargin = Style.dp(a, 14);
+        card.addView(divider, dlp);
 
         final TextView status = new TextView(a);
         status.setTextColor(Style.TEXT);
@@ -201,6 +255,9 @@ public final class OtaDialog {
         row.addView(updateBtn[0]);
         card.addView(row);
 
+        dialog.setOnDismissListener(new android.content.DialogInterface.OnDismissListener() {
+            @Override public void onDismiss(android.content.DialogInterface d) { Obd2Reader.unsubscribe(obdListener); }
+        });
         dialog.show();
         if (preInfo != null) {
             latest[0] = preInfo;

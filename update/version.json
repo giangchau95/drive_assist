@@ -1,6 +1,6 @@
 {
-  "versionCode": 29877584,
-  "versionName": "1.0.1-stats-29877584",
+  "versionCode": 29877589,
+  "versionName": "1.1.0-stats-29877589",
   "apkUrl": "https://raw.githubusercontent.com/giangchau95/drive_assist/main/update/drive_assist.apk",
-  "changelog": "Added \"Uninstall all\" button in the update dialog (removes Drive Assist + ModeHelper). Re-run the installer once so ModeHelper gets the new uninstall support."
+  "changelog": "Optional OBD2 dongle support (off by default): measured battery energy and the consumption-by-speed chart. Toggle it in the Settings & update dialog (arrow button)."
 }
