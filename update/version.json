@@ -1,6 +1,6 @@
 {
-  "versionCode": 29878684,
-  "versionName": "1.1.0-stats-29878684",
+  "versionCode": 29878690,
+  "versionName": "1.1.0-stats-29878690",
   "apkUrl": "https://raw.githubusercontent.com/giangchau95/drive_assist/main/update/drive_assist.apk",
-  "changelog": "Simplified Daily Statistics: removed consumption-by-speed and distance-by-hour/speed panels; removed USB export."
+  "changelog": "Daily Statistics: hide the empty daily-distance chart when there is no data."
 }

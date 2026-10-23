@@ -5435,6 +5435,37 @@
 .method private renderBarChart([Ljava/lang/String;[DI)V
     .locals 8
 
+    const/4 v0, 0x0
+
+    const/16 v1, 0x8
+
+    :hc_scan
+    array-length v2, p2
+
+    if-ge v0, v2, :hc_done
+
+    aget-wide v3, p2, v0
+
+    const-wide/16 v5, 0x0
+
+    cmpl-double v2, v3, v5
+
+    if-lez v2, :hc_next
+
+    const/4 v1, 0x0
+
+    goto :hc_done
+
+    :hc_next
+    add-int/lit8 v0, v0, 0x1
+
+    goto :hc_scan
+
+    :hc_done
+    iget-object v0, p0, Lcom/geely/drivemem/ui/DailyStatsView;->chart:Lcom/github/mikephil/charting/charts/BarChart;
+
+    invoke-virtual {v0, v1}, Landroid/view/View;->setVisibility(I)V
+
     .line 481
     new-instance v0, Ljava/util/ArrayList;
 
