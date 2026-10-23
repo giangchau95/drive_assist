@@ -15,7 +15,7 @@ Bản **Drive Assist rút gọn** cho Geely EX2 (đầu xe IHU629G, Android 9), 
 
 ### Tính năng giữ lại
 1. **Daily Statistics & Altimetry feed** — thống kê theo ngày/tuần/tháng: quãng đường, tiêu thụ & hiệu suất (kWh/100 km), pin & sạc, thời gian & tốc độ, danh sách chuyến đi/phiên sạc, và **độ cao** (Day Balance, Max Altitude, ascent/descent) lấy từ GPS.
-2. **Charging history & energy balance** — lịch sử các phiên sạc (AC/DC, kWh, SoC, công suất), biểu đồ SoC theo thời gian, biểu đồ **Energy Balance** (Spent / Regen), đường cong công suất sạc, nhập chi phí từng phiên (VND), xuất ra USB.
+2. **Charging history & energy balance** — lịch sử các phiên sạc (AC/DC, kWh, SoC, công suất), biểu đồ SoC theo thời gian, biểu đồ **Energy Balance** (Spent / Regen), đường cong công suất sạc, nhập chi phí từng phiên (VND).
 
 ### Đã gỡ bỏ
 Điều khiển Clima, Gate, Turbo, Music/Spotify, panel Home Assistant, MQTT, ABRP, dashcam, overlay & icon thanh trạng thái, màn Cài đặt, xuất dữ liệu ra USB, nền skyline/Noturno.
@@ -155,7 +155,7 @@ adb uninstall com.geely.drivemem && adb uninstall com.geely.modehelper
 ```
 
 ### Còn lại gì sau khi gỡ?
-Gỡ `com.geely.drivemem` xóa **toàn bộ dữ liệu của app** (database thống kê, cài đặt, báo thức watchdog). App không sửa `/system` hay cài đặt hệ thống nào. Thứ duy nhất có thể còn: **file bạn tự xuất ra USB** (Export to USB ghi vào thư mục gốc của USB) — xóa tay nếu không cần.
+Gỡ `com.geely.drivemem` xóa **toàn bộ dữ liệu của app** (database thống kê, cài đặt, báo thức watchdog). App không sửa `/system` hay cài đặt hệ thống nào. App không còn chức năng xuất ra USB nên không để lại file nào bên ngoài.
 
 ---
 
