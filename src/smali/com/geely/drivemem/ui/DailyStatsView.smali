@@ -2511,8 +2511,6 @@
 
     move-result v12
 
-    iput v12, v11, Landroid/widget/LinearLayout$LayoutParams;->rightMargin:I
-
     .line 310
     invoke-virtual {v10, v0, v11}, Landroid/widget/LinearLayout;->addView(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V
 
@@ -2925,9 +2923,6 @@
 
     .line 395
     invoke-virtual {v11, v0}, Landroid/widget/LinearLayout;->addView(Landroid/view/View;)V
-
-    .line 396
-    invoke-virtual {v10, v11}, Landroid/widget/LinearLayout;->addView(Landroid/view/View;)V
 
     .line 397
     invoke-virtual {v6, v10}, Lcom/geely/drivemem/ui/DailyStatsView;->addView(Landroid/view/View;)V
@@ -5989,7 +5984,7 @@
 
     .line 989
     :goto_0
-    const-string v8, "Consumption by speed"
+    const-string v8, "Average consumption"
 
     iget-object v9, p1, Lcom/geely/drivemem/sensors/DailyStatsProvider$DayOverview;->energySource:Lcom/geely/drivemem/sensors/EnergySource;
 
@@ -6049,7 +6044,6 @@
 
     .line 1010
     :goto_2
-    invoke-virtual {v1, p2}, Landroid/widget/LinearLayout;->addView(Landroid/view/View;)V
 
     .line 1013
     iget-object p2, p0, Lcom/geely/drivemem/ui/DailyStatsView;->consumptionCard:Landroid/widget/LinearLayout;

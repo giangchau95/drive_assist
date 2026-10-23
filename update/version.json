@@ -1,6 +1,6 @@
 {
-  "versionCode": 29877593,
-  "versionName": "1.1.0-stats-29877593",
+  "versionCode": 29878684,
+  "versionName": "1.1.0-stats-29878684",
   "apkUrl": "https://raw.githubusercontent.com/giangchau95/drive_assist/main/update/drive_assist.apk",
-  "changelog": "Removed the optional OBD2 switch (no dongle needed). Energy is estimated from SoC."
+  "changelog": "Simplified Daily Statistics: removed consumption-by-speed and distance-by-hour/speed panels; removed USB export."
 }

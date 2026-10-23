@@ -2624,37 +2624,7 @@
 
     invoke-virtual {v2, v6}, Landroid/widget/LinearLayout;->addView(Landroid/view/View;)V
 
-    .line 272
-    invoke-static {v2, v1, v3}, Lcom/geely/drivemem/util/Style;->gap(Landroid/widget/LinearLayout;Landroid/content/Context;I)V
-
-    .line 273
-    sget v3, Lcom/geely/drivemem/R$string;->charge_export:I
-
-    invoke-virtual {v1, v3}, Landroid/content/Context;->getString(I)Ljava/lang/String;
-
-    move-result-object v3
-
-    new-instance v6, Lcom/geely/drivemem/ui/ChargeStatsView$$ExternalSyntheticLambda4;
-
-    invoke-direct {v6, v0, v1}, Lcom/geely/drivemem/ui/ChargeStatsView$$ExternalSyntheticLambda4;-><init>(Lcom/geely/drivemem/ui/ChargeStatsView;Landroid/content/Context;)V
-
     const/4 v8, 0x0
-
-    invoke-static {v1, v3, v8, v6}, Lcom/geely/drivemem/util/Style;->cardButton(Landroid/content/Context;Ljava/lang/String;ZLjava/lang/Runnable;)Landroid/widget/TextView;
-
-    move-result-object v3
-
-    .line 280
-    new-instance v6, Landroid/widget/LinearLayout$LayoutParams;
-
-    const/4 v9, -0x1
-
-    invoke-direct {v6, v9, v4}, Landroid/widget/LinearLayout$LayoutParams;-><init>(II)V
-
-    invoke-virtual {v3, v6}, Landroid/widget/TextView;->setLayoutParams(Landroid/view/ViewGroup$LayoutParams;)V
-
-    .line 282
-    invoke-virtual {v2, v3}, Landroid/widget/LinearLayout;->addView(Landroid/view/View;)V
 
     .line 283
     new-instance v3, Landroid/widget/LinearLayout$LayoutParams;

@@ -18,9 +18,9 @@ Bản **Drive Assist rút gọn** cho Geely EX2 (đầu xe IHU629G, Android 9), 
 2. **Charging history & energy balance** — lịch sử các phiên sạc (AC/DC, kWh, SoC, công suất), biểu đồ SoC theo thời gian, biểu đồ **Energy Balance** (Spent / Regen), đường cong công suất sạc, nhập chi phí từng phiên (VND), xuất ra USB.
 
 ### Đã gỡ bỏ
-Điều khiển Clima, Gate, Turbo, Music/Spotify, panel Home Assistant, MQTT, ABRP, dashcam, overlay & icon thanh trạng thái, màn Cài đặt, nền skyline/Noturno.
+Điều khiển Clima, Gate, Turbo, Music/Spotify, panel Home Assistant, MQTT, ABRP, dashcam, overlay & icon thanh trạng thái, màn Cài đặt, xuất dữ liệu ra USB, nền skyline/Noturno.
 
-> Lưu ý: không hỗ trợ OBD2, nên điện năng được ước tính theo SoC (không đo trực tiếp từ BMS) và biểu đồ "tiêu thụ theo tốc độ" sẽ trống.
+> Lưu ý: không hỗ trợ OBD2, nên điện năng được ước tính theo SoC (không đo trực tiếp từ BMS) và các biểu đồ cần OBD2 (tiêu thụ theo tốc độ, quãng đường theo giờ & tốc độ) đã được lược bỏ khỏi giao diện.
 
 
 ### Bố cục màn hình (sơ đồ minh họa)
