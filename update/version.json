@@ -1,6 +1,6 @@
 {
-  "versionCode": 29881931,
-  "versionName": "1.2.0-trends-29881931",
+  "versionCode": 29881941,
+  "versionName": "1.2.1-trends-29881941",
   "apkUrl": "https://raw.githubusercontent.com/giangchau95/drive_assist/main/update/drive_assist.apk",
-  "changelog": "New Trends screen: compare electricity used, distance and charging cost per day / week / month. New LFP reminder to charge to 100% (shown when the app opens)."
+  "changelog": "Daily Statistics: removed the daily distance bar chart to free space for more useful information."
 }

@@ -5462,6 +5462,8 @@
     goto :hc_scan
 
     :hc_done
+    const/16 v1, 0x8
+
     iget-object v0, p0, Lcom/geely/drivemem/ui/DailyStatsView;->chart:Lcom/github/mikephil/charting/charts/BarChart;
 
     invoke-virtual {v0, v1}, Landroid/view/View;->setVisibility(I)V
