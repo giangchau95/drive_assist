@@ -15,18 +15,22 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import com.geely.drivemem.util.FullCharge;
 import android.widget.LinearLayout;
 
 /** Slim build: only Daily Statistics (+ altimetry) and Charging history / energy balance. */
 public class ComfortActivity extends Activity {
     private static final int MODE_DAILY = 1;
     private static final int MODE_CHARGE = 2;
+    private static final int MODE_TRENDS = 3;
     private int mode = 0;
 
     private DailyStatsView dailyStatsView;
     private ChargeStatsView chargeStatsView;
     private FrameLayout statsContainer, chargeStatsContainer;
-    private ImageView statsDockIcon, chargeDockIcon;
+    private ImageView statsDockIcon, chargeDockIcon, trendsDockIcon;
+    private TrendsView trendsView;
+    private FrameLayout trendsContainer;
     private ImageView updateBtn;
     private boolean updateAvailable;
     private static long lastAutoCheckMs = 0;
@@ -73,6 +77,19 @@ public class ComfortActivity extends Activity {
         screen.addView(chargeStatsContainer, new FrameLayout.LayoutParams(
             ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
 
+        trendsContainer = new FrameLayout(this);
+        trendsContainer.setPadding(sidebarClearance, padTop + Style.statusBarHeight(this), padH, padV);
+        android.widget.ScrollView s3 = new android.widget.ScrollView(this);
+        s3.setVerticalScrollBarEnabled(false);
+        s3.setOverScrollMode(View.OVER_SCROLL_NEVER);
+        trendsView = new TrendsView(this, null);
+        s3.addView(trendsView);
+        trendsContainer.addView(s3, new FrameLayout.LayoutParams(
+            ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+        trendsContainer.setVisibility(View.GONE);
+        screen.addView(trendsContainer, new FrameLayout.LayoutParams(
+            ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+
         LinearLayout bar = new LinearLayout(this);
         bar.setOrientation(LinearLayout.VERTICAL);
         bar.setGravity(Gravity.CENTER);
@@ -83,10 +100,16 @@ public class ComfortActivity extends Activity {
         chargeDockIcon = dockButton(R.drawable.ic_ev_station, new View.OnClickListener() {
             @Override public void onClick(View v) { setMode(MODE_CHARGE); }
         });
+        trendsDockIcon = dockButton(0, new View.OnClickListener() {
+            @Override public void onClick(View v) { setMode(MODE_TRENDS); }
+        });
+        trendsDockIcon.setImageBitmap(trendsIcon());
         bar.addView(new View(this), new LinearLayout.LayoutParams(0, 0, 1f));
         bar.addView(statsDockIcon);
         Style.gap(bar, this, 14);
         bar.addView(chargeDockIcon);
+        Style.gap(bar, this, 14);
+        bar.addView(trendsDockIcon);
         bar.addView(new View(this), new LinearLayout.LayoutParams(0, 0, 1f));
         updateBtn = updateButton();
         updateBtn.setOnClickListener(new View.OnClickListener() {
@@ -102,7 +125,32 @@ public class ComfortActivity extends Activity {
         screen.addView(bar, lp);
 
         setContentView(screen);
+        FullCharge.touch(this);
         setMode(MODE_DAILY);
+    }
+
+    private android.graphics.Bitmap trendsIcon() {
+        int px = Style.dp(this, 38);
+        android.graphics.Bitmap bmp = android.graphics.Bitmap.createBitmap(px, px, android.graphics.Bitmap.Config.ARGB_8888);
+        android.graphics.Canvas c = new android.graphics.Canvas(bmp);
+        android.graphics.Paint p = new android.graphics.Paint(android.graphics.Paint.ANTI_ALIAS_FLAG);
+        p.setColor(0xFFFFFFFF);
+        p.setStyle(android.graphics.Paint.Style.STROKE);
+        p.setStrokeWidth(px * 0.085f);
+        p.setStrokeCap(android.graphics.Paint.Cap.ROUND);
+        p.setStrokeJoin(android.graphics.Paint.Join.ROUND);
+        android.graphics.Path path = new android.graphics.Path();
+        path.moveTo(px * 0.10f, px * 0.72f);
+        path.lineTo(px * 0.36f, px * 0.44f);
+        path.lineTo(px * 0.56f, px * 0.62f);
+        path.lineTo(px * 0.90f, px * 0.20f);
+        c.drawPath(path, p);
+        path.reset();
+        path.moveTo(px * 0.70f, px * 0.20f);
+        path.lineTo(px * 0.90f, px * 0.20f);
+        path.lineTo(px * 0.90f, px * 0.40f);
+        c.drawPath(path, p);
+        return bmp;
     }
 
     private ImageView updateButton() {
@@ -161,7 +209,7 @@ public class ComfortActivity extends Activity {
 
     private ImageView dockButton(int res, View.OnClickListener l) {
         ImageView v = new ImageView(this);
-        v.setImageResource(res);
+        if (res != 0) v.setImageResource(res);
         v.setScaleType(ImageView.ScaleType.FIT_CENTER);
         int pad = Style.dp(this, 12);
         v.setPadding(pad, pad, pad, pad);
@@ -173,12 +221,21 @@ public class ComfortActivity extends Activity {
         return v;
     }
 
+    private void refreshCurrent() {
+        if (mode == MODE_DAILY) dailyStatsView.refresh();
+        else if (mode == MODE_TRENDS) trendsView.refresh();
+        else chargeStatsView.refresh();
+    }
+
     private void setMode(int m) {
         if (mode == m) return;
         mode = m;
         statsContainer.setVisibility(m == MODE_DAILY ? View.VISIBLE : View.GONE);
         chargeStatsContainer.setVisibility(m == MODE_CHARGE ? View.VISIBLE : View.GONE);
-        if (m == MODE_DAILY) dailyStatsView.refresh(); else chargeStatsView.refresh();
+        trendsContainer.setVisibility(m == MODE_TRENDS ? View.VISIBLE : View.GONE);
+        refreshCurrent();
+        trendsDockIcon.setBackground(Style.card(m == MODE_TRENDS ? Style.CARD_ON : 0x00000000, this, 18));
+        trendsDockIcon.setColorFilter(m == MODE_TRENDS ? Style.onFill(Style.CARD_ON) : Style.TEXT_DIM);
         statsDockIcon.setBackground(Style.card(m == MODE_DAILY ? Style.CARD_ON : 0x00000000, this, 18));
         statsDockIcon.setColorFilter(m == MODE_DAILY ? Style.onFill(Style.CARD_ON) : Style.TEXT_DIM);
         chargeDockIcon.setBackground(Style.card(m == MODE_CHARGE ? Style.CARD_ON : 0x00000000, this, 18));
@@ -193,7 +250,8 @@ public class ComfortActivity extends Activity {
             BootReceiver.scheduleWatchdog(this);
             BootReceiver.ensureAll(this);
         } catch (Throwable t) { android.util.Log.w(CarAccess.TAG, "resume ensure: " + t); }
-        if (mode == MODE_DAILY) dailyStatsView.refresh(); else chargeStatsView.refresh();
+        refreshCurrent();
         autoCheck();
+        FullChargeReminder.check(this);
     }
 }

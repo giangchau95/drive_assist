@@ -17,6 +17,9 @@ Bản **Drive Assist rút gọn** cho Geely EX2 (đầu xe IHU629G, Android 9), 
 1. **Daily Statistics & Altimetry feed** — thống kê theo ngày/tuần/tháng: quãng đường, tiêu thụ & hiệu suất (kWh/100 km), pin & sạc, thời gian & tốc độ, danh sách chuyến đi/phiên sạc, và **độ cao** (Day Balance, Max Altitude, ascent/descent) lấy từ GPS.
 2. **Charging history & energy balance** — lịch sử các phiên sạc (AC/DC, kWh, SoC, công suất), biểu đồ SoC theo thời gian, biểu đồ **Energy Balance** (Spent / Regen), đường cong công suất sạc, nhập chi phí từng phiên (VND).
 
+3. **Trends (so sánh tiêu thụ)** — biểu đồ cột so sánh **điện năng tiêu thụ**, **quãng đường** và **tiền sạc (VND)** theo Ngày (14 ngày) / Tuần (8 tuần) / Tháng (6 tháng), kèm % thay đổi so với kỳ trước. Cột cuối là kỳ hiện tại (chưa kết thúc). Điện năng ước tính theo SoC nên chỉ mang tính tham khảo.
+4. **Nhắc sạc đầy 100% (pin LFP)** — khi mở app (và xe đang đỗ), nếu đã quá 30 ngày (đổi được sang 15 ngày trong màn Trends) chưa sạc đầy 100% thì hiện nhắc nhở; có nút "Remind me tomorrow". Ngày sạc 100% gần nhất được tự phát hiện từ lịch sử sạc; nếu chưa có, đếm từ lần chạy đầu tiên và có thể nhập ngày thủ công ("I charged to 100% on…"). App không cảnh báo SoC thấp vì xe đã có sẵn.
+
 ### Đã gỡ bỏ
 Điều khiển Clima, Gate, Turbo, Music/Spotify, panel Home Assistant, MQTT, ABRP, dashcam, overlay & icon thanh trạng thái, màn Cài đặt, xuất dữ liệu ra USB, nền skyline/Noturno.
 

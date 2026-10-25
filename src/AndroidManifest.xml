@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?><manifest xmlns:android="http://schemas.android.com/apk/res/android" android:compileSdkVersion="34" android:compileSdkVersionCodename="14" package="com.geely.drivemem" platformBuildVersionCode="34" platformBuildVersionName="14">
+    <uses-permission android:name="android.car.permission.CAR_POWERTRAIN"/>
+    <uses-permission android:name="android.car.permission.CAR_ENERGY"/>
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <application android:allowBackup="false" android:extractNativeLibs="false" android:icon="@mipmap/ic_launcher" android:label="Drive Assist" android:name="com.geely.drivemem.DriveMemApplication" android:theme="@android:style/Theme.DeviceDefault.NoActionBar">
+        <activity android:exported="true" android:label="Drive Assist" android:launchMode="singleInstance" android:name="com.geely.drivemem.ui.ComfortActivity" android:taskAffinity="">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <receiver android:exported="false" android:name="com.geely.drivemem.util.BootReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+                <action android:name="android.intent.action.LOCKED_BOOT_COMPLETED"/>
+                <action android:name="android.intent.action.MY_PACKAGE_REPLACED"/>
+                <action android:name="com.geely.drivemem.WATCHDOG"/>
+            </intent-filter>
+        </receiver>
+        <service android:exported="false" android:name="com.geely.drivemem.services.TelemetryService"/>
+    </application>
+</manifest>
