@@ -1,3 +1,0 @@
-- Fixed: the pedestrian warning sound (AVAS) no longer turns itself back
-  on after the car wakes up.
-- Fixed: the hidden night theme switch works again.
