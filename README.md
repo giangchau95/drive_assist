@@ -13,7 +13,7 @@ Bản **Drive Assist rút gọn** cho Geely EX2 (đầu xe IHU629G, Android 9), 
 
 ## 1. Tổng quan
 
-### Tính năng giữ lại
+### Tính năng
 1. **Daily Statistics** — thống kê theo ngày/tuần/tháng: quãng đường, pin & sạc, thời gian, danh sách chuyến đi/phiên sạc. (Đã bỏ thẻ Consumption & Efficiency, Elevation và biểu đồ quãng đường theo ngày vì không có dữ liệu / dư thừa.)
 2. **Charging history & energy balance** — lịch sử các phiên sạc (AC/DC, kWh, SoC, công suất), biểu đồ SoC theo thời gian, biểu đồ **Energy Balance** (Spent / Regen), đường cong công suất sạc, chi phí từng phiên (VND): phiên **AC tự động tính** = kWh × giá AC (mặc định 5.500 đ/kWh, đổi trong màn Trends); phiên **DC** nhập tay theo giá/kWh hoặc tổng tiền (có nút dùng lại giá lần trước).
 
