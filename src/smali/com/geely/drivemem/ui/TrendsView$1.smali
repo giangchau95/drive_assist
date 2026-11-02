@@ -16,7 +16,7 @@
 .method constructor <init>(Lcom/geely/drivemem/ui/TrendsView;)V
   .registers 2
   .prologue
-  .line 65
+  .line 67
     iput-object p1, p0, Lcom/geely/drivemem/ui/TrendsView$1;->this$0:Lcom/geely/drivemem/ui/TrendsView;
     invoke-direct { p0 }, Ljava/lang/Object;-><init>()V
     return-void
@@ -27,7 +27,7 @@
   .prologue
     const/4 v2, 1
     const/4 v4, 0
-  .line 66
+  .line 68
     const-wide/high16 v0, 0x4059000000000000L
     cmpl-double v0, p1, v0
     if-ltz v0, :L1

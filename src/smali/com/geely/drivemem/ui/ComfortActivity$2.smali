@@ -16,7 +16,7 @@
 .method constructor <init>(Lcom/geely/drivemem/ui/ComfortActivity;)V
   .registers 2
   .prologue
-  .line 100
+  .line 112
     iput-object p1, p0, Lcom/geely/drivemem/ui/ComfortActivity$2;->this$0:Lcom/geely/drivemem/ui/ComfortActivity;
     invoke-direct { p0 }, Ljava/lang/Object;-><init>()V
     return-void
@@ -25,7 +25,7 @@
 .method public onClick(Landroid/view/View;)V
   .registers 4
   .prologue
-  .line 101
+  .line 113
     iget-object v0, p0, Lcom/geely/drivemem/ui/ComfortActivity$2;->this$0:Lcom/geely/drivemem/ui/ComfortActivity;
     const/4 v1, 2
     invoke-static { v0, v1 }, Lcom/geely/drivemem/ui/ComfortActivity;->access$000(Lcom/geely/drivemem/ui/ComfortActivity;I)V

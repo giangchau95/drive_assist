@@ -15,6 +15,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.geely.drivemem.sensors.DailyStatsProvider;
+import com.geely.drivemem.util.AutoCost;
 import com.geely.drivemem.util.FullCharge;
 import com.geely.drivemem.util.Style;
 
@@ -37,6 +38,7 @@ public class TrendsView extends LinearLayout {
     private final TextView note;
     private final TextView fullHead, fullSub;
     private final LinearLayout fullBtns;
+    private final TextView priceHead;
 
     private static final SimpleDateFormat DAY = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
 
@@ -106,7 +108,81 @@ public class TrendsView extends LinearLayout {
         full.addView(fullBtns);
         addView(full);
 
+        // ---- charging price card ----
+        LinearLayout price = new LinearLayout(c);
+        price.setOrientation(VERTICAL);
+        price.setPadding(pad, pad, pad, pad);
+        price.setBackground(Style.card(Style.cardFillColor(), c));
+        LayoutParams plp2 = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        plp2.topMargin = Style.dp(c, 12);
+        price.setLayoutParams(plp2);
+        price.addView(text(c, "Charging price", 15.5f, Style.TEXT_DIM, true));
+        priceHead = text(c, "", 28f, Style.TEXT, true);
+        priceHead.setPadding(0, Style.dp(c, 6), 0, 0);
+        price.addView(priceHead);
+        TextView psub = text(c, "AC sessions are costed automatically. For DC fast charging the price depends on the "
+            + "provider: open Charging history and enter the price per kWh (or the total) for each DC session.", 17f, Style.TEXT_DIM, false);
+        psub.setPadding(0, Style.dp(c, 4), 0, Style.dp(c, 12));
+        price.addView(psub);
+        LinearLayout pb = new LinearLayout(c);
+        pb.setOrientation(HORIZONTAL);
+        pb.addView(Style.cardButton(c, "Change AC price", false, new Runnable() {
+            @Override public void run() { editAcPrice(); }
+        }));
+        Style.gap(pb, c, 12);
+        pb.addView(Style.cardButton(c, "Recalculate all AC sessions", false, new Runnable() {
+            @Override public void run() { confirmRecalc(); }
+        }));
+        price.addView(pb);
+        addView(price);
+        showPrice();
+
         buildPeriodRow();
+    }
+
+    private void showPrice() {
+        priceHead.setText("AC: " + fullVnd(AutoCost.acPrice(getContext())).replace(" \u0111", " \u0111/kWh"));
+    }
+
+    private void editAcPrice() {
+        final Context c = getContext();
+        final android.widget.EditText in = new android.widget.EditText(c);
+        in.setInputType(android.text.InputType.TYPE_CLASS_NUMBER);
+        in.setText(String.valueOf(AutoCost.acPrice(c)));
+        in.setSelectAllOnFocus(true);
+        new android.app.AlertDialog.Builder(c)
+            .setTitle("AC price (VND per kWh)")
+            .setView(in)
+            .setNegativeButton(android.R.string.cancel, null)
+            .setPositiveButton(android.R.string.ok, new android.content.DialogInterface.OnClickListener() {
+                @Override public void onClick(android.content.DialogInterface d, int w) {
+                    long v = 0;
+                    try { v = Long.parseLong(in.getText().toString().trim()); } catch (Throwable ignored) {}
+                    if (v <= 0) return;
+                    AutoCost.setAcPrice(c, v);
+                    showPrice();
+                    refresh();
+                }
+            }).show();
+    }
+
+    private void confirmRecalc() {
+        final Context c = getContext();
+        new android.app.AlertDialog.Builder(c)
+            .setTitle("Recalculate AC sessions?")
+            .setMessage("The cost of every finished AC session will be replaced by kWh \u00D7 "
+                + fullVnd(AutoCost.acPrice(c)).replace(" \u0111", " \u0111") + ". Costs you typed by hand for AC sessions will be overwritten. DC sessions are not touched.")
+            .setNegativeButton(android.R.string.cancel, null)
+            .setPositiveButton("Recalculate", new android.content.DialogInterface.OnClickListener() {
+                @Override public void onClick(android.content.DialogInterface d, int w) {
+                    new Thread(new Runnable() {
+                        @Override public void run() {
+                            AutoCost.run(c, true);
+                            ui.post(new Runnable() { @Override public void run() { refresh(); } });
+                        }
+                    }, "autocost").start();
+                }
+            }).show();
     }
 
     private static TextView text(Context c, String s, float sp, int color, boolean bold) {
@@ -232,6 +308,7 @@ public class TrendsView extends LinearLayout {
         new Thread(new Runnable() {
             @Override public void run() {
                 Series s = null;
+                try { AutoCost.run(ctx, false); } catch (Throwable ignored) {}
                 try { s = load(ctx, per); } catch (Throwable ignored) {}
                 final Series fs = s;
                 final long last = FullCharge.lastFullMs(ctx);
@@ -263,7 +340,11 @@ public class TrendsView extends LinearLayout {
         energySub.setText(delta(e, "%.1f kWh", per, true) + (eff > 0 ? "  ·  " + String.format(Locale.US, "%.1f kWh/100 km", eff) : ""));
         energySub.setTextColor(Style.TEXT_DIM);
         distSub.setText(delta(d, "%.0f km", per, false));
-        costSub.setText(k[n - 1] > 0 || anyPositive(k) ? delta(k, null, per, true) : "Enter costs in Charging history");
+        String perKm = (k[n - 1] > 0 && d[n - 1] >= 1) ? String.format(Locale.US, "%,.0f \u0111/km", k[n - 1] / d[n - 1]) : "";
+        String cd = delta(k, null, per, true);
+        costSub.setText(k[n - 1] > 0 || anyPositive(k)
+            ? (cd.isEmpty() ? perKm : perKm.isEmpty() ? cd : cd + "  \u00B7  " + perKm)
+            : "No charging costs yet");
         note.setText((s.estimated ? "Electricity is estimated from the battery percentage (~). " : "")
             + "The last bar is the current " + unitName(per) + ", still in progress.");
     }

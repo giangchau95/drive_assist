@@ -12,8 +12,8 @@ packageInfo:
   forcedPackageId: 127
   renameManifestPackage: null
 versionInfo:
-  versionCode: 29881941
-  versionName: 1.2.1-trends-29881941
+  versionCode: 29893767
+  versionName: 1.3.0-auto-29893767
 resourcesAreCompressed: false
 sharedLibrary: false
 sparseResources: false

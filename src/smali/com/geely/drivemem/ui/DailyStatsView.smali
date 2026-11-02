@@ -5196,6 +5196,14 @@
 .method private renderAltitudeCard(Lcom/geely/drivemem/sensors/DailyStatsProvider$DayOverview;)V
     .locals 9
 
+    iget-object v0, p0, Lcom/geely/drivemem/ui/DailyStatsView;->altitudeCard:Landroid/widget/LinearLayout;
+
+    const/16 v1, 0x8
+
+    invoke-virtual {v0, v1}, Landroid/view/View;->setVisibility(I)V
+
+    return-void
+
     .line 1123
     invoke-virtual {p0}, Lcom/geely/drivemem/ui/DailyStatsView;->getContext()Landroid/content/Context;
 
@@ -5916,6 +5924,14 @@
 
 .method private renderConsumptionCard(Lcom/geely/drivemem/sensors/DailyStatsProvider$DayOverview;[Lcom/geely/drivemem/sensors/DailyStatsProvider$SpeedBucket;)V
     .locals 12
+
+    iget-object v0, p0, Lcom/geely/drivemem/ui/DailyStatsView;->consumptionCard:Landroid/widget/LinearLayout;
+
+    const/16 v1, 0x8
+
+    invoke-virtual {v0, v1}, Landroid/view/View;->setVisibility(I)V
+
+    return-void
 
     .line 970
     invoke-virtual {p0}, Lcom/geely/drivemem/ui/DailyStatsView;->getContext()Landroid/content/Context;

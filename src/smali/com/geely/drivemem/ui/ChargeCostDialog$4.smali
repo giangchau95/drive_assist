@@ -11,76 +11,48 @@
   name = null
 .end annotation
 
-.field final synthetic val$context:Landroid/content/Context;
-
-.field final synthetic val$dialog:Landroid/app/AlertDialog;
-
 .field final synthetic val$input:Landroid/widget/EditText;
 
-.field final synthetic val$onUpdated:Ljava/lang/Runnable;
+.field final synthetic val$kwh:D
 
-.field final synthetic val$sessionId:J
+.field final synthetic val$lastPrice:J
 
-.method constructor <init>(Landroid/widget/EditText;Landroid/content/Context;JLandroid/app/AlertDialog;Ljava/lang/Runnable;)V
+.method constructor <init>(Landroid/widget/EditText;JD)V
   .annotation system Ldalvik/annotation/Signature;
     value = {
       "()V"
     }
   .end annotation
-  .registers 8
+  .registers 6
   .prologue
-  .line 116
+  .line 120
     iput-object p1, p0, Lcom/geely/drivemem/ui/ChargeCostDialog$4;->val$input:Landroid/widget/EditText;
-    iput-object p2, p0, Lcom/geely/drivemem/ui/ChargeCostDialog$4;->val$context:Landroid/content/Context;
-    iput-wide p3, p0, Lcom/geely/drivemem/ui/ChargeCostDialog$4;->val$sessionId:J
-    iput-object p5, p0, Lcom/geely/drivemem/ui/ChargeCostDialog$4;->val$dialog:Landroid/app/AlertDialog;
-    iput-object p6, p0, Lcom/geely/drivemem/ui/ChargeCostDialog$4;->val$onUpdated:Ljava/lang/Runnable;
+    iput-wide p2, p0, Lcom/geely/drivemem/ui/ChargeCostDialog$4;->val$lastPrice:J
+    iput-wide p4, p0, Lcom/geely/drivemem/ui/ChargeCostDialog$4;->val$kwh:D
     invoke-direct { p0 }, Ljava/lang/Object;-><init>()V
     return-void
 .end method
 
 .method public run()V
-  .catch Ljava/lang/NumberFormatException; { :L0 .. :L1 } :L2
   .registers 7
-  :L0
   .prologue
-  .line 119
-    iget-object v0, p0, Lcom/geely/drivemem/ui/ChargeCostDialog$4;->val$input:Landroid/widget/EditText;
-    invoke-virtual { v0 }, Landroid/widget/EditText;->getText()Landroid/text/Editable;
-    move-result-object v0
-    invoke-interface { v0 }, Landroid/text/Editable;->toString()Ljava/lang/String;
-    move-result-object v0
-    invoke-static { v0 }, Lcom/geely/drivemem/ui/ChargeCostDialog;->valueFromText(Ljava/lang/String;)J
-    move-result-wide v0
-    long-to-double v0, v0
-  .line 120
-    iget-object v2, p0, Lcom/geely/drivemem/ui/ChargeCostDialog$4;->val$context:Landroid/content/Context;
-    iget-wide v4, p0, Lcom/geely/drivemem/ui/ChargeCostDialog$4;->val$sessionId:J
-    invoke-static { v2, v4, v5, v0, v1 }, Lcom/geely/drivemem/state/ChargeSession;->updateCost(Landroid/content/Context;JD)V
-  .line 121
-    iget-object v0, p0, Lcom/geely/drivemem/ui/ChargeCostDialog$4;->val$dialog:Landroid/app/AlertDialog;
-    invoke-virtual { v0 }, Landroid/app/AlertDialog;->dismiss()V
   .line 122
-    iget-object v0, p0, Lcom/geely/drivemem/ui/ChargeCostDialog$4;->val$onUpdated:Ljava/lang/Runnable;
-    if-eqz v0, :L1
-    iget-object v0, p0, Lcom/geely/drivemem/ui/ChargeCostDialog$4;->val$onUpdated:Ljava/lang/Runnable;
-    invoke-interface { v0 }, Ljava/lang/Runnable;->run()V
-  :L1
-  .line 127
-    return-void
-  :L2
-  .line 123
-    move-exception v0
-  .line 124
-    iget-object v0, p0, Lcom/geely/drivemem/ui/ChargeCostDialog$4;->val$context:Landroid/content/Context;
-    iget-object v1, p0, Lcom/geely/drivemem/ui/ChargeCostDialog$4;->val$context:Landroid/content/Context;
-    sget v2, Lcom/geely/drivemem/R$string;->charge_cost_invalid:I
-    invoke-virtual { v1, v2 }, Landroid/content/Context;->getString(I)Ljava/lang/String;
+    iget-object v0, p0, Lcom/geely/drivemem/ui/ChargeCostDialog$4;->val$input:Landroid/widget/EditText;
+    iget-wide v2, p0, Lcom/geely/drivemem/ui/ChargeCostDialog$4;->val$lastPrice:J
+    long-to-double v2, v2
+    iget-wide v4, p0, Lcom/geely/drivemem/ui/ChargeCostDialog$4;->val$kwh:D
+    mul-double/2addr v2, v4
+    invoke-static { v2, v3 }, Ljava/lang/Math;->round(D)J
+    move-result-wide v2
+    invoke-static { v2, v3 }, Lcom/geely/drivemem/ui/ChargeCostDialog;->formatVnd(J)Ljava/lang/String;
     move-result-object v1
-    const/4 v2, 0
-    invoke-static { v0, v1, v2 }, Landroid/widget/Toast;->makeText(Landroid/content/Context;Ljava/lang/CharSequence;I)Landroid/widget/Toast;
-    move-result-object v0
-  .line 125
-    invoke-virtual { v0 }, Landroid/widget/Toast;->show()V
-    goto :L1
+    invoke-virtual { v0, v1 }, Landroid/widget/EditText;->setText(Ljava/lang/CharSequence;)V
+  .line 123
+    iget-object v0, p0, Lcom/geely/drivemem/ui/ChargeCostDialog$4;->val$input:Landroid/widget/EditText;
+    iget-object v1, p0, Lcom/geely/drivemem/ui/ChargeCostDialog$4;->val$input:Landroid/widget/EditText;
+    invoke-virtual { v1 }, Landroid/widget/EditText;->length()I
+    move-result v1
+    invoke-virtual { v0, v1 }, Landroid/widget/EditText;->setSelection(I)V
+  .line 124
+    return-void
 .end method

@@ -38,7 +38,7 @@ public final class ChargeCostDialog {
         int pad = Style.dp(context, 24);
         card.setPadding(pad, pad, pad, pad);
         card.setLayoutParams(new ViewGroup.LayoutParams(
-            Style.dp(context, 520), ViewGroup.LayoutParams.WRAP_CONTENT));
+            Style.dp(context, 760), ViewGroup.LayoutParams.WRAP_CONTENT));
 
         TextView title = new TextView(context);
         title.setText(context.getString(R.string.charge_cost_input_title));
@@ -104,13 +104,28 @@ public final class ChargeCostDialog {
         TextView btnPerKwh = Style.cardButton(context,
             context.getString(R.string.charge_cost_btn_per_kwh), false, new Runnable() {
                 @Override public void run() {
-                    long total = Math.round(valueFromText(input.getText().toString()) * kwh);
+                    long perKwh = valueFromText(input.getText().toString());
+                    if (perKwh > 0 && perKwh < 100000) com.geely.drivemem.util.AutoCost.setLastDcPrice(context, perKwh);
+                    long total = Math.round(perKwh * kwh);
                     input.setText(formatVnd(total));
                     input.setSelection(input.length());
                 }
             });
         btnRow.addView(btnPerKwh);
         Style.gap(btnRow, context, 10);
+
+        final long lastPrice = com.geely.drivemem.util.AutoCost.lastDcPrice(context);
+        if (lastPrice > 0) {
+            TextView btnLast = Style.cardButton(context,
+                "Last price: " + formatVnd(lastPrice) + "/kWh", false, new Runnable() {
+                    @Override public void run() {
+                        input.setText(formatVnd(Math.round(lastPrice * kwh)));
+                        input.setSelection(input.length());
+                    }
+                });
+            btnRow.addView(btnLast);
+            Style.gap(btnRow, context, 10);
+        }
 
         TextView btnSave = Style.cardButton(context, context.getString(R.string.charge_cost_btn_save), true,
             new Runnable() {

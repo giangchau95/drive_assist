@@ -16,7 +16,7 @@
 .method constructor <init>(Lcom/geely/drivemem/ui/TrendsView;)V
   .registers 2
   .prologue
-  .line 72
+  .line 74
     iput-object p1, p0, Lcom/geely/drivemem/ui/TrendsView$2;->this$0:Lcom/geely/drivemem/ui/TrendsView;
     invoke-direct { p0 }, Ljava/lang/Object;-><init>()V
     return-void
@@ -25,7 +25,7 @@
 .method public format(D)Ljava/lang/String;
   .registers 8
   .prologue
-  .line 73
+  .line 75
     sget-object v0, Ljava/util/Locale;->US:Ljava/util/Locale;
     const-string v1, "%.0f"
     const/4 v2, 1

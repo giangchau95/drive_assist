@@ -16,7 +16,7 @@
 .method constructor <init>(Lcom/geely/drivemem/ui/TrendsView;)V
   .registers 2
   .prologue
-  .line 79
+  .line 81
     iput-object p1, p0, Lcom/geely/drivemem/ui/TrendsView$3;->this$0:Lcom/geely/drivemem/ui/TrendsView;
     invoke-direct { p0 }, Ljava/lang/Object;-><init>()V
     return-void
@@ -25,7 +25,7 @@
 .method public format(D)Ljava/lang/String;
   .registers 4
   .prologue
-  .line 80
+  .line 82
     invoke-static { p1, p2 }, Lcom/geely/drivemem/ui/TrendsView;->access$000(D)Ljava/lang/String;
     move-result-object v0
     return-object v0

@@ -59,7 +59,11 @@ public class ComfortActivity extends Activity {
         s1.setOverScrollMode(View.OVER_SCROLL_NEVER);
         dailyStatsView = new DailyStatsView(this, null);
         s1.addView(dailyStatsView);
-        statsContainer.addView(s1, new FrameLayout.LayoutParams(
+        LinearLayout col_s1 = new LinearLayout(this);
+        col_s1.setOrientation(LinearLayout.VERTICAL);
+        col_s1.addView(new ChargingBanner(this));
+        col_s1.addView(s1, new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0, 1f));
+        statsContainer.addView(col_s1, new FrameLayout.LayoutParams(
             ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
         screen.addView(statsContainer, new FrameLayout.LayoutParams(
             ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
@@ -71,7 +75,11 @@ public class ComfortActivity extends Activity {
         s2.setOverScrollMode(View.OVER_SCROLL_NEVER);
         chargeStatsView = new ChargeStatsView(this, null);
         s2.addView(chargeStatsView);
-        chargeStatsContainer.addView(s2, new FrameLayout.LayoutParams(
+        LinearLayout col_s2 = new LinearLayout(this);
+        col_s2.setOrientation(LinearLayout.VERTICAL);
+        col_s2.addView(new ChargingBanner(this));
+        col_s2.addView(s2, new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0, 1f));
+        chargeStatsContainer.addView(col_s2, new FrameLayout.LayoutParams(
             ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
         chargeStatsContainer.setVisibility(View.GONE);
         screen.addView(chargeStatsContainer, new FrameLayout.LayoutParams(
@@ -84,7 +92,11 @@ public class ComfortActivity extends Activity {
         s3.setOverScrollMode(View.OVER_SCROLL_NEVER);
         trendsView = new TrendsView(this, null);
         s3.addView(trendsView);
-        trendsContainer.addView(s3, new FrameLayout.LayoutParams(
+        LinearLayout col_s3 = new LinearLayout(this);
+        col_s3.setOrientation(LinearLayout.VERTICAL);
+        col_s3.addView(new ChargingBanner(this));
+        col_s3.addView(s3, new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0, 1f));
+        trendsContainer.addView(col_s3, new FrameLayout.LayoutParams(
             ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
         trendsContainer.setVisibility(View.GONE);
         screen.addView(trendsContainer, new FrameLayout.LayoutParams(
@@ -250,7 +262,12 @@ public class ComfortActivity extends Activity {
             BootReceiver.scheduleWatchdog(this);
             BootReceiver.ensureAll(this);
         } catch (Throwable t) { android.util.Log.w(CarAccess.TAG, "resume ensure: " + t); }
-        refreshCurrent();
+        new Thread(new Runnable() {
+            @Override public void run() {
+                com.geely.drivemem.util.AutoCost.run(ComfortActivity.this, false);
+                runOnUiThread(new Runnable() { @Override public void run() { refreshCurrent(); } });
+            }
+        }, "autocost").start();
         autoCheck();
         FullChargeReminder.check(this);
     }
