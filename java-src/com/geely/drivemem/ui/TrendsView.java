@@ -241,6 +241,13 @@ public class TrendsView extends LinearLayout {
         }
         TextView hint = text(c, period == P_DAY ? "last 14 days" : period == P_WEEK ? "last 8 weeks" : "last 6 months", 17f, Style.TEXT_DIM, false);
         periodRow.addView(hint);
+        if (c instanceof android.app.Activity) {
+            final android.app.Activity act = (android.app.Activity) c;
+            Style.gap(periodRow, c, 24);
+            periodRow.addView(Style.cardButton(c, "Last month summary", false, new Runnable() {
+                @Override public void run() { MonthlySummary.showLastMonth(act); }
+            }));
+        }
     }
 
     // ---------- data ----------

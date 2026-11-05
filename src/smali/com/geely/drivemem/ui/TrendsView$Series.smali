@@ -70,13 +70,13 @@
 .method private constructor <init>()V
   .registers 2
   .prologue
-  .line 247
+  .line 254
     invoke-direct { p0 }, Ljava/lang/Object;-><init>()V
-  .line 248
+  .line 255
     new-instance v0, Ljava/util/ArrayList;
     invoke-direct { v0 }, Ljava/util/ArrayList;-><init>()V
     iput-object v0, p0, Lcom/geely/drivemem/ui/TrendsView$Series;->labels:Ljava/util/List;
-  .line 249
+  .line 256
     new-instance v0, Ljava/util/ArrayList;
     invoke-direct { v0 }, Ljava/util/ArrayList;-><init>()V
     iput-object v0, p0, Lcom/geely/drivemem/ui/TrendsView$Series;->energy:Ljava/util/List;
@@ -95,7 +95,7 @@
 .method synthetic constructor <init>(Lcom/geely/drivemem/ui/TrendsView$1;)V
   .registers 2
   .prologue
-  .line 247
+  .line 254
     invoke-direct { p0 }, Lcom/geely/drivemem/ui/TrendsView$Series;-><init>()V
     return-void
 .end method

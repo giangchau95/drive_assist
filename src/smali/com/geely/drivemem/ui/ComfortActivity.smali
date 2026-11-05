@@ -938,7 +938,7 @@
   :L0
     invoke-virtual { p0 }, Lcom/geely/drivemem/ui/ComfortActivity;->recreate()V
   :L1
-  .line 273
+  .line 275
     return-void
   :L2
   .line 262
@@ -957,7 +957,9 @@
   .line 271
     invoke-direct { p0 }, Lcom/geely/drivemem/ui/ComfortActivity;->autoCheck()V
   .line 272
-    invoke-static { p0 }, Lcom/geely/drivemem/ui/FullChargeReminder;->check(Landroid/app/Activity;)V
+    new-instance v0, Lcom/geely/drivemem/ui/ComfortActivity$8;
+    invoke-direct { v0, p0 }, Lcom/geely/drivemem/ui/ComfortActivity$8;-><init>(Lcom/geely/drivemem/ui/ComfortActivity;)V
+    invoke-static { p0, v0 }, Lcom/geely/drivemem/ui/MonthlySummary;->check(Landroid/app/Activity;Ljava/lang/Runnable;)V
     goto :L1
   :L4
   .line 264

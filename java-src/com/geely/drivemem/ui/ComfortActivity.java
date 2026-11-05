@@ -269,6 +269,8 @@ public class ComfortActivity extends Activity {
             }
         }, "autocost").start();
         autoCheck();
-        FullChargeReminder.check(this);
+        MonthlySummary.check(this, new Runnable() {
+            @Override public void run() { FullChargeReminder.check(ComfortActivity.this); }
+        });
     }
 }

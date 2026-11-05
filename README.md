@@ -22,6 +22,8 @@ Bản **Drive Assist rút gọn** cho Geely EX2 (đầu xe IHU629G, Android 9), 
 
 5. **Thẻ đang sạc** — khi xe đang sạc, đầu mỗi màn hình hiện SoC, kWh đã nạp và thời gian ước tính đến 80% / 100% (ước tính theo tốc độ sạc gần nhất, mang tính tham khảo).
 
+6. **Tổng kết tháng** — đầu mỗi tháng, khi mở app và xe đang đỗ, hiện một thẻ tóm tắt tháng trước: quãng đường, điện năng, tiền sạc (đ/km), số phiên sạc và số lần sạc 100%, kèm so sánh với tháng trước đó. Xem lại bất cứ lúc nào ở Trends → "Last month summary".
+
 ### Đã gỡ bỏ
 Điều khiển Clima, Gate, Turbo, Music/Spotify, panel Home Assistant, MQTT, ABRP, dashcam, overlay & icon thanh trạng thái, màn Cài đặt, xuất dữ liệu ra USB, nền skyline/Noturno.
 

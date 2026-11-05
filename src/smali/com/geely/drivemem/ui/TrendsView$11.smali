@@ -13,19 +13,22 @@
 
 .field final synthetic this$0:Lcom/geely/drivemem/ui/TrendsView;
 
+.field final synthetic val$c:Landroid/content/Context;
+
 .field final synthetic val$last:J
 
-.method constructor <init>(Lcom/geely/drivemem/ui/TrendsView;J)V
+.method constructor <init>(Lcom/geely/drivemem/ui/TrendsView;Landroid/content/Context;J)V
   .annotation system Ldalvik/annotation/Signature;
     value = {
       "()V"
     }
   .end annotation
-  .registers 4
+  .registers 6
   .prologue
   .line 389
     iput-object p1, p0, Lcom/geely/drivemem/ui/TrendsView$11;->this$0:Lcom/geely/drivemem/ui/TrendsView;
-    iput-wide p2, p0, Lcom/geely/drivemem/ui/TrendsView$11;->val$last:J
+    iput-object p2, p0, Lcom/geely/drivemem/ui/TrendsView$11;->val$c:Landroid/content/Context;
+    iput-wide p3, p0, Lcom/geely/drivemem/ui/TrendsView$11;->val$last:J
     invoke-direct { p0 }, Ljava/lang/Object;-><init>()V
     return-void
 .end method
@@ -33,9 +36,20 @@
 .method public run()V
   .registers 5
   .prologue
-  .line 390
+    const/16 v0, 30
+  .line 391
+    iget-object v1, p0, Lcom/geely/drivemem/ui/TrendsView$11;->val$c:Landroid/content/Context;
+    iget-object v2, p0, Lcom/geely/drivemem/ui/TrendsView$11;->val$c:Landroid/content/Context;
+    invoke-static { v2 }, Lcom/geely/drivemem/util/FullCharge;->intervalDays(Landroid/content/Context;)I
+    move-result v2
+    if-ne v2, v0, :L0
+    const/16 v0, 15
+  :L0
+    invoke-static { v1, v0 }, Lcom/geely/drivemem/util/FullCharge;->setIntervalDays(Landroid/content/Context;I)V
+  .line 392
     iget-object v0, p0, Lcom/geely/drivemem/ui/TrendsView$11;->this$0:Lcom/geely/drivemem/ui/TrendsView;
     iget-wide v2, p0, Lcom/geely/drivemem/ui/TrendsView$11;->val$last:J
-    invoke-static { v0, v2, v3 }, Lcom/geely/drivemem/ui/TrendsView;->access$1200(Lcom/geely/drivemem/ui/TrendsView;J)V
+    invoke-static { v0, v2, v3 }, Lcom/geely/drivemem/ui/TrendsView;->access$1100(Lcom/geely/drivemem/ui/TrendsView;J)V
+  .line 393
     return-void
 .end method
