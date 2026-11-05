@@ -1,0 +1,10 @@
+{
+  "schema": 1,
+  "apps": [
+    {
+      "package": "vn.vietmap.live",
+      "name": "VietMap Live",
+      "description": "Navigation and live traffic"
+    }
+  ]
+}

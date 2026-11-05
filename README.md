@@ -191,3 +191,22 @@ keystore/     debug.ks (khóa ký)
 ```
 
 Giấy phép: dựa trên Drive Assist gốc, theo **GNU GPL v3** (xem [LICENSE](LICENSE)). Bản phân phối đã chỉnh sửa phải giữ mã nguồn mở theo GPLv3 — `src/` và `java-src/` trong repo này là phần mã nguồn tương ứng.
+
+---
+
+## Kho ứng dụng (nhánh `store-test`, chưa phát hành)
+
+Tab **Apps** (biểu tượng ô vuông ở thanh bên) cho phép cài và cập nhật ứng dụng trực tuyến, không cần tải APK rồi cài tay.
+
+**Cách hoạt động**
+- Danh sách ứng dụng nằm ở `apps/catalog.json` trên repo (nhánh `store-test` khi thử nghiệm). File APK nằm ở mục **Releases** của repo (GitHub không nhận file > 100 MB trong git).
+- Bấm Install/Update → Drive Assist chỉ gửi *tên package* cho ModeHelper. ModeHelper tự đọc catalog, tải APK qua https (chỉ từ github.com), kiểm tra dung lượng, SHA-256, tên package, số phiên bản và **chứng chỉ ký đã ghim** rồi mới cài im lặng. App khác trên xe không thể ép ModeHelper cài file lạ.
+- Chỉ cài khi xe đang đỗ (P) và không sạc.
+
+**Thêm / cập nhật một app (làm trên máy tính)**
+1. Tải APK mới từ apkpure về máy tính.
+2. Vào GitHub → Releases → tạo (hoặc mở) release có tag `apps` → kéo file APK vào mục assets (đặt tên không dấu cách, ví dụ `vietmap-live-3.4.4.apk`).
+3. Chạy: `python3 tools/add_app.py vietmap-live-3.4.4.apk --url https://github.com/giangchau95/drive_assist/releases/download/apps/vietmap-live-3.4.4.apk --name "VietMap Live"` — script tự đọc package, versionCode, SHA-256 và chứng chỉ, rồi ghi vào `apps/catalog.json`.
+4. Commit và push `apps/catalog.json`. Trên xe, mở tab Apps → Refresh list → Update.
+
+Lưu ý: script từ chối APK có chứng chỉ khác với bản đã có trong catalog (chống file giả). Cần ModeHelper bản mới: chạy lại bộ cài `test/drive_assist_installer_store.apk` một lần.
