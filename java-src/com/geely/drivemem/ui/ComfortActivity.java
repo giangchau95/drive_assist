@@ -23,12 +23,15 @@ public class ComfortActivity extends Activity {
     private static final int MODE_DAILY = 1;
     private static final int MODE_CHARGE = 2;
     private static final int MODE_TRENDS = 3;
+    private static final int MODE_APPS = 4;
     private int mode = 0;
 
     private DailyStatsView dailyStatsView;
     private ChargeStatsView chargeStatsView;
     private FrameLayout statsContainer, chargeStatsContainer;
-    private ImageView statsDockIcon, chargeDockIcon, trendsDockIcon;
+    private ImageView statsDockIcon, chargeDockIcon, trendsDockIcon, appsDockIcon;
+    private AppsView appsView;
+    private FrameLayout appsContainer;
     private TrendsView trendsView;
     private FrameLayout trendsContainer;
     private ImageView updateBtn;
@@ -102,6 +105,19 @@ public class ComfortActivity extends Activity {
         screen.addView(trendsContainer, new FrameLayout.LayoutParams(
             ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
 
+        appsContainer = new FrameLayout(this);
+        appsContainer.setPadding(sidebarClearance, padTop + Style.statusBarHeight(this), padH, padV);
+        android.widget.ScrollView s4 = new android.widget.ScrollView(this);
+        s4.setVerticalScrollBarEnabled(false);
+        s4.setOverScrollMode(View.OVER_SCROLL_NEVER);
+        appsView = new AppsView(this, null);
+        s4.addView(appsView);
+        appsContainer.addView(s4, new FrameLayout.LayoutParams(
+            ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+        appsContainer.setVisibility(View.GONE);
+        screen.addView(appsContainer, new FrameLayout.LayoutParams(
+            ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+
         LinearLayout bar = new LinearLayout(this);
         bar.setOrientation(LinearLayout.VERTICAL);
         bar.setGravity(Gravity.CENTER);
@@ -116,12 +132,18 @@ public class ComfortActivity extends Activity {
             @Override public void onClick(View v) { setMode(MODE_TRENDS); }
         });
         trendsDockIcon.setImageBitmap(trendsIcon());
+        appsDockIcon = dockButton(0, new View.OnClickListener() {
+            @Override public void onClick(View v) { setMode(MODE_APPS); }
+        });
+        appsDockIcon.setImageBitmap(appsIcon());
         bar.addView(new View(this), new LinearLayout.LayoutParams(0, 0, 1f));
         bar.addView(statsDockIcon);
         Style.gap(bar, this, 14);
         bar.addView(chargeDockIcon);
         Style.gap(bar, this, 14);
         bar.addView(trendsDockIcon);
+        Style.gap(bar, this, 14);
+        bar.addView(appsDockIcon);
         bar.addView(new View(this), new LinearLayout.LayoutParams(0, 0, 1f));
         updateBtn = updateButton();
         updateBtn.setOnClickListener(new View.OnClickListener() {
@@ -139,6 +161,21 @@ public class ComfortActivity extends Activity {
         setContentView(screen);
         FullCharge.touch(this);
         setMode(MODE_DAILY);
+    }
+
+    private android.graphics.Bitmap appsIcon() {
+        int px = Style.dp(this, 38);
+        android.graphics.Bitmap bmp = android.graphics.Bitmap.createBitmap(px, px, android.graphics.Bitmap.Config.ARGB_8888);
+        android.graphics.Canvas c = new android.graphics.Canvas(bmp);
+        android.graphics.Paint p = new android.graphics.Paint(android.graphics.Paint.ANTI_ALIAS_FLAG);
+        p.setColor(0xFFFFFFFF);
+        float g = px * 0.08f, s = (px - 3 * g - 2 * px * 0.08f) / 2f, o = px * 0.08f;
+        float r = px * 0.09f;
+        for (int i = 0; i < 2; i++) for (int j = 0; j < 2; j++) {
+            float x = o + g * 0.5f + i * (s + g), y = o + g * 0.5f + j * (s + g);
+            c.drawRoundRect(new android.graphics.RectF(x, y, x + s, y + s), r, r, p);
+        }
+        return bmp;
     }
 
     private android.graphics.Bitmap trendsIcon() {
@@ -236,6 +273,7 @@ public class ComfortActivity extends Activity {
     private void refreshCurrent() {
         if (mode == MODE_DAILY) dailyStatsView.refresh();
         else if (mode == MODE_TRENDS) trendsView.refresh();
+        else if (mode == MODE_APPS) appsView.refresh();
         else chargeStatsView.refresh();
     }
 
@@ -245,6 +283,9 @@ public class ComfortActivity extends Activity {
         statsContainer.setVisibility(m == MODE_DAILY ? View.VISIBLE : View.GONE);
         chargeStatsContainer.setVisibility(m == MODE_CHARGE ? View.VISIBLE : View.GONE);
         trendsContainer.setVisibility(m == MODE_TRENDS ? View.VISIBLE : View.GONE);
+        appsContainer.setVisibility(m == MODE_APPS ? View.VISIBLE : View.GONE);
+        appsDockIcon.setBackground(Style.card(m == MODE_APPS ? Style.CARD_ON : 0x00000000, this, 18));
+        appsDockIcon.setColorFilter(m == MODE_APPS ? Style.onFill(Style.CARD_ON) : Style.TEXT_DIM);
         refreshCurrent();
         trendsDockIcon.setBackground(Style.card(m == MODE_TRENDS ? Style.CARD_ON : 0x00000000, this, 18));
         trendsDockIcon.setColorFilter(m == MODE_TRENDS ? Style.onFill(Style.CARD_ON) : Style.TEXT_DIM);

@@ -191,3 +191,23 @@ keystore/     debug.ks (khóa ký)
 ```
 
 Giấy phép: dựa trên Drive Assist gốc, theo **GNU GPL v3** (xem [LICENSE](LICENSE)). Bản phân phối đã chỉnh sửa phải giữ mã nguồn mở theo GPLv3 — `src/` và `java-src/` trong repo này là phần mã nguồn tương ứng.
+
+---
+
+## Kho ứng dụng
+
+Tab **Apps** (biểu tượng ô vuông ở thanh bên) hiển thị danh sách ứng dụng dạng thẻ (icon, phiên bản, dung lượng, trạng thái Installed / Update / Not installed) và cho phép **cài, cập nhật, mở, gỡ** ứng dụng trực tuyến, không cần tải APK rồi cài tay.
+
+**Cách hoạt động**
+- Danh sách ứng dụng nằm ở `apps/catalog.json` trên repo (nhánh `main`), icon ở `apps/icons/`. File APK nằm ở mục **Releases** (tag `apps`) vì GitHub không nhận file > 100 MB trong git.
+- Bấm Install/Update/Uninstall → Drive Assist chỉ gửi *tên package* cho ModeHelper. ModeHelper tự đọc catalog, tải APK qua https (chỉ từ github.com), kiểm tra dung lượng, SHA-256, tên package, số phiên bản và **chứng chỉ ký đã ghim** rồi mới cài im lặng. Chỉ app có trong catalog mới cài/gỡ được; app khác trên xe không thể ép ModeHelper cài file lạ.
+- Chỉ thao tác khi xe đang đỗ (P) và không sạc. Cần khoảng 2 lần dung lượng file APK còn trống.
+- Chỉ hỗ trợ file `.apk` đơn (không phải `.xapk`).
+
+**Thêm / cập nhật một app (làm trên máy tính)**
+1. Tải APK mới từ apkpure về máy tính.
+2. Vào GitHub → Releases → mở release có tag `apps` → kéo file APK vào mục assets (tên không dấu cách, ví dụ `vietmap-live-3.4.4.apk`).
+3. Chạy: `python3 tools/add_app.py vietmap-live-3.4.4.apk --url https://github.com/giangchau95/drive_assist/releases/download/apps/vietmap-live-3.4.4.apk --name "VietMap Live" --icon icon.png` — script tự đọc package, versionCode, SHA-256 và chứng chỉ, ghi vào `apps/catalog.json` (icon chỉ cần lần đầu).
+4. Commit và push `apps/catalog.json` (và `apps/icons/`). Trên xe, mở tab Apps → nút làm mới → Update.
+
+Script từ chối APK có chứng chỉ khác với bản đã có trong catalog (chống file giả). Cần ModeHelper bản mới: chạy lại bộ cài `install/drive_assist_installer.apk` một lần.
