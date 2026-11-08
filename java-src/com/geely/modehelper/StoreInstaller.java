@@ -33,7 +33,7 @@ final class StoreInstaller {
     private StoreInstaller() {}
 
     static final String TAG = "ModeHelper";
-    static final String CATALOG_URL = "https://raw.githubusercontent.com/giangchau95/drive_assist/store-test/apps/catalog.json";
+    static final String CATALOG_URL = "https://raw.githubusercontent.com/giangchau95/drive_assist/main/apps/catalog.json";
     static final String STATUS_ACTION = "com.geely.modehelper.STORE_STATUS";
     static final String CLIENT_PKG = "com.geely.drivemem";
     private static final long HARD_MAX_BYTES = 600L * 1024 * 1024;
@@ -82,6 +82,25 @@ final class StoreInstaller {
                 }
             }
         }, "store-install").start();
+    }
+
+    /** Uninstalls an app, but only one that is listed in the catalog. */
+    static void startUninstall(final Context ctx, final String pkg) {
+        new Thread(new Runnable() {
+            @Override public void run() {
+                try {
+                    findEntry(pkg);  // throws if the package is not in the catalog
+                    report(ctx, pkg, "install", 100, "Uninstalling");
+                    PackageInstaller pi = ctx.getPackageManager().getPackageInstaller();
+                    Intent ri = new Intent(ctx, StoreResultReceiver.class).putExtra("pkg", pkg).putExtra("op", "uninstall");
+                    PendingIntent pend = PendingIntent.getBroadcast(ctx, pkg.hashCode(), ri, PendingIntent.FLAG_UPDATE_CURRENT);
+                    pi.uninstall(pkg, pend.getIntentSender());
+                } catch (Throwable t) {
+                    Log.w(TAG, "store: uninstall failed: " + t);
+                    report(ctx, pkg, "error", 0, "Uninstall failed: " + (t.getMessage() == null ? t.toString() : t.getMessage()));
+                }
+            }
+        }, "store-uninstall").start();
     }
 
     private static boolean hostAllowed(String host) {

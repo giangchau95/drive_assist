@@ -91,6 +91,7 @@ def main():
     ap.add_argument('--url', required=True, help='https download URL of this APK (a GitHub release asset)')
     ap.add_argument('--name', help='display name (kept from the catalog if omitted)')
     ap.add_argument('--description', help='short description')
+    ap.add_argument('--icon', help='PNG icon (about 192x192) to copy into apps/icons/<package>.png')
     ap.add_argument('--cert', help='certificate SHA-256 if the APK only has a v1 (JAR) signature')
     a = ap.parse_args()
 
@@ -113,6 +114,12 @@ def main():
         'versionName': vn, 'versionCode': vc, 'size': os.path.getsize(a.apk),
         'sha256': sha, 'certSha256': cert, 'apk': a.url,
     })
+    if a.icon:
+        import shutil
+        d = os.path.join(os.path.dirname(CATALOG), 'icons')
+        os.makedirs(d, exist_ok=True)
+        shutil.copyfile(a.icon, os.path.join(d, pkg + '.png'))
+        entry['icon'] = 'https://raw.githubusercontent.com/giangchau95/drive_assist/main/apps/icons/%s.png' % pkg
     json.dump(cat, open(CATALOG, 'w', encoding='utf-8'), indent=2, ensure_ascii=False)
     open(CATALOG, 'a').write('\n')
     print('%s  %s (%s)  %.1f MB\n  sha256 %s\n  cert   %s' % (pkg, vn, vc, entry['size'] / 1048576, sha, cert))

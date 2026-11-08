@@ -9,11 +9,19 @@ import android.util.Log;
 public class StoreReceiver extends BroadcastReceiver {
     public static final String INSTALL_APP = "com.geely.modehelper.INSTALL_APP";
 
+    public static final String UNINSTALL_APP = "com.geely.modehelper.UNINSTALL_APP";
+
     @Override public void onReceive(Context c, Intent i) {
-        if (i == null || !INSTALL_APP.equals(i.getAction())) return;
+        if (i == null) return;
+        String act = i.getAction();
         String pkg = i.getStringExtra("pkg");
-        Log.i("ModeHelper", "store: asked for " + pkg);
         if (pkg == null || pkg.length() == 0) return;
-        StoreInstaller.start(c.getApplicationContext(), pkg);
+        if (INSTALL_APP.equals(act)) {
+            Log.i("ModeHelper", "store: install asked for " + pkg);
+            StoreInstaller.start(c.getApplicationContext(), pkg);
+        } else if (UNINSTALL_APP.equals(act)) {
+            Log.i("ModeHelper", "store: uninstall asked for " + pkg);
+            StoreInstaller.startUninstall(c.getApplicationContext(), pkg);
+        }
     }
 }

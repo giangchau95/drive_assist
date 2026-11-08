@@ -14,6 +14,8 @@
 
 .field hasApk:Z
 
+.field icon:Ljava/lang/String;
+
 .field name:Ljava/lang/String;
 
 .field pkg:Ljava/lang/String;
