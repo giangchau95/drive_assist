@@ -1,6 +1,6 @@
 {
-  "versionCode": 29902018,
-  "versionName": "1.5.0-29902018",
+  "versionCode": 29902024,
+  "versionName": "1.5.1-29902024",
   "apkUrl": "https://raw.githubusercontent.com/giangchau95/drive_assist/main/update/drive_assist.apk",
-  "changelog": "New Apps tab: install, update, open and uninstall apps (VietMap Live) online from the app catalog. Run the installer once to update ModeHelper."
+  "changelog": "Apps tab: cleaner Install/Open/Update buttons, refresh button and card layout."
 }

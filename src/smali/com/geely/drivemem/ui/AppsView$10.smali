@@ -1,6 +1,6 @@
 .class Lcom/geely/drivemem/ui/AppsView$10;
 .super Ljava/lang/Object;
-.implements Ljava/lang/Runnable;
+.implements Landroid/view/View$OnClickListener;
 .source "AppsView.java"
 
 .annotation system Ldalvik/annotation/EnclosingMethod;
@@ -23,19 +23,19 @@
   .end annotation
   .registers 3
   .prologue
-  .line 485
+  .line 508
     iput-object p1, p0, Lcom/geely/drivemem/ui/AppsView$10;->this$0:Lcom/geely/drivemem/ui/AppsView;
     iput-object p2, p0, Lcom/geely/drivemem/ui/AppsView$10;->val$a:Lcom/geely/drivemem/ui/AppsView$App;
     invoke-direct { p0 }, Ljava/lang/Object;-><init>()V
     return-void
 .end method
 
-.method public run()V
-  .registers 3
+.method public onClick(Landroid/view/View;)V
+  .registers 4
   .prologue
-  .line 485
+  .line 508
     iget-object v0, p0, Lcom/geely/drivemem/ui/AppsView$10;->this$0:Lcom/geely/drivemem/ui/AppsView;
     iget-object v1, p0, Lcom/geely/drivemem/ui/AppsView$10;->val$a:Lcom/geely/drivemem/ui/AppsView$App;
-    invoke-static { v0, v1 }, Lcom/geely/drivemem/ui/AppsView;->access$1000(Lcom/geely/drivemem/ui/AppsView;Lcom/geely/drivemem/ui/AppsView$App;)V
+    invoke-static { v0, v1 }, Lcom/geely/drivemem/ui/AppsView;->access$1200(Lcom/geely/drivemem/ui/AppsView;Lcom/geely/drivemem/ui/AppsView$App;)V
     return-void
 .end method

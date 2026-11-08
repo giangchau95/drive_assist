@@ -23,7 +23,7 @@
   .end annotation
   .registers 3
   .prologue
-  .line 472
+  .line 494
     iput-object p1, p0, Lcom/geely/drivemem/ui/AppsView$8;->this$0:Lcom/geely/drivemem/ui/AppsView;
     iput-object p2, p0, Lcom/geely/drivemem/ui/AppsView$8;->val$a:Lcom/geely/drivemem/ui/AppsView$App;
     invoke-direct { p0 }, Ljava/lang/Object;-><init>()V
@@ -33,10 +33,9 @@
 .method public run()V
   .registers 3
   .prologue
-  .line 472
+  .line 494
     iget-object v0, p0, Lcom/geely/drivemem/ui/AppsView$8;->this$0:Lcom/geely/drivemem/ui/AppsView;
     iget-object v1, p0, Lcom/geely/drivemem/ui/AppsView$8;->val$a:Lcom/geely/drivemem/ui/AppsView$App;
-    iget-object v1, v1, Lcom/geely/drivemem/ui/AppsView$App;->pkg:Ljava/lang/String;
-    invoke-static { v0, v1 }, Lcom/geely/drivemem/ui/AppsView;->access$1100(Lcom/geely/drivemem/ui/AppsView;Ljava/lang/String;)V
+    invoke-static { v0, v1 }, Lcom/geely/drivemem/ui/AppsView;->access$1000(Lcom/geely/drivemem/ui/AppsView;Lcom/geely/drivemem/ui/AppsView$App;)V
     return-void
 .end method

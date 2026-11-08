@@ -1,6 +1,5 @@
 .class Lcom/geely/drivemem/ui/AppsView$6;
-.super Ljava/lang/Object;
-.implements Ljava/lang/Runnable;
+.super Landroid/view/ViewOutlineProvider;
 .source "AppsView.java"
 
 .annotation system Ldalvik/annotation/EnclosingMethod;
@@ -13,18 +12,31 @@
 
 .field final synthetic this$0:Lcom/geely/drivemem/ui/AppsView;
 
-.method constructor <init>(Lcom/geely/drivemem/ui/AppsView;)V
-  .registers 2
+.field final synthetic val$rad:I
+
+.method constructor <init>(Lcom/geely/drivemem/ui/AppsView;I)V
+  .registers 3
   .prologue
-  .line 460
+  .line 399
     iput-object p1, p0, Lcom/geely/drivemem/ui/AppsView$6;->this$0:Lcom/geely/drivemem/ui/AppsView;
-    invoke-direct { p0 }, Ljava/lang/Object;-><init>()V
+    iput p2, p0, Lcom/geely/drivemem/ui/AppsView$6;->val$rad:I
+    invoke-direct { p0 }, Landroid/view/ViewOutlineProvider;-><init>()V
     return-void
 .end method
 
-.method public run()V
-  .registers 1
+.method public getOutline(Landroid/view/View;Landroid/graphics/Outline;)V
+  .registers 9
   .prologue
-  .line 460
+    const/4 v1, 0
+  .line 400
+    invoke-virtual { p1 }, Landroid/view/View;->getWidth()I
+    move-result v3
+    invoke-virtual { p1 }, Landroid/view/View;->getHeight()I
+    move-result v4
+    iget v0, p0, Lcom/geely/drivemem/ui/AppsView$6;->val$rad:I
+    int-to-float v5, v0
+    move-object v0, p2
+    move v2, v1
+    invoke-virtual/range { v0 .. v5 }, Landroid/graphics/Outline;->setRoundRect(IIIIF)V
     return-void
 .end method

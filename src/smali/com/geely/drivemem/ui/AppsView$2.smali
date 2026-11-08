@@ -16,7 +16,7 @@
 .method constructor <init>(Lcom/geely/drivemem/ui/AppsView;)V
   .registers 2
   .prologue
-  .line 101
+  .line 102
     iput-object p1, p0, Lcom/geely/drivemem/ui/AppsView$2;->this$0:Lcom/geely/drivemem/ui/AppsView;
     invoke-direct { p0 }, Ljava/lang/Object;-><init>()V
     return-void
@@ -25,7 +25,7 @@
 .method public onClick(Landroid/view/View;)V
   .registers 3
   .prologue
-  .line 102
+  .line 103
     iget-object v0, p0, Lcom/geely/drivemem/ui/AppsView$2;->this$0:Lcom/geely/drivemem/ui/AppsView;
     invoke-virtual { v0 }, Lcom/geely/drivemem/ui/AppsView;->refresh()V
     return-void

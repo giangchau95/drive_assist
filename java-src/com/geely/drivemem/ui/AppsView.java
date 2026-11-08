@@ -95,13 +95,14 @@ public class AppsView extends LinearLayout {
         header.addView(tcol, new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f));
         refreshBtn = new ImageView(c);
         refreshBtn.setImageBitmap(glyph(c, 0));
-        refreshBtn.setBackground(Style.card(Style.cardFillColor(), c, 14));
-        int rp = Style.dp(c, 12);
+        refreshBtn.setScaleType(ImageView.ScaleType.FIT_CENTER);
+        refreshBtn.setBackground(Style.card(Style.CARD_HI, c, 14));
+        int rp = Style.dp(c, 11);
         refreshBtn.setPadding(rp, rp, rp, rp);
         refreshBtn.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) { refresh(); }
         });
-        header.addView(refreshBtn, new LinearLayout.LayoutParams(Style.dp(c, 54), Style.dp(c, 54)));
+        header.addView(refreshBtn, new LinearLayout.LayoutParams(Style.dp(c, 48), Style.dp(c, 48)));
         LinearLayout.LayoutParams hlp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         hlp.bottomMargin = Style.dp(c, 18);
         addView(header, hlp);
@@ -192,14 +193,24 @@ public class AppsView extends LinearLayout {
         p.setStrokeJoin(android.graphics.Paint.Join.ROUND);
         if (kind == 0) {
             p.setColor(Style.TEXT);
-            android.graphics.RectF r = new android.graphics.RectF(px * 0.18f, px * 0.18f, px * 0.82f, px * 0.82f);
-            cv.drawArc(r, -40, 270, false, p);
-            android.graphics.Path a = new android.graphics.Path();
-            a.moveTo(px * 0.70f, px * 0.08f);
-            a.lineTo(px * 0.80f, px * 0.28f);
-            a.lineTo(px * 0.58f, px * 0.30f);
-            p.setStyle(android.graphics.Paint.Style.STROKE);
-            cv.drawPath(a, p);
+            float cx = px / 2f, cy = px / 2f, r = px * 0.32f;
+            android.graphics.RectF rect = new android.graphics.RectF(cx - r, cy - r, cx + r, cy + r);
+            float a0 = 35f, sweep = 285f;
+            cv.drawArc(rect, a0, sweep, false, p);
+            double a1 = Math.toRadians(a0 + sweep);
+            float ex = cx + (float) (r * Math.cos(a1)), ey = cy + (float) (r * Math.sin(a1));
+            float tx = (float) -Math.sin(a1), ty = (float) Math.cos(a1);
+            float nx = (float) Math.cos(a1), ny = (float) Math.sin(a1);
+            float h = px * 0.20f, w = px * 0.14f;
+            android.graphics.Path head = new android.graphics.Path();
+            head.moveTo(ex + tx * h, ey + ty * h);
+            head.lineTo(ex + nx * w, ey + ny * w);
+            head.lineTo(ex - nx * w, ey - ny * w);
+            head.close();
+            android.graphics.Paint f = new android.graphics.Paint(android.graphics.Paint.ANTI_ALIAS_FLAG);
+            f.setColor(Style.TEXT);
+            f.setStyle(android.graphics.Paint.Style.FILL);
+            cv.drawPath(head, f);
         } else {
             p.setColor(0xFFFF6B6B);
             cv.drawLine(px * 0.18f, px * 0.26f, px * 0.82f, px * 0.26f, p);
@@ -275,6 +286,22 @@ public class AppsView extends LinearLayout {
                 row.addView(sp, lp);
             }
         }
+    }
+
+    private TextView btn(Context c, String text, boolean primary, final Runnable r) {
+        TextView t = new TextView(c);
+        t.setText(text);
+        t.setTextSize(17f);
+        t.setTypeface(Typeface.DEFAULT_BOLD);
+        t.setGravity(Gravity.CENTER);
+        t.setSingleLine(true);
+        t.setIncludeFontPadding(false);
+        t.setPadding(Style.dp(c, 8), 0, Style.dp(c, 8), 0);
+        int fill = primary ? Style.CARD_ON : Style.CARD_HI;
+        t.setTextColor(Style.onFill(fill));
+        t.setBackground(Style.card(fill, c, 12));
+        t.setOnClickListener(new View.OnClickListener() { @Override public void onClick(View v) { r.run(); } });
+        return t;
     }
 
     private TextView pill(Context c, String text, int color) {
@@ -361,7 +388,7 @@ public class AppsView extends LinearLayout {
         card.setBackground(Style.card(Style.cardFillColor(), c));
         card.setMinimumHeight(Style.dp(c, 210));
 
-        // icon + name + badge
+        // badge row
         LinearLayout top = new LinearLayout(c);
         top.setOrientation(HORIZONTAL);
         top.setGravity(Gravity.CENTER_VERTICAL);
@@ -384,7 +411,7 @@ public class AppsView extends LinearLayout {
         name.setTextSize(19f);
         name.setTextColor(Style.TEXT);
         name.setTypeface(Typeface.DEFAULT_BOLD);
-        name.setSingleLine(true);
+        name.setMaxLines(2);
         name.setEllipsize(android.text.TextUtils.TruncateAt.END);
         nc.addView(name);
         StringBuilder ver = new StringBuilder();
@@ -403,10 +430,12 @@ public class AppsView extends LinearLayout {
         TextView badge = update ? pill(c, "Update", Color.parseColor("#FF9F0A"))
             : installed ? pill(c, "Installed", Color.parseColor("#30D158"))
             : pill(c, a.hasApk ? "Not installed" : "Not available", Style.TEXT_DIM);
-        LinearLayout.LayoutParams blp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        blp.leftMargin = Style.dp(c, 8);
-        blp.gravity = Gravity.TOP;
-        top.addView(badge, blp);
+        LinearLayout badgeRow = new LinearLayout(c);
+        badgeRow.setGravity(Gravity.END);
+        badgeRow.addView(badge);
+        LinearLayout.LayoutParams brl = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        brl.bottomMargin = Style.dp(c, 8);
+        card.addView(badgeRow, brl);
         card.addView(top);
 
         TextView desc = new TextView(c);
@@ -455,35 +484,31 @@ public class AppsView extends LinearLayout {
         LinearLayout.LayoutParams bl = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         bl.topMargin = Style.dp(c, 14);
         card.addView(btns, bl);
-        int bh = Style.dp(c, 50);
+        int bh = Style.dp(c, 46);
         if (busy) {
-            TextView b = Style.cardButton(c, "Working\u2026", false, new Runnable() { @Override public void run() {} });
+            TextView b = btn(c, "Working\u2026", false, new Runnable() { @Override public void run() {} });
             b.setAlpha(0.6f);
-            b.setGravity(Gravity.CENTER);
             btns.addView(b, new LinearLayout.LayoutParams(0, bh, 1f));
         } else if (installed) {
             if (update) {
-                TextView b = Style.cardButton(c, "Update", true, new Runnable() { @Override public void run() { install(a); } });
-                b.setGravity(Gravity.CENTER);
-                LinearLayout.LayoutParams l = new LinearLayout.LayoutParams(0, bh, 1f);
+                TextView b = btn(c, "Update", true, new Runnable() { @Override public void run() { install(a); } });
+                    LinearLayout.LayoutParams l = new LinearLayout.LayoutParams(0, bh, 1f);
                 l.rightMargin = Style.dp(c, 8);
                 btns.addView(b, l);
             }
-            TextView o = Style.cardButton(c, "Open", !update, new Runnable() { @Override public void run() { open(a.pkg); } });
-            o.setGravity(Gravity.CENTER);
+            TextView o = btn(c, "Open", !update, new Runnable() { @Override public void run() { open(a.pkg); } });
             LinearLayout.LayoutParams ol = new LinearLayout.LayoutParams(0, bh, 1f);
             ol.rightMargin = Style.dp(c, 8);
             btns.addView(o, ol);
             ImageView del = new ImageView(c);
             del.setImageBitmap(glyph(c, 1));
-            del.setBackground(Style.card(Style.cardFillColor(), c, 14));
-            int dp = Style.dp(c, 10);
+            del.setBackground(Style.card(Style.CARD_HI, c, 12));
+            int dp = Style.dp(c, 9);
             del.setPadding(dp, dp, dp, dp);
             del.setOnClickListener(new View.OnClickListener() { @Override public void onClick(View v) { confirmUninstall(a); } });
             btns.addView(del, new LinearLayout.LayoutParams(bh, bh));
         } else if (a.hasApk) {
-            TextView b = Style.cardButton(c, "Install", true, new Runnable() { @Override public void run() { install(a); } });
-            b.setGravity(Gravity.CENTER);
+            TextView b = btn(c, "Install", true, new Runnable() { @Override public void run() { install(a); } });
             btns.addView(b, new LinearLayout.LayoutParams(0, bh, 1f));
         }
         return card;
