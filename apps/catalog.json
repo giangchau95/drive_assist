@@ -5,12 +5,12 @@
       "package": "vn.vietmap.live",
       "name": "VietMap Live",
       "description": "Navigation, speed-camera and traffic alerts",
-      "versionName": "3.4.4",
-      "versionCode": 179327630,
+      "versionName": "3.4.5",
+      "versionCode": 179414270,
       "size": 130920795,
-      "sha256": "675c88f877be1a773b998e429f54512ff907938d7075cc17b91c59ac1066a1bc",
+      "sha256": "4d955f18e79812489f96ca461e3fcc7bfc27bce79290e431f2afe266c82c6395",
       "certSha256": "684cedb49ccaca3e114de682417001b14e9d945d6f73cf05b25ca354d4a8bfee",
-      "apk": "https://github.com/giangchau95/drive_assist/releases/download/apps/vietmap-live-3.4.4.apk",
+      "apk": "https://github.com/giangchau95/drive_assist/releases/download/apps/vietmap-live-3.4.5.apk",
       "icon": "https://raw.githubusercontent.com/giangchau95/drive_assist/main/apps/icons/vn.vietmap.live.png"
     }
   ]
