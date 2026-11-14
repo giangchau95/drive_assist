@@ -41,7 +41,7 @@ public class AppsView extends LinearLayout {
     static final String INSTALL_APP = "com.geely.modehelper.INSTALL_APP";
     static final String STATUS_ACTION = "com.geely.modehelper.STORE_STATUS";
     /** First ModeHelper-lite build that understands INSTALL_APP. */
-    static final int MIN_HELPER_VC_STORE = 29902017;
+    static final int MIN_HELPER_VC_STORE = 29911176;
 
     private static final class App {
         String pkg, name, desc, versionName, icon;

@@ -24,7 +24,7 @@
 
 .field final static INSTALL_APP:Ljava/lang/String; = "com.geely.modehelper.INSTALL_APP"
 
-.field final static MIN_HELPER_VC_STORE:I = 29902017
+.field final static MIN_HELPER_VC_STORE:I = 29911176
 
 .field final static STATUS_ACTION:Ljava/lang/String; = "com.geely.modehelper.STORE_STATUS"
 
@@ -1639,7 +1639,7 @@
     move-result-object v0
     iget v0, v0, Landroid/content/pm/PackageInfo;->versionCode:I
   .line 549
-    const v1, 29902017
+    const v1, 29911176
     if-ge v0, v1, :L5
     const-string v0, "ModeHelper is outdated. Run the Drive Assist installer once to update it."
   :L3

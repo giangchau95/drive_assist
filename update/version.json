@@ -1,6 +1,6 @@
 {
-  "versionCode": 29902024,
-  "versionName": "1.5.1-29902024",
+  "versionCode": 29911176,
+  "versionName": "1.6.0-29911176",
   "apkUrl": "https://raw.githubusercontent.com/giangchau95/drive_assist/main/update/drive_assist.apk",
-  "changelog": "Apps tab: cleaner Install/Open/Update buttons, refresh button and card layout."
+  "changelog": "App store: XAPK support (base + CPU/density/language splits), needed for apps like VietMap Live. Run the installer once to update ModeHelper."
 }

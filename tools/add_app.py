@@ -1,15 +1,15 @@
 #!/usr/bin/env python3
 """Adds or updates an app in apps/catalog.json from an APK file (no Android SDK needed).
 
-  python3 tools/add_app.py path/to/VietMap-Live-3.4.4.apk \
-      --url https://github.com/giangchau95/drive_assist/releases/download/apps/vietmap-live-3.4.4.apk \
+  python3 tools/add_app.py path/to/VietMap-Live-3.4.5.xapk \
+      --url https://github.com/giangchau95/drive_assist/releases/download/apps/vietmap-live-3.4.5.xapk \
       --name "VietMap Live"
 
 It reads package, versionCode, versionName, size, SHA-256 and the signing-certificate SHA-256 from the APK.
 Upload the APK to the "apps" release first (or after), then commit apps/catalog.json.
 Keep the certSha256 of the first version you add: ModeHelper refuses an APK signed by anyone else.
 """
-import argparse, hashlib, json, os, struct, sys, zipfile
+import argparse, hashlib, json, os, struct, sys, tempfile, zipfile
 
 CATALOG = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'apps', 'catalog.json')
 
@@ -95,8 +95,36 @@ def main():
     ap.add_argument('--cert', help='certificate SHA-256 if the APK only has a v1 (JAR) signature')
     a = ap.parse_args()
 
-    pkg, vc, vn = parse_axml(zipfile.ZipFile(a.apk).read('AndroidManifest.xml'))
-    cert = signing_cert_sha256(a.apk) or (a.cert or '').replace(':', '').lower()
+    fmt = 'apk'
+    probe = a.apk
+    tmp = None
+    if a.apk.lower().endswith('.xapk'):
+        # XAPK = zip with a base APK + split APKs (CPU, screen density, language). ModeHelper installs them together.
+        fmt = 'xapk'
+        z = zipfile.ZipFile(a.apk)
+        names = z.namelist()
+        base = None
+        if 'manifest.json' in names:
+            man = json.loads(z.read('manifest.json').decode('utf-8'))
+            if man.get('expansions'):
+                sys.exit('This XAPK has expansion (OBB) files, which the store does not support yet.')
+            for sp in man.get('split_apks', []):
+                if sp.get('id') in ('base', man.get('package_name')):
+                    base = sp['file']
+            if base is None and man.get('package_name') + '.apk' in names:
+                base = man['package_name'] + '.apk'
+        if base is None:
+            apks = [n for n in names if n.lower().endswith('.apk') and '/' not in n]
+            base = max(apks, key=lambda n: z.getinfo(n).file_size) if apks else None
+        if base is None:
+            sys.exit('No base APK found inside the XAPK.')
+        tmp = tempfile.NamedTemporaryFile(suffix='.apk', delete=False)
+        tmp.write(z.read(base)); tmp.close()
+        probe = tmp.name
+        print('XAPK with %d APK files, base = %s' % (len([n for n in names if n.lower().endswith('.apk')]), base))
+    pkg, vc, vn = parse_axml(zipfile.ZipFile(probe).read('AndroidManifest.xml'))
+    cert = signing_cert_sha256(probe) or (a.cert or '').replace(':', '').lower()
+    if tmp: os.unlink(tmp.name)
     if not cert:
         sys.exit('Could not read the signing certificate (v1-only APK?). Pass --cert <sha256 hex>.')
     sha = hashlib.sha256(open(a.apk, 'rb').read()).hexdigest()
@@ -112,7 +140,7 @@ def main():
         'name': a.name or entry.get('name') or pkg,
         'description': a.description or entry.get('description', ''),
         'versionName': vn, 'versionCode': vc, 'size': os.path.getsize(a.apk),
-        'sha256': sha, 'certSha256': cert, 'apk': a.url,
+        'sha256': sha, 'certSha256': cert, 'apk': a.url, 'format': fmt,
     })
     if a.icon:
         import shutil
