@@ -62,8 +62,6 @@ public final class OtaUpdater {
         } catch (Throwable t) { return "?"; }
     }
 
-    private static volatile long lastHelperTry;
-
     /** Installed ModeHelper build, or -1 when it is not installed. */
     public static int helperVersionCode(Context c) {
         try { return c.getPackageManager().getPackageInfo(HELPER_PKG, 0).versionCode; }
@@ -156,12 +154,6 @@ public final class OtaUpdater {
                 final boolean newer = fi != null && fi.versionCode > installedVersionCode(app);
                 main.post(new Runnable() {
                     @Override public void run() {
-                        if (fi != null && helperOutdated(app, fi) && blockedReason() == null
-                                && System.currentTimeMillis() - lastHelperTry > 10 * 60000L) {
-                            lastHelperTry = System.currentTimeMillis();
-                            String r = updateHelper(app, fi);
-                            Log.i(TAG, "helper auto-update: " + (r == null ? "started" : r));
-                        }
                         cb.onResult(fi, newer, fe);
                     }
                 });

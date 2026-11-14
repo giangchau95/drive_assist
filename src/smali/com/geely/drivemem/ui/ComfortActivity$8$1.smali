@@ -16,7 +16,7 @@
 .method constructor <init>(Lcom/geely/drivemem/ui/ComfortActivity$8;)V
   .registers 2
   .prologue
-  .line 309
+  .line 313
     iput-object p1, p0, Lcom/geely/drivemem/ui/ComfortActivity$8$1;->this$1:Lcom/geely/drivemem/ui/ComfortActivity$8;
     invoke-direct { p0 }, Ljava/lang/Object;-><init>()V
     return-void
@@ -25,7 +25,7 @@
 .method public run()V
   .registers 2
   .prologue
-  .line 309
+  .line 313
     iget-object v0, p0, Lcom/geely/drivemem/ui/ComfortActivity$8$1;->this$1:Lcom/geely/drivemem/ui/ComfortActivity$8;
     iget-object v0, v0, Lcom/geely/drivemem/ui/ComfortActivity$8;->this$0:Lcom/geely/drivemem/ui/ComfortActivity;
     invoke-static { v0 }, Lcom/geely/drivemem/ui/ComfortActivity;->access$400(Lcom/geely/drivemem/ui/ComfortActivity;)V

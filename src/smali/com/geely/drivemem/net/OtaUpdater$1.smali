@@ -25,7 +25,7 @@
   .end annotation
   .registers 4
   .prologue
-  .line 118
+  .line 116
     iput-object p1, p0, Lcom/geely/drivemem/net/OtaUpdater$1;->val$app:Landroid/content/Context;
     iput-object p2, p0, Lcom/geely/drivemem/net/OtaUpdater$1;->val$main:Landroid/os/Handler;
     iput-object p3, p0, Lcom/geely/drivemem/net/OtaUpdater$1;->val$cb:Lcom/geely/drivemem/net/OtaUpdater$Callback;
@@ -42,8 +42,8 @@
     const/4 v1, 0
     const/4 v3, 0
   :L0
-  .line 120
-  .line 123
+  .line 118
+  .line 121
     new-instance v0, Ljava/lang/StringBuilder;
     invoke-direct { v0 }, Ljava/lang/StringBuilder;-><init>()V
     const-string v2, "https://raw.githubusercontent.com/giangchau95/drive_assist/main/update/version.json?t="
@@ -55,32 +55,32 @@
     move-result-object v0
     invoke-virtual { v0 }, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
     move-result-object v0
-  .line 124
+  .line 122
     new-instance v2, Ljava/net/URL;
     invoke-direct { v2, v0 }, Ljava/net/URL;-><init>(Ljava/lang/String;)V
     invoke-virtual { v2 }, Ljava/net/URL;->openConnection()Ljava/net/URLConnection;
     move-result-object v0
     check-cast v0, Ljava/net/HttpURLConnection;
-  .line 125
+  .line 123
     const/16 v2, 15000
     invoke-virtual { v0, v2 }, Ljava/net/HttpURLConnection;->setConnectTimeout(I)V
-  .line 126
+  .line 124
     const/16 v2, 20000
     invoke-virtual { v0, v2 }, Ljava/net/HttpURLConnection;->setReadTimeout(I)V
-  .line 127
+  .line 125
     const/4 v2, 0
     invoke-virtual { v0, v2 }, Ljava/net/HttpURLConnection;->setUseCaches(Z)V
-  .line 128
+  .line 126
     const-string v2, "User-Agent"
     const-string v4, "DriveAssist"
     invoke-virtual { v0, v2, v4 }, Ljava/net/HttpURLConnection;->setRequestProperty(Ljava/lang/String;Ljava/lang/String;)V
-  .line 129
+  .line 127
     invoke-virtual { v0 }, Ljava/net/HttpURLConnection;->getResponseCode()I
     move-result v2
-  .line 130
+  .line 128
     const/16 v4, 200
     if-eq v2, v4, :L5
-  .line 131
+  .line 129
     new-instance v0, Ljava/lang/StringBuilder;
     invoke-direct { v0 }, Ljava/lang/StringBuilder;-><init>()V
     const-string v4, "HTTP "
@@ -95,7 +95,7 @@
   :L2
     move-object v4, v0
   :L3
-  .line 156
+  .line 154
     if-eqz v2, :L12
     iget v0, v2, Lcom/geely/drivemem/net/OtaUpdater$Info;->versionCode:I
     iget-object v1, p0, Lcom/geely/drivemem/net/OtaUpdater$1;->val$app:Landroid/content/Context;
@@ -104,25 +104,25 @@
     if-le v0, v1, :L12
     const/4 v0, 1
   :L4
-  .line 157
+  .line 155
     iget-object v1, p0, Lcom/geely/drivemem/net/OtaUpdater$1;->val$main:Landroid/os/Handler;
     new-instance v3, Lcom/geely/drivemem/net/OtaUpdater$1$1;
     invoke-direct { v3, p0, v2, v0, v4 }, Lcom/geely/drivemem/net/OtaUpdater$1$1;-><init>(Lcom/geely/drivemem/net/OtaUpdater$1;Lcom/geely/drivemem/net/OtaUpdater$Info;ZLjava/lang/String;)V
     invoke-virtual { v1, v3 }, Landroid/os/Handler;->post(Ljava/lang/Runnable;)Z
-  .line 168
+  .line 160
     return-void
   :L5
-  .line 133
+  .line 131
     invoke-virtual { v0 }, Ljava/net/HttpURLConnection;->getInputStream()Ljava/io/InputStream;
     move-result-object v0
-  .line 134
+  .line 132
     new-instance v2, Ljava/io/ByteArrayOutputStream;
     invoke-direct { v2 }, Ljava/io/ByteArrayOutputStream;-><init>()V
-  .line 135
+  .line 133
     const/16 v4, 4096
     new-array v4, v4, [B
   :L6
-  .line 137
+  .line 135
     invoke-virtual { v0, v4 }, Ljava/io/InputStream;->read([B)I
     move-result v5
     if-lez v5, :L10
@@ -131,9 +131,9 @@
   :L7
     goto :L6
   :L8
-  .line 149
+  .line 147
     move-exception v0
-  .line 150
+  .line 148
     const-string v2, "DriveMemOta"
     new-instance v4, Ljava/lang/StringBuilder;
     invoke-direct { v4 }, Ljava/lang/StringBuilder;-><init>()V
@@ -145,7 +145,7 @@
     invoke-virtual { v4 }, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
     move-result-object v4
     invoke-static { v2, v4 }, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;)I
-  .line 151
+  .line 149
     invoke-virtual { v0 }, Ljava/lang/Throwable;->getMessage()Ljava/lang/String;
     move-result-object v2
     if-eqz v2, :L9
@@ -156,12 +156,12 @@
     move-result-object v0
     move-object v4, v0
     move-object v2, v1
-  .line 152
+  .line 150
     goto :L3
   :L10
-  .line 138
+  .line 136
     invoke-virtual { v0 }, Ljava/io/InputStream;->close()V
-  .line 139
+  .line 137
     new-instance v0, Lorg/json/JSONObject;
     new-instance v4, Ljava/lang/String;
     invoke-virtual { v2 }, Ljava/io/ByteArrayOutputStream;->toByteArray()[B
@@ -169,15 +169,15 @@
     const-string v5, "UTF-8"
     invoke-direct { v4, v2, v5 }, Ljava/lang/String;-><init>([BLjava/lang/String;)V
     invoke-direct { v0, v4 }, Lorg/json/JSONObject;-><init>(Ljava/lang/String;)V
-  .line 140
+  .line 138
     new-instance v2, Lcom/geely/drivemem/net/OtaUpdater$Info;
     invoke-direct { v2 }, Lcom/geely/drivemem/net/OtaUpdater$Info;-><init>()V
-  .line 141
+  .line 139
     const-string v4, "versionCode"
     invoke-virtual { v0, v4 }, Lorg/json/JSONObject;->getInt(Ljava/lang/String;)I
     move-result v4
     iput v4, v2, Lcom/geely/drivemem/net/OtaUpdater$Info;->versionCode:I
-  .line 142
+  .line 140
     const-string v4, "versionName"
     new-instance v5, Ljava/lang/StringBuilder;
     invoke-direct { v5 }, Ljava/lang/StringBuilder;-><init>()V
@@ -192,32 +192,32 @@
     invoke-virtual { v0, v4, v5 }, Lorg/json/JSONObject;->optString(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
     move-result-object v4
     iput-object v4, v2, Lcom/geely/drivemem/net/OtaUpdater$Info;->versionName:Ljava/lang/String;
-  .line 143
+  .line 141
     const-string v4, "apkUrl"
     const-string v5, "https://raw.githubusercontent.com/giangchau95/drive_assist/main/update/drive_assist.apk"
     invoke-virtual { v0, v4, v5 }, Lorg/json/JSONObject;->optString(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
     move-result-object v4
     iput-object v4, v2, Lcom/geely/drivemem/net/OtaUpdater$Info;->apkUrl:Ljava/lang/String;
-  .line 144
+  .line 142
     const-string v4, "changelog"
     const-string v5, ""
     invoke-virtual { v0, v4, v5 }, Lorg/json/JSONObject;->optString(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
     move-result-object v4
     iput-object v4, v2, Lcom/geely/drivemem/net/OtaUpdater$Info;->changelog:Ljava/lang/String;
-  .line 145
+  .line 143
     const-string v4, "helperVersionCode"
     const/4 v5, 0
     invoke-virtual { v0, v4, v5 }, Lorg/json/JSONObject;->optInt(Ljava/lang/String;I)I
     move-result v4
     iput v4, v2, Lcom/geely/drivemem/net/OtaUpdater$Info;->helperVersionCode:I
-  .line 146
+  .line 144
     const-string v4, "helperUrl"
     new-instance v5, Ljava/lang/StringBuilder;
     invoke-direct { v5 }, Ljava/lang/StringBuilder;-><init>()V
     const-string v6, "https://raw.githubusercontent.com/giangchau95/drive_assist/main/update/"
     const-string v7, "/update/"
     const-string v8, "/install/"
-  .line 147
+  .line 145
     invoke-virtual { v6, v7, v8 }, Ljava/lang/String;->replace(Ljava/lang/CharSequence;Ljava/lang/CharSequence;)Ljava/lang/String;
     move-result-object v6
     invoke-virtual { v5, v6 }, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
@@ -227,7 +227,7 @@
     move-result-object v5
     invoke-virtual { v5 }, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
     move-result-object v5
-  .line 146
+  .line 144
     invoke-virtual { v0, v4, v5 }, Lorg/json/JSONObject;->optString(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
     move-result-object v0
     iput-object v0, v2, Lcom/geely/drivemem/net/OtaUpdater$Info;->helperUrl:Ljava/lang/String;
@@ -236,6 +236,6 @@
     goto/16 :L2
   :L12
     move v0, v3
-  .line 156
+  .line 154
     goto/16 :L4
 .end method

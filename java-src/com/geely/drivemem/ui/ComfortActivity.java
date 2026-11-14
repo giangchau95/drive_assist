@@ -248,10 +248,14 @@ public class ComfortActivity extends Activity {
         lastAutoCheckMs = now;
         OtaUpdater.check(this, new OtaUpdater.Callback() {
             @Override public void onResult(OtaUpdater.Info info, boolean newer, String error) {
-                if (!newer || isFinishing()) return;
-                updateAvailable = true;
-                refreshUpdateButton();
-                if (CarState.isParked()) openOtaDialog(info);
+                if (isFinishing()) return;
+                boolean helperDue = CarState.isParked() && OtaUpdater.helperOutdated(ComfortActivity.this, info);
+                if (newer) {
+                    updateAvailable = true;
+                    refreshUpdateButton();
+                }
+                if (helperDue && HelperUpdateDialog.show(ComfortActivity.this, info)) return;
+                if (newer && CarState.isParked()) openOtaDialog(info);
             }
         });
     }

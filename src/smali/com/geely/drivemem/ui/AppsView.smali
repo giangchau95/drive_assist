@@ -310,7 +310,15 @@
     return-void
 .end method
 
-.method static synthetic access$1300(Lcom/geely/drivemem/ui/AppsView;Lcom/geely/drivemem/ui/AppsView$App;Ljava/lang/String;Ljava/lang/String;)V
+.method static synthetic access$1300(Lcom/geely/drivemem/ui/AppsView;)V
+  .registers 1
+  .prologue
+  .line 38
+    invoke-direct { p0 }, Lcom/geely/drivemem/ui/AppsView;->updateHelper()V
+    return-void
+.end method
+
+.method static synthetic access$1400(Lcom/geely/drivemem/ui/AppsView;Lcom/geely/drivemem/ui/AppsView$App;Ljava/lang/String;Ljava/lang/String;)V
   .registers 4
   .prologue
   .line 38
@@ -372,6 +380,39 @@
   .line 38
     sget-object v0, Lcom/geely/drivemem/ui/AppsView;->ICONS:Ljava/util/Map;
     return-object v0
+.end method
+
+.method private askUpdateHelper()V
+  .registers 4
+  .prologue
+  .line 558
+    new-instance v0, Landroid/app/AlertDialog$Builder;
+    invoke-virtual { p0 }, Lcom/geely/drivemem/ui/AppsView;->getContext()Landroid/content/Context;
+    move-result-object v1
+    invoke-direct { v0, v1 }, Landroid/app/AlertDialog$Builder;-><init>(Landroid/content/Context;)V
+    const-string v1, "Update ModeHelper?"
+  .line 559
+    invoke-virtual { v0, v1 }, Landroid/app/AlertDialog$Builder;->setTitle(Ljava/lang/CharSequence;)Landroid/app/AlertDialog$Builder;
+    move-result-object v0
+    const-string v1, "The Apps tab needs a newer ModeHelper, the background service that installs apps. It takes a few seconds. Update now?"
+  .line 560
+    invoke-virtual { v0, v1 }, Landroid/app/AlertDialog$Builder;->setMessage(Ljava/lang/CharSequence;)Landroid/app/AlertDialog$Builder;
+    move-result-object v0
+    const-string v1, "Later"
+    const/4 v2, 0
+  .line 561
+    invoke-virtual { v0, v1, v2 }, Landroid/app/AlertDialog$Builder;->setNegativeButton(Ljava/lang/CharSequence;Landroid/content/DialogInterface$OnClickListener;)Landroid/app/AlertDialog$Builder;
+    move-result-object v0
+    const-string v1, "Update"
+    new-instance v2, Lcom/geely/drivemem/ui/AppsView$12;
+    invoke-direct { v2, p0 }, Lcom/geely/drivemem/ui/AppsView$12;-><init>(Lcom/geely/drivemem/ui/AppsView;)V
+  .line 562
+    invoke-virtual { v0, v1, v2 }, Landroid/app/AlertDialog$Builder;->setPositiveButton(Ljava/lang/CharSequence;Landroid/content/DialogInterface$OnClickListener;)Landroid/app/AlertDialog$Builder;
+    move-result-object v0
+  .line 564
+    invoke-virtual { v0 }, Landroid/app/AlertDialog$Builder;->show()Landroid/app/AlertDialog;
+  .line 565
+    return-void
 .end method
 
 .method private btn(Landroid/content/Context;Ljava/lang/String;ZLjava/lang/Runnable;)Landroid/widget/TextView;
@@ -1273,18 +1314,18 @@
 .method private confirmUninstall(Lcom/geely/drivemem/ui/AppsView$App;)V
   .registers 5
   .prologue
-  .line 597
+  .line 607
     invoke-direct { p0 }, Lcom/geely/drivemem/ui/AppsView;->helperProblem()Ljava/lang/String;
     move-result-object v0
-  .line 598
+  .line 608
     if-eqz v0, :L1
     iget-object v1, p1, Lcom/geely/drivemem/ui/AppsView$App;->pkg:Ljava/lang/String;
     invoke-direct { p0, v1, v0 }, Lcom/geely/drivemem/ui/AppsView;->fail(Ljava/lang/String;Ljava/lang/String;)V
   :L0
-  .line 608
+  .line 618
     return-void
   :L1
-  .line 599
+  .line 609
     new-instance v0, Landroid/app/AlertDialog$Builder;
     invoke-virtual { p0 }, Lcom/geely/drivemem/ui/AppsView;->getContext()Landroid/content/Context;
     move-result-object v1
@@ -1302,25 +1343,25 @@
     move-result-object v1
     invoke-virtual { v1 }, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
     move-result-object v1
-  .line 600
+  .line 610
     invoke-virtual { v0, v1 }, Landroid/app/AlertDialog$Builder;->setTitle(Ljava/lang/CharSequence;)Landroid/app/AlertDialog$Builder;
     move-result-object v0
     const-string v1, "The app and its data will be removed from the car."
-  .line 601
+  .line 611
     invoke-virtual { v0, v1 }, Landroid/app/AlertDialog$Builder;->setMessage(Ljava/lang/CharSequence;)Landroid/app/AlertDialog$Builder;
     move-result-object v0
     const/high16 v1, 0x1040000
     const/4 v2, 0
-  .line 602
+  .line 612
     invoke-virtual { v0, v1, v2 }, Landroid/app/AlertDialog$Builder;->setNegativeButton(ILandroid/content/DialogInterface$OnClickListener;)Landroid/app/AlertDialog$Builder;
     move-result-object v0
     const-string v1, "Uninstall"
-    new-instance v2, Lcom/geely/drivemem/ui/AppsView$14;
-    invoke-direct { v2, p0, p1 }, Lcom/geely/drivemem/ui/AppsView$14;-><init>(Lcom/geely/drivemem/ui/AppsView;Lcom/geely/drivemem/ui/AppsView$App;)V
-  .line 603
+    new-instance v2, Lcom/geely/drivemem/ui/AppsView$15;
+    invoke-direct { v2, p0, p1 }, Lcom/geely/drivemem/ui/AppsView$15;-><init>(Lcom/geely/drivemem/ui/AppsView;Lcom/geely/drivemem/ui/AppsView$App;)V
+  .line 613
     invoke-virtual { v0, v1, v2 }, Landroid/app/AlertDialog$Builder;->setPositiveButton(Ljava/lang/CharSequence;Landroid/content/DialogInterface$OnClickListener;)Landroid/app/AlertDialog$Builder;
     move-result-object v0
-  .line 607
+  .line 617
     invoke-virtual { v0 }, Landroid/app/AlertDialog$Builder;->show()Landroid/app/AlertDialog;
     goto :L0
 .end method
@@ -1642,9 +1683,9 @@
     const v1, 29911176
     if-ge v0, v1, :L5
   .line 550
-    invoke-direct { p0 }, Lcom/geely/drivemem/ui/AppsView;->updateHelper()V
+    invoke-direct { p0 }, Lcom/geely/drivemem/ui/AppsView;->askUpdateHelper()V
   .line 551
-    const-string v0, "ModeHelper is being updated. Try again in about a minute."
+    const-string v0, "ModeHelper needs an update first."
   :L3
     goto :L0
   :L4
@@ -1659,18 +1700,18 @@
 .method private install(Lcom/geely/drivemem/ui/AppsView$App;)V
   .registers 4
   .prologue
-  .line 591
+  .line 601
     invoke-direct { p0 }, Lcom/geely/drivemem/ui/AppsView;->helperProblem()Ljava/lang/String;
     move-result-object v0
-  .line 592
+  .line 602
     if-eqz v0, :L1
     iget-object v1, p1, Lcom/geely/drivemem/ui/AppsView$App;->pkg:Ljava/lang/String;
     invoke-direct { p0, v1, v0 }, Lcom/geely/drivemem/ui/AppsView;->fail(Ljava/lang/String;Ljava/lang/String;)V
   :L0
-  .line 594
+  .line 604
     return-void
   :L1
-  .line 593
+  .line 603
     const-string v0, "com.geely.modehelper.INSTALL_APP"
     const-string v1, ""
     invoke-direct { p0, p1, v0, v1 }, Lcom/geely/drivemem/ui/AppsView;->send(Lcom/geely/drivemem/ui/AppsView$App;Ljava/lang/String;Ljava/lang/String;)V
@@ -2125,42 +2166,42 @@
   .catch Ljava/lang/Throwable; { :L0 .. :L1 } :L2
   .registers 10
   .prologue
-  .line 570
+  .line 580
     invoke-virtual { p0 }, Lcom/geely/drivemem/ui/AppsView;->getContext()Landroid/content/Context;
     move-result-object v0
   :L0
-  .line 572
+  .line 582
     new-instance v1, Landroid/content/Intent;
     invoke-direct { v1, p2 }, Landroid/content/Intent;-><init>(Ljava/lang/String;)V
     const-string v2, "com.geely.modehelper"
     invoke-virtual { v1, v2 }, Landroid/content/Intent;->setPackage(Ljava/lang/String;)Landroid/content/Intent;
     move-result-object v1
-  .line 573
+  .line 583
     const/16 v2, 32
     invoke-virtual { v1, v2 }, Landroid/content/Intent;->addFlags(I)Landroid/content/Intent;
-  .line 574
+  .line 584
     const-string v2, "pkg"
     iget-object v3, p1, Lcom/geely/drivemem/ui/AppsView$App;->pkg:Ljava/lang/String;
     invoke-virtual { v1, v2, v3 }, Landroid/content/Intent;->putExtra(Ljava/lang/String;Ljava/lang/String;)Landroid/content/Intent;
-  .line 575
+  .line 585
     invoke-virtual { v0, v1 }, Landroid/content/Context;->sendBroadcast(Landroid/content/Intent;)V
-  .line 576
+  .line 586
     iget-object v0, p0, Lcom/geely/drivemem/ui/AppsView;->state:Ljava/util/Map;
     iget-object v1, p1, Lcom/geely/drivemem/ui/AppsView$App;->pkg:Ljava/lang/String;
     const-string v2, "start"
     invoke-interface { v0, v1, v2 }, Ljava/util/Map;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
-  .line 577
+  .line 587
     iget-object v0, p0, Lcom/geely/drivemem/ui/AppsView;->msg:Ljava/util/Map;
     iget-object v1, p1, Lcom/geely/drivemem/ui/AppsView$App;->pkg:Ljava/lang/String;
     invoke-interface { v0, v1, p3 }, Ljava/util/Map;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
-  .line 578
+  .line 588
     iget-object v0, p0, Lcom/geely/drivemem/ui/AppsView;->pct:Ljava/util/Map;
     iget-object v1, p1, Lcom/geely/drivemem/ui/AppsView$App;->pkg:Ljava/lang/String;
     const/4 v2, 0
     invoke-static { v2 }, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
     move-result-object v2
     invoke-interface { v0, v1, v2 }, Ljava/util/Map;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
-  .line 579
+  .line 589
     iget-object v0, p0, Lcom/geely/drivemem/ui/AppsView;->started:Ljava/util/Map;
     iget-object v1, p1, Lcom/geely/drivemem/ui/AppsView$App;->pkg:Ljava/lang/String;
     invoke-static { }, Ljava/lang/System;->currentTimeMillis()J
@@ -2168,23 +2209,23 @@
     invoke-static { v2, v3 }, Ljava/lang/Long;->valueOf(J)Ljava/lang/Long;
     move-result-object v2
     invoke-interface { v0, v1, v2 }, Ljava/util/Map;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
-  .line 580
+  .line 590
     invoke-direct { p0 }, Lcom/geely/drivemem/ui/AppsView;->render()V
-  .line 581
+  .line 591
     iget-object v0, p1, Lcom/geely/drivemem/ui/AppsView$App;->pkg:Ljava/lang/String;
-  .line 582
+  .line 592
     iget-object v1, p0, Lcom/geely/drivemem/ui/AppsView;->ui:Landroid/os/Handler;
-    new-instance v2, Lcom/geely/drivemem/ui/AppsView$13;
-    invoke-direct { v2, p0, v0 }, Lcom/geely/drivemem/ui/AppsView$13;-><init>(Lcom/geely/drivemem/ui/AppsView;Ljava/lang/String;)V
+    new-instance v2, Lcom/geely/drivemem/ui/AppsView$14;
+    invoke-direct { v2, p0, v0 }, Lcom/geely/drivemem/ui/AppsView$14;-><init>(Lcom/geely/drivemem/ui/AppsView;Ljava/lang/String;)V
     const-wide/16 v4, 21000
     invoke-virtual { v1, v2, v4, v5 }, Landroid/os/Handler;->postDelayed(Ljava/lang/Runnable;J)Z
   :L1
-  .line 588
+  .line 598
     return-void
   :L2
-  .line 585
+  .line 595
     move-exception v0
-  .line 586
+  .line 596
     iget-object v1, p1, Lcom/geely/drivemem/ui/AppsView$App;->pkg:Ljava/lang/String;
     new-instance v2, Ljava/lang/StringBuilder;
     invoke-direct { v2 }, Ljava/lang/StringBuilder;-><init>()V
@@ -2202,14 +2243,14 @@
 .method private updateHelper()V
   .registers 3
   .prologue
-  .line 559
+  .line 569
     invoke-virtual { p0 }, Lcom/geely/drivemem/ui/AppsView;->getContext()Landroid/content/Context;
     move-result-object v0
-  .line 560
-    new-instance v1, Lcom/geely/drivemem/ui/AppsView$12;
-    invoke-direct { v1, p0, v0 }, Lcom/geely/drivemem/ui/AppsView$12;-><init>(Lcom/geely/drivemem/ui/AppsView;Landroid/content/Context;)V
+  .line 570
+    new-instance v1, Lcom/geely/drivemem/ui/AppsView$13;
+    invoke-direct { v1, p0, v0 }, Lcom/geely/drivemem/ui/AppsView$13;-><init>(Lcom/geely/drivemem/ui/AppsView;Landroid/content/Context;)V
     invoke-static { v0, v1 }, Lcom/geely/drivemem/net/OtaUpdater;->check(Landroid/content/Context;Lcom/geely/drivemem/net/OtaUpdater$Callback;)V
-  .line 567
+  .line 577
     return-void
 .end method
 

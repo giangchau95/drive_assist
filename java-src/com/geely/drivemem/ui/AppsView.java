@@ -547,11 +547,21 @@ public class AppsView extends LinearLayout {
         try {
             int hv = c.getPackageManager().getPackageInfo(OtaUpdater.HELPER_PKG, 0).versionCode;
             if (hv < MIN_HELPER_VC_STORE) {
-                updateHelper();
-                return "ModeHelper is being updated. Try again in about a minute.";
+                askUpdateHelper();
+                return "ModeHelper needs an update first.";
             }
         } catch (Throwable ignored) {}
         return null;
+    }
+
+    private void askUpdateHelper() {
+        new android.app.AlertDialog.Builder(getContext())
+            .setTitle("Update ModeHelper?")
+            .setMessage("The Apps tab needs a newer ModeHelper, the background service that installs apps. It takes a few seconds. Update now?")
+            .setNegativeButton("Later", null)
+            .setPositiveButton("Update", new android.content.DialogInterface.OnClickListener() {
+                @Override public void onClick(android.content.DialogInterface d, int w) { updateHelper(); }
+            }).show();
     }
 
     /** Downloads the newest ModeHelper through the old one. */
@@ -561,7 +571,7 @@ public class AppsView extends LinearLayout {
             @Override public void onResult(OtaUpdater.Info info, boolean newer, String error) {
                 if (info == null) return;
                 String r = OtaUpdater.updateHelper(c, info);
-                if (r != null) android.widget.Toast.makeText(c, r, android.widget.Toast.LENGTH_LONG).show();
+                android.widget.Toast.makeText(c, r != null ? r : "Updating ModeHelper\u2026 try again in about a minute.", android.widget.Toast.LENGTH_LONG).show();
             }
         });
     }

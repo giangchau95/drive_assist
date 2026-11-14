@@ -1,8 +1,8 @@
 {
-  "versionCode": 29911202,
-  "versionName": "1.6.1-29911202",
+  "versionCode": 29911205,
+  "versionName": "1.6.2-29911205",
   "apkUrl": "https://raw.githubusercontent.com/giangchau95/drive_assist/main/update/drive_assist.apk",
   "helperVersionCode": 29911176,
   "helperUrl": "https://raw.githubusercontent.com/giangchau95/drive_assist/main/install/modehelper_lite.apk",
-  "changelog": "ModeHelper now updates itself over the air (no more USB installer). The Apps tab updates it automatically when needed."
+  "changelog": "ModeHelper updates are now offered in a dialog (Update / Later) instead of installing automatically."
 }
