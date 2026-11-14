@@ -546,9 +546,24 @@ public class AppsView extends LinearLayout {
         if (!OtaUpdater.helperInstalled(c)) return "ModeHelper is not installed. Run the Drive Assist installer once.";
         try {
             int hv = c.getPackageManager().getPackageInfo(OtaUpdater.HELPER_PKG, 0).versionCode;
-            if (hv < MIN_HELPER_VC_STORE) return "ModeHelper is outdated. Run the Drive Assist installer once to update it.";
+            if (hv < MIN_HELPER_VC_STORE) {
+                updateHelper();
+                return "ModeHelper is being updated. Try again in about a minute.";
+            }
         } catch (Throwable ignored) {}
         return null;
+    }
+
+    /** Downloads the newest ModeHelper through the old one. */
+    private void updateHelper() {
+        final Context c = getContext();
+        OtaUpdater.check(c, new OtaUpdater.Callback() {
+            @Override public void onResult(OtaUpdater.Info info, boolean newer, String error) {
+                if (info == null) return;
+                String r = OtaUpdater.updateHelper(c, info);
+                if (r != null) android.widget.Toast.makeText(c, r, android.widget.Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
     private void send(final App a, String action, String firstMsg) {

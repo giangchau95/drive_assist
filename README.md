@@ -210,4 +210,4 @@ Tab **Apps** (biểu tượng ô vuông ở thanh bên) hiển thị danh sách 
 3. Chạy: `python3 tools/add_app.py vietmap-live-3.4.5.xapk --url https://github.com/giangchau95/drive_assist/releases/download/apps/vietmap-live-3.4.5.xapk --name "VietMap Live" --icon icon.png` — script tự đọc package, versionCode, SHA-256 và chứng chỉ, ghi vào `apps/catalog.json` (icon chỉ cần lần đầu).
 4. Commit và push `apps/catalog.json` (và `apps/icons/`). Trên xe, mở tab Apps → nút làm mới → Update.
 
-Script từ chối APK có chứng chỉ khác với bản đã có trong catalog (chống file giả). Cần ModeHelper bản mới: chạy lại bộ cài `install/drive_assist_installer.apk` một lần.
+Script từ chối APK có chứng chỉ khác với bản đã có trong catalog (chống file giả). ModeHelper tự cập nhật qua OTA: `update/version.json` có `helperVersionCode` và `helperUrl`; khi mở Drive Assist (xe đang đỗ, không sạc) mà ModeHelper trên xe cũ hơn thì app tự cập nhật nó. Khi sửa ModeHelper chỉ cần đẩy `install/modehelper_lite.apk` mới và tăng `helperVersionCode`.

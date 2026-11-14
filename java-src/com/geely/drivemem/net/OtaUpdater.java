@@ -38,6 +38,9 @@ public final class OtaUpdater {
         public String versionName;
         public String apkUrl;
         public String changelog;
+        /** ModeHelper build that ships with this release (0 = not specified) and where to download it. */
+        public int helperVersionCode;
+        public String helperUrl;
     }
 
     public interface Callback {
@@ -57,6 +60,41 @@ public final class OtaUpdater {
             PackageInfo p = c.getPackageManager().getPackageInfo(c.getPackageName(), 0);
             return p.versionName == null ? "?" : p.versionName;
         } catch (Throwable t) { return "?"; }
+    }
+
+    private static volatile long lastHelperTry;
+
+    /** Installed ModeHelper build, or -1 when it is not installed. */
+    public static int helperVersionCode(Context c) {
+        try { return c.getPackageManager().getPackageInfo(HELPER_PKG, 0).versionCode; }
+        catch (Throwable t) { return -1; }
+    }
+
+    /** True when ModeHelper is installed but older than the build this release ships with. */
+    public static boolean helperOutdated(Context c, Info info) {
+        if (info == null || info.helperVersionCode <= 0 || info.helperUrl == null || !info.helperUrl.startsWith("https://"))
+            return false;
+        int hv = helperVersionCode(c);
+        return hv >= 0 && hv < info.helperVersionCode;
+    }
+
+    /** Has ModeHelper replace itself with the newer build. @return null on success, otherwise an error message. */
+    public static String updateHelper(Context ctx, Info info) {
+        String blocked = blockedReason();
+        if (blocked != null) return blocked;
+        if (info == null || info.helperUrl == null || !info.helperUrl.startsWith("https://"))
+            return "No ModeHelper update available.";
+        if (!helperInstalled(ctx)) return "ModeHelper is not installed. Run the Drive Assist installer once.";
+        try {
+            String u = info.helperUrl + (info.helperUrl.indexOf('?') < 0 ? "?v=" : "&v=") + info.helperVersionCode;
+            Intent i = new Intent(HELPER_INSTALL).setPackage(HELPER_PKG);
+            i.addFlags(Intent.FLAG_INCLUDE_STOPPED_PACKAGES);
+            i.putExtra("url", u);
+            ctx.sendBroadcast(i);
+            return null;
+        } catch (Throwable t) {
+            return "Could not update ModeHelper: " + t;
+        }
     }
 
     public static boolean helperInstalled(Context c) {
@@ -104,6 +142,9 @@ public final class OtaUpdater {
                         info.versionName = j.optString("versionName", "build " + info.versionCode);
                         info.apkUrl = j.optString("apkUrl", REPO_RAW + "drive_assist.apk");
                         info.changelog = j.optString("changelog", "");
+                        info.helperVersionCode = j.optInt("helperVersionCode", 0);
+                        info.helperUrl = j.optString("helperUrl",
+                            REPO_RAW.replace("/update/", "/install/") + "modehelper_lite.apk");
                     }
                 } catch (Throwable t) {
                     Log.w(TAG, "check failed: " + t);
@@ -114,7 +155,15 @@ public final class OtaUpdater {
                 final String fe = err;
                 final boolean newer = fi != null && fi.versionCode > installedVersionCode(app);
                 main.post(new Runnable() {
-                    @Override public void run() { cb.onResult(fi, newer, fe); }
+                    @Override public void run() {
+                        if (fi != null && helperOutdated(app, fi) && blockedReason() == null
+                                && System.currentTimeMillis() - lastHelperTry > 10 * 60000L) {
+                            lastHelperTry = System.currentTimeMillis();
+                            String r = updateHelper(app, fi);
+                            Log.i(TAG, "helper auto-update: " + (r == null ? "started" : r));
+                        }
+                        cb.onResult(fi, newer, fe);
+                    }
                 });
             }
         }, "ota-check").start();

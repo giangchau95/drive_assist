@@ -1,6 +1,8 @@
 {
-  "versionCode": 29911176,
-  "versionName": "1.6.0-29911176",
+  "versionCode": 29911202,
+  "versionName": "1.6.1-29911202",
   "apkUrl": "https://raw.githubusercontent.com/giangchau95/drive_assist/main/update/drive_assist.apk",
-  "changelog": "App store: XAPK support (base + CPU/density/language splits), needed for apps like VietMap Live. Run the installer once to update ModeHelper."
+  "helperVersionCode": 29911176,
+  "helperUrl": "https://raw.githubusercontent.com/giangchau95/drive_assist/main/install/modehelper_lite.apk",
+  "changelog": "ModeHelper now updates itself over the air (no more USB installer). The Apps tab updates it automatically when needed."
 }

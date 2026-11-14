@@ -14,6 +14,10 @@
 
 .field public changelog:Ljava/lang/String;
 
+.field public helperUrl:Ljava/lang/String;
+
+.field public helperVersionCode:I
+
 .field public versionCode:I
 
 .field public versionName:Ljava/lang/String;
