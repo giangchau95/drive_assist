@@ -1,10 +1,10 @@
 .class Lcom/geely/drivemem/ui/TrendsView$7;
 .super Ljava/lang/Object;
-.implements Landroid/content/DialogInterface$OnClickListener;
+.implements Ljava/lang/Runnable;
 .source "TrendsView.java"
 
 .annotation system Ldalvik/annotation/EnclosingMethod;
-  value = Lcom/geely/drivemem/ui/TrendsView;->confirmRecalc()V
+  value = Lcom/geely/drivemem/ui/TrendsView;->buildPeriodRow()V
 .end annotation
 .annotation system Ldalvik/annotation/InnerClass;
   accessFlags = 0
@@ -13,9 +13,9 @@
 
 .field final synthetic this$0:Lcom/geely/drivemem/ui/TrendsView;
 
-.field final synthetic val$c:Landroid/content/Context;
+.field final synthetic val$idx:I
 
-.method constructor <init>(Lcom/geely/drivemem/ui/TrendsView;Landroid/content/Context;)V
+.method constructor <init>(Lcom/geely/drivemem/ui/TrendsView;I)V
   .annotation system Ldalvik/annotation/Signature;
     value = {
       "()V"
@@ -23,24 +23,35 @@
   .end annotation
   .registers 3
   .prologue
-  .line 176
+  .line 238
     iput-object p1, p0, Lcom/geely/drivemem/ui/TrendsView$7;->this$0:Lcom/geely/drivemem/ui/TrendsView;
-    iput-object p2, p0, Lcom/geely/drivemem/ui/TrendsView$7;->val$c:Landroid/content/Context;
+    iput p2, p0, Lcom/geely/drivemem/ui/TrendsView$7;->val$idx:I
     invoke-direct { p0 }, Ljava/lang/Object;-><init>()V
     return-void
 .end method
 
-.method public onClick(Landroid/content/DialogInterface;I)V
-  .registers 6
+.method public run()V
+  .registers 3
   .prologue
-  .line 178
-    new-instance v0, Ljava/lang/Thread;
-    new-instance v1, Lcom/geely/drivemem/ui/TrendsView$7$1;
-    invoke-direct { v1, p0 }, Lcom/geely/drivemem/ui/TrendsView$7$1;-><init>(Lcom/geely/drivemem/ui/TrendsView$7;)V
-    const-string v2, "autocost"
-    invoke-direct { v0, v1, v2 }, Ljava/lang/Thread;-><init>(Ljava/lang/Runnable;Ljava/lang/String;)V
-  .line 183
-    invoke-virtual { v0 }, Ljava/lang/Thread;->start()V
-  .line 184
+  .line 240
+    iget-object v0, p0, Lcom/geely/drivemem/ui/TrendsView$7;->this$0:Lcom/geely/drivemem/ui/TrendsView;
+    invoke-static { v0 }, Lcom/geely/drivemem/ui/TrendsView;->access$500(Lcom/geely/drivemem/ui/TrendsView;)I
+    move-result v0
+    iget v1, p0, Lcom/geely/drivemem/ui/TrendsView$7;->val$idx:I
+    if-ne v0, v1, :L1
+  :L0
+  .line 244
     return-void
+  :L1
+  .line 241
+    iget-object v0, p0, Lcom/geely/drivemem/ui/TrendsView$7;->this$0:Lcom/geely/drivemem/ui/TrendsView;
+    iget v1, p0, Lcom/geely/drivemem/ui/TrendsView$7;->val$idx:I
+    invoke-static { v0, v1 }, Lcom/geely/drivemem/ui/TrendsView;->access$502(Lcom/geely/drivemem/ui/TrendsView;I)I
+  .line 242
+    iget-object v0, p0, Lcom/geely/drivemem/ui/TrendsView$7;->this$0:Lcom/geely/drivemem/ui/TrendsView;
+    invoke-static { v0 }, Lcom/geely/drivemem/ui/TrendsView;->access$600(Lcom/geely/drivemem/ui/TrendsView;)V
+  .line 243
+    iget-object v0, p0, Lcom/geely/drivemem/ui/TrendsView$7;->this$0:Lcom/geely/drivemem/ui/TrendsView;
+    invoke-virtual { v0 }, Lcom/geely/drivemem/ui/TrendsView;->refresh()V
+    goto :L0
 .end method

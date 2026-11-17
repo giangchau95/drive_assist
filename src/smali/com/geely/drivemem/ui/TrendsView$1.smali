@@ -25,30 +25,16 @@
 .method public format(D)Ljava/lang/String;
   .registers 8
   .prologue
-    const/4 v2, 1
-    const/4 v4, 0
   .line 68
-    const-wide/high16 v0, 0x4059000000000000L
-    cmpl-double v0, p1, v0
-    if-ltz v0, :L1
     sget-object v0, Ljava/util/Locale;->US:Ljava/util/Locale;
     const-string v1, "%.0f"
+    const/4 v2, 1
     new-array v2, v2, [Ljava/lang/Object;
+    const/4 v3, 0
     invoke-static { p1, p2 }, Ljava/lang/Double;->valueOf(D)Ljava/lang/Double;
-    move-result-object v3
-    aput-object v3, v2, v4
+    move-result-object v4
+    aput-object v4, v2, v3
     invoke-static { v0, v1, v2 }, Ljava/lang/String;->format(Ljava/util/Locale;Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
     move-result-object v0
-  :L0
     return-object v0
-  :L1
-    sget-object v0, Ljava/util/Locale;->US:Ljava/util/Locale;
-    const-string v1, "%.1f"
-    new-array v2, v2, [Ljava/lang/Object;
-    invoke-static { p1, p2 }, Ljava/lang/Double;->valueOf(D)Ljava/lang/Double;
-    move-result-object v3
-    aput-object v3, v2, v4
-    invoke-static { v0, v1, v2 }, Ljava/lang/String;->format(Ljava/util/Locale;Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
-    move-result-object v0
-    goto :L0
 .end method

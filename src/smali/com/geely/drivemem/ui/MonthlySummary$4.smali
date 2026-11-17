@@ -21,7 +21,7 @@
   .end annotation
   .registers 2
   .prologue
-  .line 200
+  .line 197
     iput-object p1, p0, Lcom/geely/drivemem/ui/MonthlySummary$4;->val$dlg:Landroid/app/AlertDialog;
     invoke-direct { p0 }, Ljava/lang/Object;-><init>()V
     return-void
@@ -30,7 +30,7 @@
 .method public run()V
   .registers 2
   .prologue
-  .line 201
+  .line 198
     iget-object v0, p0, Lcom/geely/drivemem/ui/MonthlySummary$4;->val$dlg:Landroid/app/AlertDialog;
     invoke-virtual { v0 }, Landroid/app/AlertDialog;->dismiss()V
     return-void

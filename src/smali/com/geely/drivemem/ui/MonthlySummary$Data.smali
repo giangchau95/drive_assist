@@ -26,8 +26,6 @@
 
 .field kwhCharged:D
 
-.field kwhUsed:D
-
 .field name:Ljava/lang/String;
 
 .field prevCost:D

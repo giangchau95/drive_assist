@@ -32,7 +32,7 @@ public final class MonthlySummary {
 
     private static final class Data {
         String name, key;
-        double km, kwhUsed, kwhCharged, cost, prevKm, prevCost;
+        double km, kwhCharged, cost, prevKm, prevCost;
         int charges, fullCharges;
         boolean hasData, hasPrev;
     }
@@ -96,7 +96,6 @@ public final class MonthlySummary {
             if (ps == null || ps.isEmpty()) return d;
             DailyStatsProvider.DayOverview t = ps.get(ps.size() - 1).totals;
             d.km = t.distanceKm;
-            d.kwhUsed = Math.max(0, t.netKwh);
             d.kwhCharged = t.chargeKwh;
             d.cost = t.chargeCost;
             d.charges = t.chargeCount;
@@ -175,8 +174,6 @@ public final class MonthlySummary {
         card.addView(m);
 
         row(card, a, "Distance driven", String.format(Locale.US, "%,.0f km", d.km), d.hasPrev ? change(d.km, d.prevKm) : "");
-        row(card, a, "Electricity used (~)", String.format(Locale.US, "%.0f kWh", d.kwhUsed),
-            d.km >= 1 && d.kwhUsed > 0 ? String.format(Locale.US, "%.1f kWh/100 km, estimated from battery %%", d.kwhUsed / d.km * 100) : "");
         String costSub = (d.cost > 0 && d.km >= 1 ? String.format(Locale.US, "%,.0f đ/km", d.cost / d.km) : "")
             + (d.hasPrev ? change(d.cost, d.prevCost) : "");
         row(card, a, "Charging cost", d.cost > 0 ? String.format(Locale.US, "%,.0f đ", d.cost) : "—",

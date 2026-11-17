@@ -1,6 +1,6 @@
 .class Lcom/geely/drivemem/ui/TrendsView$3;
 .super Ljava/lang/Object;
-.implements Lcom/geely/drivemem/ui/BarsView$Formatter;
+.implements Ljava/lang/Runnable;
 .source "TrendsView.java"
 
 .annotation system Ldalvik/annotation/EnclosingMethod;
@@ -16,17 +16,17 @@
 .method constructor <init>(Lcom/geely/drivemem/ui/TrendsView;)V
   .registers 2
   .prologue
-  .line 81
+  .line 127
     iput-object p1, p0, Lcom/geely/drivemem/ui/TrendsView$3;->this$0:Lcom/geely/drivemem/ui/TrendsView;
     invoke-direct { p0 }, Ljava/lang/Object;-><init>()V
     return-void
 .end method
 
-.method public format(D)Ljava/lang/String;
-  .registers 4
+.method public run()V
+  .registers 2
   .prologue
-  .line 82
-    invoke-static { p1, p2 }, Lcom/geely/drivemem/ui/TrendsView;->access$000(D)Ljava/lang/String;
-    move-result-object v0
-    return-object v0
+  .line 128
+    iget-object v0, p0, Lcom/geely/drivemem/ui/TrendsView$3;->this$0:Lcom/geely/drivemem/ui/TrendsView;
+    invoke-static { v0 }, Lcom/geely/drivemem/ui/TrendsView;->access$100(Lcom/geely/drivemem/ui/TrendsView;)V
+    return-void
 .end method

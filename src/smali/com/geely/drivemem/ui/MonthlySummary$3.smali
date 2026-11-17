@@ -21,7 +21,7 @@
   .end annotation
   .registers 2
   .prologue
-  .line 194
+  .line 191
     iput-object p1, p0, Lcom/geely/drivemem/ui/MonthlySummary$3;->val$next:Ljava/lang/Runnable;
     invoke-direct { p0 }, Ljava/lang/Object;-><init>()V
     return-void
@@ -30,15 +30,15 @@
 .method public onDismiss(Landroid/content/DialogInterface;)V
   .registers 3
   .prologue
-  .line 196
+  .line 193
     const/4 v0, 0
     invoke-static { v0 }, Lcom/geely/drivemem/ui/MonthlySummary;->access$102(Z)Z
-  .line 197
+  .line 194
     iget-object v0, p0, Lcom/geely/drivemem/ui/MonthlySummary$3;->val$next:Ljava/lang/Runnable;
     if-eqz v0, :L0
     iget-object v0, p0, Lcom/geely/drivemem/ui/MonthlySummary$3;->val$next:Ljava/lang/Runnable;
     invoke-interface { v0 }, Ljava/lang/Runnable;->run()V
   :L0
-  .line 198
+  .line 195
     return-void
 .end method

@@ -33,8 +33,8 @@ public class TrendsView extends LinearLayout {
     private volatile int token;
 
     private final LinearLayout periodRow;
-    private final BarsView energyBars, distBars, costBars;
-    private final TextView energyHead, energySub, distHead, distSub, costHead, costSub;
+    private final BarsView distBars, costBars;
+    private final TextView distHead, distSub, costHead, costSub;
     private final TextView note;
     private final TextView fullHead, fullSub;
     private final LinearLayout fullBtns;
@@ -62,13 +62,6 @@ public class TrendsView extends LinearLayout {
         LayoutParams clp = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         addView(charts, clp);
 
-        energyHead = text(c, "—", 34f, Style.TEXT, true);
-        energySub = text(c, "", 16f, Style.TEXT_DIM, false);
-        energyBars = new BarsView(c, new BarsView.Formatter() {
-            @Override public String format(double v) { return v >= 100 ? String.format(Locale.US, "%.0f", v) : String.format(Locale.US, "%.1f", v); }
-        }, "No data yet");
-        charts.addView(chartCard(c, "Electricity used", energyHead, energySub, energyBars, true));
-
         distHead = text(c, "—", 34f, Style.TEXT, true);
         distSub = text(c, "", 16f, Style.TEXT_DIM, false);
         distBars = new BarsView(c, new BarsView.Formatter() {
@@ -87,14 +80,20 @@ public class TrendsView extends LinearLayout {
         note.setPadding(Style.dp(c, 4), Style.dp(c, 10), 0, Style.dp(c, 4));
         addView(note);
 
+        LinearLayout infoRow = new LinearLayout(c);
+        infoRow.setOrientation(HORIZONTAL);
+        LayoutParams irp = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        irp.topMargin = Style.dp(c, 12);
+        addView(infoRow, irp);
+
         // ---- 100% charge card ----
         LinearLayout full = new LinearLayout(c);
         full.setOrientation(VERTICAL);
         int pad = Style.dp(c, 18);
         full.setPadding(pad, pad, pad, pad);
         full.setBackground(Style.card(Style.cardFillColor(), c));
-        LayoutParams flp = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        flp.topMargin = Style.dp(c, 12);
+        LayoutParams flp = new LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f);
+        flp.rightMargin = Style.dp(c, 12);
         full.setLayoutParams(flp);
         full.addView(text(c, "Full charge (LFP battery)", 15.5f, Style.TEXT_DIM, true));
         fullHead = text(c, "…", 28f, Style.TEXT, true);
@@ -104,17 +103,16 @@ public class TrendsView extends LinearLayout {
         fullSub.setPadding(0, Style.dp(c, 4), 0, Style.dp(c, 12));
         full.addView(fullSub);
         fullBtns = new LinearLayout(c);
-        fullBtns.setOrientation(HORIZONTAL);
+        fullBtns.setOrientation(VERTICAL);
         full.addView(fullBtns);
-        addView(full);
+        infoRow.addView(full);
 
         // ---- charging price card ----
         LinearLayout price = new LinearLayout(c);
         price.setOrientation(VERTICAL);
         price.setPadding(pad, pad, pad, pad);
         price.setBackground(Style.card(Style.cardFillColor(), c));
-        LayoutParams plp2 = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        plp2.topMargin = Style.dp(c, 12);
+        LayoutParams plp2 = new LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f);
         price.setLayoutParams(plp2);
         price.addView(text(c, "Charging price", 15.5f, Style.TEXT_DIM, true));
         priceHead = text(c, "", 28f, Style.TEXT, true);
@@ -125,19 +123,28 @@ public class TrendsView extends LinearLayout {
         psub.setPadding(0, Style.dp(c, 4), 0, Style.dp(c, 12));
         price.addView(psub);
         LinearLayout pb = new LinearLayout(c);
-        pb.setOrientation(HORIZONTAL);
+        pb.setOrientation(VERTICAL);
         pb.addView(Style.cardButton(c, "Change AC price", false, new Runnable() {
             @Override public void run() { editAcPrice(); }
         }));
-        Style.gap(pb, c, 12);
-        pb.addView(Style.cardButton(c, "Recalculate all AC sessions", false, new Runnable() {
+        pb.addView(Style.cardButton(c, "Recalculate AC sessions", false, new Runnable() {
             @Override public void run() { confirmRecalc(); }
         }));
+        spaceChildren(pb, c);
         price.addView(pb);
-        addView(price);
+        infoRow.addView(price);
         showPrice();
 
         buildPeriodRow();
+    }
+
+    /** Stacks the buttons of a card full width with a gap between them. */
+    private static void spaceChildren(LinearLayout l, Context c) {
+        for (int i = 0; i < l.getChildCount(); i++) {
+            LayoutParams lp = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            if (i > 0) lp.topMargin = Style.dp(c, 10);
+            l.getChildAt(i).setLayoutParams(lp);
+        }
     }
 
     private void showPrice() {
@@ -208,7 +215,7 @@ public class TrendsView extends LinearLayout {
         card.addView(head);
         sub.setPadding(0, Style.dp(c, 2), 0, Style.dp(c, 8));
         card.addView(sub);
-        card.addView(bars, new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, Style.dp(c, 230)));
+        card.addView(bars, new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, Style.dp(c, 270)));
         return card;
     }
 
@@ -253,8 +260,7 @@ public class TrendsView extends LinearLayout {
     // ---------- data ----------
     private static final class Series {
         final List<String> labels = new ArrayList<String>();
-        final List<Double> energy = new ArrayList<Double>(), dist = new ArrayList<Double>(), cost = new ArrayList<Double>(), eff = new ArrayList<Double>();
-        boolean estimated;
+        final List<Double> dist = new ArrayList<Double>(), cost = new ArrayList<Double>();
     }
 
     private static String label(String dateIso, int period) {
@@ -292,11 +298,8 @@ public class TrendsView extends LinearLayout {
 
     private static void add(Series s, String label, DailyStatsProvider.DayOverview o) {
         s.labels.add(label);
-        s.energy.add(Math.max(0, o.netKwh));
         s.dist.add(o.distanceKm);
         s.cost.add(o.chargeCost);
-        s.eff.add(o.efficiencyKwh100km);
-        if (o.netKwh != 0 && o.energySource != null && o.energySource != com.geely.drivemem.sensors.EnergySource.MEASURED) s.estimated = true;
     }
 
     private static double[] arr(List<Double> l) {
@@ -309,7 +312,6 @@ public class TrendsView extends LinearLayout {
         final Context ctx = getContext();
         final int my = ++token;
         final int per = period;
-        energyHead.setText("…");
         distHead.setText("…");
         costHead.setText("…");
         new Thread(new Runnable() {
@@ -333,27 +335,21 @@ public class TrendsView extends LinearLayout {
     private static String unitName(int per) { return per == P_DAY ? "day" : per == P_WEEK ? "week" : "month"; }
 
     private void show(Series s, int per) {
-        double[] e = arr(s.energy), d = arr(s.dist), k = arr(s.cost);
+        double[] d = arr(s.dist), k = arr(s.cost);
         String[] lb = s.labels.toArray(new String[0]);
-        energyBars.setData(e, lb);
         distBars.setData(d, lb);
         costBars.setData(k, lb);
-        int n = e.length;
+        int n = d.length;
         String cur = per == P_DAY ? "today" : "this " + unitName(per);
-        energyHead.setText(String.format(Locale.US, "%.1f kWh", e[n - 1]));
         distHead.setText(String.format(Locale.US, "%.0f km", d[n - 1]));
         costHead.setText(k[n - 1] > 0 ? fullVnd(k[n - 1]) : "—");
-        double eff = s.eff.get(n - 1);
-        energySub.setText(delta(e, "%.1f kWh", per, true) + (eff > 0 ? "  ·  " + String.format(Locale.US, "%.1f kWh/100 km", eff) : ""));
-        energySub.setTextColor(Style.TEXT_DIM);
         distSub.setText(delta(d, "%.0f km", per, false));
         String perKm = (k[n - 1] > 0 && d[n - 1] >= 1) ? String.format(Locale.US, "%,.0f \u0111/km", k[n - 1] / d[n - 1]) : "";
         String cd = delta(k, null, per, true);
         costSub.setText(k[n - 1] > 0 || anyPositive(k)
             ? (cd.isEmpty() ? perKm : perKm.isEmpty() ? cd : cd + "  \u00B7  " + perKm)
             : "No charging costs yet");
-        note.setText((s.estimated ? "Electricity is estimated from the battery percentage (~). " : "")
-            + "The last bar is the current " + unitName(per) + ", still in progress.");
+        note.setText("The last bar is the current " + unitName(per) + ", still in progress.");
     }
 
     private static boolean anyPositive(double[] a) { for (double v : a) if (v > 0) return true; return false; }
@@ -392,10 +388,10 @@ public class TrendsView extends LinearLayout {
                 showFull(last);
             }
         }));
-        Style.gap(fullBtns, c, 12);
         fullBtns.addView(Style.cardButton(c, "I charged to 100% on…", false, new Runnable() {
             @Override public void run() { pickDate(last); }
         }));
+        spaceChildren(fullBtns, c);
     }
 
     private void pickDate(final long last) {

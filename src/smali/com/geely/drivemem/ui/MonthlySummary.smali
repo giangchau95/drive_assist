@@ -94,20 +94,20 @@
   .registers 14
   .prologue
     const-wide/16 v8, 0
-  .line 129
+  .line 128
     cmpg-double v0, p2, v8
     if-gtz v0, :L1
     const-string v0, ""
   :L0
-  .line 132
+  .line 131
     return-object v0
   :L1
-  .line 130
+  .line 129
     sub-double v0, p0, p2
     div-double/2addr v0, p2
     const-wide/high16 v2, 0x4059000000000000L
     mul-double/2addr v2, v0
-  .line 131
+  .line 130
     invoke-static { v2, v3 }, Ljava/lang/Math;->abs(D)D
     move-result-wide v0
     const-wide/high16 v4, 0x3fe0000000000000L
@@ -116,7 +116,7 @@
     const-string v0, "  (same as the month before)"
     goto :L0
   :L2
-  .line 132
+  .line 131
     sget-object v1, Ljava/util/Locale;->US:Ljava/util/Locale;
     const-string v4, "  (%s%.0f%% vs the month before)"
     const/4 v0, 2
@@ -219,7 +219,7 @@
   .registers 16
   .prologue
     const/4 v2, 0
-    const/4 v10, 2
+    const/4 v8, 2
     const/4 v4, 1
     const/4 v3, 0
     const-wide/16 v12, 0
@@ -259,7 +259,7 @@
   :L1
     move-object v0, v1
   :L2
-  .line 118
+  .line 117
     return-object v0
   :L3
   .line 97
@@ -274,25 +274,19 @@
     iget-wide v6, v0, Lcom/geely/drivemem/sensors/DailyStatsProvider$DayOverview;->distanceKm:D
     iput-wide v6, v1, Lcom/geely/drivemem/ui/MonthlySummary$Data;->km:D
   .line 99
-    const-wide/16 v6, 0
-    iget-wide v8, v0, Lcom/geely/drivemem/sensors/DailyStatsProvider$DayOverview;->netKwh:D
-    invoke-static { v6, v7, v8, v9 }, Ljava/lang/Math;->max(DD)D
-    move-result-wide v6
-    iput-wide v6, v1, Lcom/geely/drivemem/ui/MonthlySummary$Data;->kwhUsed:D
-  .line 100
     iget-wide v6, v0, Lcom/geely/drivemem/sensors/DailyStatsProvider$DayOverview;->chargeKwh:D
     iput-wide v6, v1, Lcom/geely/drivemem/ui/MonthlySummary$Data;->kwhCharged:D
-  .line 101
+  .line 100
     iget-wide v6, v0, Lcom/geely/drivemem/sensors/DailyStatsProvider$DayOverview;->chargeCost:D
     iput-wide v6, v1, Lcom/geely/drivemem/ui/MonthlySummary$Data;->cost:D
-  .line 102
+  .line 101
     iget v0, v0, Lcom/geely/drivemem/sensors/DailyStatsProvider$DayOverview;->chargeCount:I
     iput v0, v1, Lcom/geely/drivemem/ui/MonthlySummary$Data;->charges:I
-  .line 103
+  .line 102
     invoke-interface { v5 }, Ljava/util/List;->size()I
     move-result v0
-    if-lt v0, v10, :L6
-  .line 104
+    if-lt v0, v8, :L6
+  .line 103
     invoke-interface { v5 }, Ljava/util/List;->size()I
     move-result v0
     add-int/lit8 v0, v0, -2
@@ -300,13 +294,13 @@
     move-result-object v0
     check-cast v0, Lcom/geely/drivemem/sensors/DailyStatsProvider$PeriodOverview;
     iget-object v0, v0, Lcom/geely/drivemem/sensors/DailyStatsProvider$PeriodOverview;->totals:Lcom/geely/drivemem/sensors/DailyStatsProvider$DayOverview;
-  .line 105
+  .line 104
     iget-wide v6, v0, Lcom/geely/drivemem/sensors/DailyStatsProvider$DayOverview;->distanceKm:D
     iput-wide v6, v1, Lcom/geely/drivemem/ui/MonthlySummary$Data;->prevKm:D
-  .line 106
+  .line 105
     iget-wide v6, v0, Lcom/geely/drivemem/sensors/DailyStatsProvider$DayOverview;->chargeCost:D
     iput-wide v6, v1, Lcom/geely/drivemem/ui/MonthlySummary$Data;->prevCost:D
-  .line 107
+  .line 106
     iget-wide v6, v0, Lcom/geely/drivemem/sensors/DailyStatsProvider$DayOverview;->distanceKm:D
     cmpl-double v5, v6, v12
     if-gtz v5, :L4
@@ -318,15 +312,15 @@
   :L5
     iput-boolean v0, v1, Lcom/geely/drivemem/ui/MonthlySummary$Data;->hasPrev:Z
   :L6
-  .line 109
+  .line 108
     invoke-virtual { p1 }, Ljava/util/Calendar;->clone()Ljava/lang/Object;
     move-result-object v0
     check-cast v0, Ljava/util/Calendar;
-  .line 110
+  .line 109
     const/4 v5, 2
     const/4 v6, 1
     invoke-virtual { v0, v5, v6 }, Ljava/util/Calendar;->add(II)V
-  .line 111
+  .line 110
     invoke-static { p0 }, Lcom/geely/drivemem/car/CarDb;->get(Landroid/content/Context;)Lcom/geely/drivemem/car/CarDb;
     move-result-object v5
     invoke-virtual { v5 }, Lcom/geely/drivemem/car/CarDb;->getReadableDatabase()Landroid/database/sqlite/SQLiteDatabase;
@@ -335,7 +329,7 @@
     const/4 v7, 2
     new-array v7, v7, [Ljava/lang/String;
     const/4 v8, 0
-  .line 113
+  .line 112
     invoke-static { p1 }, Lcom/geely/drivemem/ui/MonthlySummary;->startOfDay(Ljava/util/Calendar;)J
     move-result-wide v10
     invoke-static { v10, v11 }, Ljava/lang/String;->valueOf(J)Ljava/lang/String;
@@ -347,12 +341,12 @@
     invoke-static { v10, v11 }, Ljava/lang/String;->valueOf(J)Ljava/lang/String;
     move-result-object v0
     aput-object v0, v7, v8
-  .line 111
+  .line 110
     invoke-virtual { v5, v6, v7 }, Landroid/database/sqlite/SQLiteDatabase;->rawQuery(Ljava/lang/String;[Ljava/lang/String;)Landroid/database/Cursor;
   :L7
     move-result-object v5
   :L8
-  .line 114
+  .line 113
     invoke-interface { v5 }, Landroid/database/Cursor;->moveToFirst()Z
     move-result v0
     if-eqz v0, :L9
@@ -362,7 +356,7 @@
     iput v0, v1, Lcom/geely/drivemem/ui/MonthlySummary$Data;->fullCharges:I
   :L9
     invoke-interface { v5 }, Landroid/database/Cursor;->close()V
-  .line 115
+  .line 114
     iget-wide v6, v1, Lcom/geely/drivemem/ui/MonthlySummary$Data;->km:D
     cmpl-double v0, v6, v12
     if-gtz v0, :L10
@@ -376,26 +370,26 @@
   :L11
     iput-boolean v0, v1, Lcom/geely/drivemem/ui/MonthlySummary$Data;->hasData:Z
     move-object v0, v1
-  .line 116
+  .line 115
     goto/16 :L2
   :L12
     move v0, v3
-  .line 107
+  .line 106
     goto :L5
   :L13
-  .line 114
+  .line 113
     move-exception v0
     invoke-interface { v5 }, Landroid/database/Cursor;->close()V
     throw v0
   :L14
-  .line 117
+  .line 116
     move-exception v0
     move-object v0, v2
-  .line 118
+  .line 117
     goto/16 :L2
   :L15
     move v0, v3
-  .line 115
+  .line 114
     goto :L11
 .end method
 
@@ -414,89 +408,89 @@
   .registers 8
   .prologue
     const/4 v2, 0
-  .line 136
+  .line 135
     new-instance v0, Landroid/widget/TextView;
     invoke-direct { v0, p1 }, Landroid/widget/TextView;-><init>(Landroid/content/Context;)V
-  .line 137
+  .line 136
     invoke-virtual { v0, p2 }, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
-  .line 138
+  .line 137
     sget v1, Lcom/geely/drivemem/util/Style;->TEXT_DIM:I
     invoke-virtual { v0, v1 }, Landroid/widget/TextView;->setTextColor(I)V
-  .line 139
+  .line 138
     const/high16 v1, 0x41880000
     invoke-virtual { v0, v1 }, Landroid/widget/TextView;->setTextSize(F)V
-  .line 140
+  .line 139
     const/16 v1, 12
     invoke-static { p1, v1 }, Lcom/geely/drivemem/util/Style;->dp(Landroid/content/Context;I)I
     move-result v1
     invoke-virtual { v0, v2, v1, v2, v2 }, Landroid/widget/TextView;->setPadding(IIII)V
-  .line 141
+  .line 140
     invoke-virtual { p0, v0 }, Landroid/widget/LinearLayout;->addView(Landroid/view/View;)V
-  .line 142
+  .line 141
     new-instance v0, Landroid/widget/TextView;
     invoke-direct { v0, p1 }, Landroid/widget/TextView;-><init>(Landroid/content/Context;)V
-  .line 143
+  .line 142
     invoke-virtual { v0, p3 }, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
-  .line 144
+  .line 143
     sget v1, Lcom/geely/drivemem/util/Style;->TEXT:I
     invoke-virtual { v0, v1 }, Landroid/widget/TextView;->setTextColor(I)V
-  .line 145
+  .line 144
     const/high16 v1, 0x41d00000
     invoke-virtual { v0, v1 }, Landroid/widget/TextView;->setTextSize(F)V
-  .line 146
+  .line 145
     sget-object v1, Landroid/graphics/Typeface;->DEFAULT_BOLD:Landroid/graphics/Typeface;
     invoke-virtual { v0, v1 }, Landroid/widget/TextView;->setTypeface(Landroid/graphics/Typeface;)V
-  .line 147
+  .line 146
     invoke-virtual { p0, v0 }, Landroid/widget/LinearLayout;->addView(Landroid/view/View;)V
-  .line 148
+  .line 147
     if-eqz p4, :L0
     invoke-virtual { p4 }, Ljava/lang/String;->length()I
     move-result v0
     if-lez v0, :L0
-  .line 149
+  .line 148
     new-instance v0, Landroid/widget/TextView;
     invoke-direct { v0, p1 }, Landroid/widget/TextView;-><init>(Landroid/content/Context;)V
-  .line 150
+  .line 149
     invoke-virtual { p4 }, Ljava/lang/String;->trim()Ljava/lang/String;
     move-result-object v1
     invoke-virtual { v0, v1 }, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
-  .line 151
+  .line 150
     sget v1, Lcom/geely/drivemem/util/Style;->TEXT_DIM:I
     invoke-virtual { v0, v1 }, Landroid/widget/TextView;->setTextColor(I)V
-  .line 152
+  .line 151
     const/high16 v1, 0x41800000
     invoke-virtual { v0, v1 }, Landroid/widget/TextView;->setTextSize(F)V
-  .line 153
+  .line 152
     invoke-virtual { p0, v0 }, Landroid/widget/LinearLayout;->addView(Landroid/view/View;)V
   :L0
-  .line 155
+  .line 154
     return-void
 .end method
 
 .method private static show(Landroid/app/Activity;Lcom/geely/drivemem/ui/MonthlySummary$Data;Ljava/lang/Runnable;)V
-  .registers 15
+  .registers 13
   .prologue
-  .line 158
+  .line 157
     const/4 v0, 1
     sput-boolean v0, Lcom/geely/drivemem/ui/MonthlySummary;->showing:Z
-  .line 159
+  .line 158
     new-instance v2, Landroid/widget/LinearLayout;
     invoke-direct { v2, p0 }, Landroid/widget/LinearLayout;-><init>(Landroid/content/Context;)V
-  .line 160
+  .line 159
     const/4 v0, 1
     invoke-virtual { v2, v0 }, Landroid/widget/LinearLayout;->setOrientation(I)V
-  .line 161
+  .line 160
     sget v0, Lcom/geely/drivemem/util/Style;->CARD:I
     invoke-static { v0, p0 }, Lcom/geely/drivemem/util/Style;->card(ILandroid/content/Context;)Landroid/graphics/drawable/GradientDrawable;
     move-result-object v0
     invoke-virtual { v2, v0 }, Landroid/widget/LinearLayout;->setBackground(Landroid/graphics/drawable/Drawable;)V
-  .line 162
+  .line 161
     const/16 v0, 28
     invoke-static { p0, v0 }, Lcom/geely/drivemem/util/Style;->dp(Landroid/content/Context;I)I
     move-result v0
-  .line 163
+  .line 162
     invoke-virtual { v2, v0, v0, v0, v0 }, Landroid/widget/LinearLayout;->setPadding(IIII)V
-  .line 164
+  .line 163
     new-instance v0, Landroid/view/ViewGroup$LayoutParams;
     const/16 v1, 640
     invoke-static { p0, v1 }, Lcom/geely/drivemem/util/Style;->dp(Landroid/content/Context;I)I
@@ -504,38 +498,38 @@
     const/4 v3, -2
     invoke-direct { v0, v1, v3 }, Landroid/view/ViewGroup$LayoutParams;-><init>(II)V
     invoke-virtual { v2, v0 }, Landroid/widget/LinearLayout;->setLayoutParams(Landroid/view/ViewGroup$LayoutParams;)V
-  .line 165
+  .line 164
     new-instance v0, Landroid/widget/TextView;
     invoke-direct { v0, p0 }, Landroid/widget/TextView;-><init>(Landroid/content/Context;)V
-  .line 166
+  .line 165
     const-string v1, "Monthly summary"
     invoke-virtual { v0, v1 }, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
-  .line 167
+  .line 166
     sget v1, Lcom/geely/drivemem/util/Style;->TEXT:I
     invoke-virtual { v0, v1 }, Landroid/widget/TextView;->setTextColor(I)V
-  .line 168
+  .line 167
     const/high16 v1, 0x41f00000
     invoke-virtual { v0, v1 }, Landroid/widget/TextView;->setTextSize(F)V
-  .line 169
+  .line 168
     sget-object v1, Landroid/graphics/Typeface;->DEFAULT_BOLD:Landroid/graphics/Typeface;
     invoke-virtual { v0, v1 }, Landroid/widget/TextView;->setTypeface(Landroid/graphics/Typeface;)V
-  .line 170
+  .line 169
     invoke-virtual { v2, v0 }, Landroid/widget/LinearLayout;->addView(Landroid/view/View;)V
-  .line 171
+  .line 170
     new-instance v0, Landroid/widget/TextView;
     invoke-direct { v0, p0 }, Landroid/widget/TextView;-><init>(Landroid/content/Context;)V
-  .line 172
+  .line 171
     iget-object v1, p1, Lcom/geely/drivemem/ui/MonthlySummary$Data;->name:Ljava/lang/String;
     invoke-virtual { v0, v1 }, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
-  .line 173
+  .line 172
     sget v1, Lcom/geely/drivemem/util/Style;->ACCENT:I
     invoke-virtual { v0, v1 }, Landroid/widget/TextView;->setTextColor(I)V
-  .line 174
+  .line 173
     const/high16 v1, 0x41a00000
     invoke-virtual { v0, v1 }, Landroid/widget/TextView;->setTextSize(F)V
-  .line 175
+  .line 174
     invoke-virtual { v2, v0 }, Landroid/widget/LinearLayout;->addView(Landroid/view/View;)V
-  .line 177
+  .line 176
     const-string v1, "Distance driven"
     sget-object v0, Ljava/util/Locale;->US:Ljava/util/Locale;
     const-string v3, "%,.0f km"
@@ -549,64 +543,24 @@
     invoke-static { v0, v3, v4 }, Ljava/lang/String;->format(Ljava/util/Locale;Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
     move-result-object v3
     iget-boolean v0, p1, Lcom/geely/drivemem/ui/MonthlySummary$Data;->hasPrev:Z
-    if-eqz v0, :L9
+    if-eqz v0, :L8
     iget-wide v4, p1, Lcom/geely/drivemem/ui/MonthlySummary$Data;->km:D
     iget-wide v6, p1, Lcom/geely/drivemem/ui/MonthlySummary$Data;->prevKm:D
     invoke-static { v4, v5, v6, v7 }, Lcom/geely/drivemem/ui/MonthlySummary;->change(DD)Ljava/lang/String;
     move-result-object v0
   :L0
     invoke-static { v2, p0, v1, v3, v0 }, Lcom/geely/drivemem/ui/MonthlySummary;->row(Landroid/widget/LinearLayout;Landroid/content/Context;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
-  .line 178
-    const-string v1, "Electricity used (~)"
-    sget-object v0, Ljava/util/Locale;->US:Ljava/util/Locale;
-    const-string v3, "%.0f kWh"
-    const/4 v4, 1
-    new-array v4, v4, [Ljava/lang/Object;
-    const/4 v5, 0
-    iget-wide v6, p1, Lcom/geely/drivemem/ui/MonthlySummary$Data;->kwhUsed:D
-    invoke-static { v6, v7 }, Ljava/lang/Double;->valueOf(D)Ljava/lang/Double;
-    move-result-object v6
-    aput-object v6, v4, v5
-    invoke-static { v0, v3, v4 }, Ljava/lang/String;->format(Ljava/util/Locale;Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
-    move-result-object v3
-  .line 179
-    iget-wide v4, p1, Lcom/geely/drivemem/ui/MonthlySummary$Data;->km:D
-    const-wide/high16 v6, 0x3ff0000000000000L
-    cmpl-double v0, v4, v6
-    if-ltz v0, :L10
-    iget-wide v4, p1, Lcom/geely/drivemem/ui/MonthlySummary$Data;->kwhUsed:D
-    const-wide/16 v6, 0
-    cmpl-double v0, v4, v6
-    if-lez v0, :L10
-    sget-object v0, Ljava/util/Locale;->US:Ljava/util/Locale;
-    const-string v4, "%.1f kWh/100 km, estimated from battery %%"
-    const/4 v5, 1
-    new-array v5, v5, [Ljava/lang/Object;
-    const/4 v6, 0
-    iget-wide v8, p1, Lcom/geely/drivemem/ui/MonthlySummary$Data;->kwhUsed:D
-    iget-wide v10, p1, Lcom/geely/drivemem/ui/MonthlySummary$Data;->km:D
-    div-double/2addr v8, v10
-    const-wide/high16 v10, 0x4059000000000000L
-    mul-double/2addr v8, v10
-    invoke-static { v8, v9 }, Ljava/lang/Double;->valueOf(D)Ljava/lang/Double;
-    move-result-object v7
-    aput-object v7, v5, v6
-    invoke-static { v0, v4, v5 }, Ljava/lang/String;->format(Ljava/util/Locale;Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
-    move-result-object v0
-  :L1
-  .line 178
-    invoke-static { v2, p0, v1, v3, v0 }, Lcom/geely/drivemem/ui/MonthlySummary;->row(Landroid/widget/LinearLayout;Landroid/content/Context;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
-  .line 180
+  .line 177
     new-instance v1, Ljava/lang/StringBuilder;
     invoke-direct { v1 }, Ljava/lang/StringBuilder;-><init>()V
     iget-wide v4, p1, Lcom/geely/drivemem/ui/MonthlySummary$Data;->cost:D
     const-wide/16 v6, 0
     cmpl-double v0, v4, v6
-    if-lez v0, :L11
+    if-lez v0, :L9
     iget-wide v4, p1, Lcom/geely/drivemem/ui/MonthlySummary$Data;->km:D
     const-wide/high16 v6, 0x3ff0000000000000L
     cmpl-double v0, v4, v6
-    if-ltz v0, :L11
+    if-ltz v0, :L9
     sget-object v0, Ljava/util/Locale;->US:Ljava/util/Locale;
     const-string v3, "%,.0f \u0111/km"
     const/4 v4, 1
@@ -620,27 +574,27 @@
     aput-object v6, v4, v5
     invoke-static { v0, v3, v4 }, Ljava/lang/String;->format(Ljava/util/Locale;Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
     move-result-object v0
-  :L2
+  :L1
     invoke-virtual { v1, v0 }, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
     move-result-object v1
-  .line 181
+  .line 178
     iget-boolean v0, p1, Lcom/geely/drivemem/ui/MonthlySummary$Data;->hasPrev:Z
-    if-eqz v0, :L12
+    if-eqz v0, :L10
     iget-wide v4, p1, Lcom/geely/drivemem/ui/MonthlySummary$Data;->cost:D
     iget-wide v6, p1, Lcom/geely/drivemem/ui/MonthlySummary$Data;->prevCost:D
     invoke-static { v4, v5, v6, v7 }, Lcom/geely/drivemem/ui/MonthlySummary;->change(DD)Ljava/lang/String;
     move-result-object v0
-  :L3
+  :L2
     invoke-virtual { v1, v0 }, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
     move-result-object v0
     invoke-virtual { v0 }, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
     move-result-object v1
-  .line 182
+  .line 179
     const-string v3, "Charging cost"
     iget-wide v4, p1, Lcom/geely/drivemem/ui/MonthlySummary$Data;->cost:D
     const-wide/16 v6, 0
     cmpl-double v0, v4, v6
-    if-lez v0, :L13
+    if-lez v0, :L11
     sget-object v0, Ljava/util/Locale;->US:Ljava/util/Locale;
     const-string v4, "%,.0f \u0111"
     const/4 v5, 1
@@ -652,16 +606,16 @@
     aput-object v7, v5, v6
     invoke-static { v0, v4, v5 }, Ljava/lang/String;->format(Ljava/util/Locale;Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
     move-result-object v0
-  :L4
-  .line 183
+  :L3
+  .line 180
     iget-wide v4, p1, Lcom/geely/drivemem/ui/MonthlySummary$Data;->cost:D
     const-wide/16 v6, 0
     cmpl-double v4, v4, v6
-    if-lez v4, :L14
-  :L5
-  .line 182
+    if-lez v4, :L12
+  :L4
+  .line 179
     invoke-static { v2, p0, v3, v0, v1 }, Lcom/geely/drivemem/ui/MonthlySummary;->row(Landroid/widget/LinearLayout;Landroid/content/Context;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
-  .line 184
+  .line 181
     const-string v1, "Charging sessions"
     sget-object v0, Ljava/util/Locale;->US:Ljava/util/Locale;
     const-string v3, "%d  \u00b7  %.0f kWh"
@@ -679,9 +633,9 @@
     aput-object v6, v4, v5
     invoke-static { v0, v3, v4 }, Ljava/lang/String;->format(Ljava/util/Locale;Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
     move-result-object v3
-  .line 185
+  .line 182
     iget v0, p1, Lcom/geely/drivemem/ui/MonthlySummary$Data;->fullCharges:I
-    if-lez v0, :L16
+    if-lez v0, :L14
     new-instance v0, Ljava/lang/StringBuilder;
     invoke-direct { v0 }, Ljava/lang/StringBuilder;-><init>()V
     iget v4, p1, Lcom/geely/drivemem/ui/MonthlySummary$Data;->fullCharges:I
@@ -689,55 +643,55 @@
     move-result-object v4
     iget v0, p1, Lcom/geely/drivemem/ui/MonthlySummary$Data;->fullCharges:I
     const/4 v5, 1
-    if-ne v0, v5, :L15
+    if-ne v0, v5, :L13
     const-string v0, " full charge to 100%"
-  :L6
+  :L5
     invoke-virtual { v4, v0 }, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
     move-result-object v0
     invoke-virtual { v0 }, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
     move-result-object v0
-  :L7
-  .line 184
+  :L6
+  .line 181
     invoke-static { v2, p0, v1, v3, v0 }, Lcom/geely/drivemem/ui/MonthlySummary;->row(Landroid/widget/LinearLayout;Landroid/content/Context;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
-  .line 187
+  .line 184
     new-instance v0, Landroid/widget/LinearLayout;
     invoke-direct { v0, p0 }, Landroid/widget/LinearLayout;-><init>(Landroid/content/Context;)V
-  .line 188
+  .line 185
     const v1, 8388629
     invoke-virtual { v0, v1 }, Landroid/widget/LinearLayout;->setGravity(I)V
-  .line 189
+  .line 186
     new-instance v1, Landroid/widget/LinearLayout$LayoutParams;
     const/4 v3, -1
     const/4 v4, -2
     invoke-direct { v1, v3, v4 }, Landroid/widget/LinearLayout$LayoutParams;-><init>(II)V
-  .line 190
+  .line 187
     const/16 v3, 22
     invoke-static { p0, v3 }, Lcom/geely/drivemem/util/Style;->dp(Landroid/content/Context;I)I
     move-result v3
     iput v3, v1, Landroid/widget/LinearLayout$LayoutParams;->topMargin:I
-  .line 191
+  .line 188
     invoke-virtual { v0, v1 }, Landroid/widget/LinearLayout;->setLayoutParams(Landroid/view/ViewGroup$LayoutParams;)V
-  .line 192
+  .line 189
     new-instance v1, Landroid/app/AlertDialog$Builder;
     invoke-direct { v1, p0 }, Landroid/app/AlertDialog$Builder;-><init>(Landroid/content/Context;)V
     invoke-virtual { v1, v2 }, Landroid/app/AlertDialog$Builder;->setView(Landroid/view/View;)Landroid/app/AlertDialog$Builder;
     move-result-object v1
     invoke-virtual { v1 }, Landroid/app/AlertDialog$Builder;->create()Landroid/app/AlertDialog;
     move-result-object v1
-  .line 193
+  .line 190
     invoke-virtual { v1 }, Landroid/app/AlertDialog;->getWindow()Landroid/view/Window;
     move-result-object v3
-    if-eqz v3, :L8
+    if-eqz v3, :L7
     invoke-virtual { v1 }, Landroid/app/AlertDialog;->getWindow()Landroid/view/Window;
     move-result-object v3
     const v4, 17170445
     invoke-virtual { v3, v4 }, Landroid/view/Window;->setBackgroundDrawableResource(I)V
-  :L8
-  .line 194
+  :L7
+  .line 191
     new-instance v3, Lcom/geely/drivemem/ui/MonthlySummary$3;
     invoke-direct { v3, p2 }, Lcom/geely/drivemem/ui/MonthlySummary$3;-><init>(Ljava/lang/Runnable;)V
     invoke-virtual { v1, v3 }, Landroid/app/AlertDialog;->setOnDismissListener(Landroid/content/DialogInterface$OnDismissListener;)V
-  .line 200
+  .line 197
     const-string v3, "Close"
     const/4 v4, 1
     new-instance v5, Lcom/geely/drivemem/ui/MonthlySummary$4;
@@ -745,43 +699,39 @@
     invoke-static { p0, v3, v4, v5 }, Lcom/geely/drivemem/util/Style;->cardButton(Landroid/content/Context;Ljava/lang/String;ZLjava/lang/Runnable;)Landroid/widget/TextView;
     move-result-object v3
     invoke-virtual { v0, v3 }, Landroid/widget/LinearLayout;->addView(Landroid/view/View;)V
-  .line 203
+  .line 200
     invoke-virtual { v2, v0 }, Landroid/widget/LinearLayout;->addView(Landroid/view/View;)V
-  .line 204
+  .line 201
     invoke-virtual { v1 }, Landroid/app/AlertDialog;->show()V
-  .line 205
+  .line 202
     return-void
+  :L8
+  .line 176
+    const-string v0, ""
+    goto/16 :L0
   :L9
   .line 177
     const-string v0, ""
-    goto/16 :L0
-  :L10
-  .line 179
-    const-string v0, ""
     goto/16 :L1
-  :L11
-  .line 180
+  :L10
+  .line 178
     const-string v0, ""
     goto/16 :L2
-  :L12
-  .line 181
-    const-string v0, ""
+  :L11
+  .line 179
+    const-string v0, "\u2014"
     goto/16 :L3
+  :L12
+  .line 180
+    const-string v1, "Enter DC prices in Charging history to complete this"
+    goto/16 :L4
   :L13
   .line 182
-    const-string v0, "\u2014"
-    goto/16 :L4
-  :L14
-  .line 183
-    const-string v1, "Enter DC prices in Charging history to complete this"
-    goto/16 :L5
-  :L15
-  .line 185
     const-string v0, " full charges to 100%"
-    goto :L6
-  :L16
+    goto :L5
+  :L14
     const-string v0, "No charge to 100% this month"
-    goto :L7
+    goto :L6
 .end method
 
 .method public static showLastMonth(Landroid/app/Activity;)V
@@ -820,11 +770,11 @@
   .registers 4
   .prologue
     const/4 v2, 0
-  .line 123
+  .line 122
     invoke-virtual { p0 }, Ljava/util/Calendar;->clone()Ljava/lang/Object;
     move-result-object v0
     check-cast v0, Ljava/util/Calendar;
-  .line 124
+  .line 123
     const/16 v1, 11
     invoke-virtual { v0, v1, v2 }, Ljava/util/Calendar;->set(II)V
     const/16 v1, 12
@@ -833,7 +783,7 @@
     invoke-virtual { v0, v1, v2 }, Ljava/util/Calendar;->set(II)V
     const/16 v1, 14
     invoke-virtual { v0, v1, v2 }, Ljava/util/Calendar;->set(II)V
-  .line 125
+  .line 124
     invoke-virtual { v0 }, Ljava/util/Calendar;->getTimeInMillis()J
     move-result-wide v0
     return-wide v0

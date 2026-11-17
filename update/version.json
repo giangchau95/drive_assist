@@ -1,8 +1,8 @@
 {
-  "versionCode": 29911205,
-  "versionName": "1.6.2-29911205",
+  "versionCode": 29915323,
+  "versionName": "1.6.3-29915323",
   "apkUrl": "https://raw.githubusercontent.com/giangchau95/drive_assist/main/update/drive_assist.apk",
   "helperVersionCode": 29911176,
   "helperUrl": "https://raw.githubusercontent.com/giangchau95/drive_assist/main/install/modehelper_lite.apk",
-  "changelog": "ModeHelper updates are now offered in a dialog (Update / Later) instead of installing automatically."
+  "changelog": "Trends: removed the electricity chart; cleaner 2x2 layout (distance, charging cost, full-charge status, charging price). Monthly summary no longer shows estimated electricity."
 }
