@@ -211,3 +211,8 @@ Tab **Apps** (biểu tượng ô vuông ở thanh bên) hiển thị danh sách 
 4. Commit và push `apps/catalog.json` (và `apps/icons/`). Trên xe, mở tab Apps → nút làm mới → Update.
 
 Script từ chối APK có chứng chỉ khác với bản đã có trong catalog (chống file giả). ModeHelper tự cập nhật qua OTA: `update/version.json` có `helperVersionCode` và `helperUrl`; khi mở Drive Assist (xe đang đỗ) mà ModeHelper trên xe cũ hơn thì app hiện hộp thoại **Update ModeHelper / Later** — chỉ cập nhật khi bạn bấm Update (Later hoãn 1 ngày). Khi sửa ModeHelper chỉ cần đẩy `install/modehelper_lite.apk` mới và tăng `helperVersionCode`.
+
+## Giao diện (theme EX2)
+
+- Theme mặc định **EX2**: font Onest, màu nhấn xanh, card bo tròn, nền tối thuần đen (không ánh xanh). Các theme cũ (Default, Noturno, Neon) vẫn chọn được trong Settings.
+- Nút ở cuối thanh dock (phía trên nút cập nhật) đổi giao diện theo vòng: **Tự động** (theo hệ thống) → **Sáng** → **Tối**. Chỉ các theme có bảng màu sáng (EX2, Default) đổi được sáng/tối.

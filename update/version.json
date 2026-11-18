@@ -1,8 +1,8 @@
 {
-  "versionCode": 29915323,
-  "versionName": "1.6.3-29915323",
+  "versionCode": 29916769,
+  "versionName": "1.7.3-29916769",
   "apkUrl": "https://raw.githubusercontent.com/giangchau95/drive_assist/main/update/drive_assist.apk",
   "helperVersionCode": 29911176,
   "helperUrl": "https://raw.githubusercontent.com/giangchau95/drive_assist/main/install/modehelper_lite.apk",
-  "changelog": "Trends: removed the electricity chart; cleaner 2x2 layout (distance, charging cost, full-charge status, charging price). Monthly summary no longer shows estimated electricity."
+  "changelog": "New EX2 look: Onest font, blue accent, softer rounded cards, pure-black dark theme, tinted dock and two-tone charts. New dock button switches appearance: auto (follow system) / light / dark."
 }
