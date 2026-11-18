@@ -125,13 +125,14 @@ public class ComfortActivity extends Activity {
         statsDockIcon = dockButton(R.drawable.ic_chart_bar, new View.OnClickListener() {
             @Override public void onClick(View v) { setMode(MODE_DAILY); }
         });
-        chargeDockIcon = dockButton(R.drawable.ic_ev_station, new View.OnClickListener() {
+        chargeDockIcon = dockButton(0, new View.OnClickListener() {
             @Override public void onClick(View v) { setMode(MODE_CHARGE); }
         });
         trendsDockIcon = dockButton(0, new View.OnClickListener() {
             @Override public void onClick(View v) { setMode(MODE_TRENDS); }
         });
         trendsDockIcon.setImageBitmap(trendsIcon());
+        chargeDockIcon.setImageBitmap(chargeIcon());
         appsDockIcon = dockButton(0, new View.OnClickListener() {
             @Override public void onClick(View v) { setMode(MODE_APPS); }
         });
@@ -188,6 +189,32 @@ public class ComfortActivity extends Activity {
         return bmp;
     }
 
+    /** EV charging post: rounded body, lightning bolt, base line. */
+    private android.graphics.Bitmap chargeIcon() {
+        int px = Style.dp(this, 38);
+        android.graphics.Bitmap bmp = android.graphics.Bitmap.createBitmap(px, px, android.graphics.Bitmap.Config.ARGB_8888);
+        android.graphics.Canvas c = new android.graphics.Canvas(bmp);
+        android.graphics.Paint p = new android.graphics.Paint(android.graphics.Paint.ANTI_ALIAS_FLAG);
+        p.setColor(0xFFFFFFFF);
+        p.setStyle(android.graphics.Paint.Style.STROKE);
+        p.setStrokeWidth(px * 0.085f);
+        p.setStrokeCap(android.graphics.Paint.Cap.ROUND);
+        p.setStrokeJoin(android.graphics.Paint.Join.ROUND);
+        c.drawRoundRect(new android.graphics.RectF(px * 0.23f, px * 0.08f, px * 0.77f, px * 0.82f), px * 0.10f, px * 0.10f, p);
+        c.drawLine(px * 0.12f, px * 0.92f, px * 0.88f, px * 0.92f, p);
+        android.graphics.Path bolt = new android.graphics.Path();
+        bolt.moveTo(px * 0.54f, px * 0.20f);
+        bolt.lineTo(px * 0.38f, px * 0.47f);
+        bolt.lineTo(px * 0.50f, px * 0.47f);
+        bolt.lineTo(px * 0.44f, px * 0.70f);
+        bolt.lineTo(px * 0.62f, px * 0.40f);
+        bolt.lineTo(px * 0.50f, px * 0.40f);
+        bolt.lineTo(px * 0.58f, px * 0.20f);
+        bolt.close();
+        p.setStyle(android.graphics.Paint.Style.FILL);
+        c.drawPath(bolt, p);
+        return bmp;
+    }
     private android.graphics.Bitmap trendsIcon() {
         int px = Style.dp(this, 38);
         android.graphics.Bitmap bmp = android.graphics.Bitmap.createBitmap(px, px, android.graphics.Bitmap.Config.ARGB_8888);

@@ -16,7 +16,7 @@
 .method constructor <init>(Lcom/geely/drivemem/ui/ComfortActivity;)V
   .registers 2
   .prologue
-  .line 300
+  .line 327
     iput-object p1, p0, Lcom/geely/drivemem/ui/ComfortActivity$7;->this$0:Lcom/geely/drivemem/ui/ComfortActivity;
     invoke-direct { p0 }, Ljava/lang/Object;-><init>()V
     return-void
@@ -25,12 +25,12 @@
 .method public onUpdateAvailable(Z)V
   .registers 3
   .prologue
-  .line 302
+  .line 329
     iget-object v0, p0, Lcom/geely/drivemem/ui/ComfortActivity$7;->this$0:Lcom/geely/drivemem/ui/ComfortActivity;
     invoke-static { v0, p1 }, Lcom/geely/drivemem/ui/ComfortActivity;->access$302(Lcom/geely/drivemem/ui/ComfortActivity;Z)Z
-  .line 303
+  .line 330
     iget-object v0, p0, Lcom/geely/drivemem/ui/ComfortActivity$7;->this$0:Lcom/geely/drivemem/ui/ComfortActivity;
     invoke-static { v0 }, Lcom/geely/drivemem/ui/ComfortActivity;->access$400(Lcom/geely/drivemem/ui/ComfortActivity;)V
-  .line 304
+  .line 331
     return-void
 .end method

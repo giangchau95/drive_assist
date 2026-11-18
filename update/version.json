@@ -1,8 +1,8 @@
 {
-  "versionCode": 29916769,
-  "versionName": "1.7.3-29916769",
+  "versionCode": 29916773,
+  "versionName": "1.7.4-29916773",
   "apkUrl": "https://raw.githubusercontent.com/giangchau95/drive_assist/main/update/drive_assist.apk",
   "helperVersionCode": 29911176,
   "helperUrl": "https://raw.githubusercontent.com/giangchau95/drive_assist/main/install/modehelper_lite.apk",
-  "changelog": "New EX2 look: Onest font, blue accent, softer rounded cards, pure-black dark theme, tinted dock and two-tone charts. New dock button switches appearance: auto (follow system) / light / dark."
+  "changelog": "Charge tab icon is now an EV charging post (instead of a fuel pump)."
 }
