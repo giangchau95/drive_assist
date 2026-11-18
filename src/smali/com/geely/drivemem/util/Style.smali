@@ -309,13 +309,13 @@
 
     new-instance v42, Lcom/geely/drivemem/util/Style$Palette;
     move-object/from16 v4, v42
-    const v5, 0xff10131a
-    const v6, 0xff0a0c11
-    const v7, 0xff1b2030
-    const v8, 0xff262d42
+    const v5, 0xff0b0b0d
+    const v6, 0xff000000
+    const v7, 0xff151517
+    const v8, 0xff222225
     const v9, 0xff0a84ff
     const v10, 0xfff5f7fa
-    const v11, 0xff9aa3b5
+    const v11, 0xff9b9ba3
     const v12, 0xffffffff
     const v13, 0xff0a84ff
     const v14, 0xff32d1ff
