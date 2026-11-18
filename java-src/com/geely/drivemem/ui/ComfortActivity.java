@@ -149,6 +149,12 @@ public class ComfortActivity extends Activity {
         Style.gap(bar, this, 14);
         bar.addView(appsDockIcon);
         bar.addView(new View(this), new LinearLayout.LayoutParams(0, 0, 1f));
+        ImageView appearBtn = appearanceButton();
+        appearBtn.setOnClickListener(new View.OnClickListener() {
+            @Override public void onClick(View v) { cycleAppearance(); }
+        });
+        bar.addView(appearBtn);
+        Style.gap(bar, this, 14);
         updateBtn = updateButton();
         updateBtn.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) { openOtaDialog(null); }
@@ -204,6 +210,59 @@ public class ComfortActivity extends Activity {
         path.lineTo(px * 0.90f, px * 0.40f);
         c.drawPath(path, p);
         return bmp;
+    }
+
+    /** Sun = light, moon = dark, half-filled circle = follow the system. */
+    private ImageView appearanceButton() {
+        String cur = Style.appearance(this);
+        int px = Style.dp(this, 40);
+        android.graphics.Bitmap bmp = android.graphics.Bitmap.createBitmap(px, px, android.graphics.Bitmap.Config.ARGB_8888);
+        android.graphics.Canvas cv = new android.graphics.Canvas(bmp);
+        android.graphics.Paint p = new android.graphics.Paint(android.graphics.Paint.ANTI_ALIAS_FLAG);
+        p.setColor(Style.TEXT_DIM);
+        p.setStyle(android.graphics.Paint.Style.STROKE);
+        p.setStrokeWidth(px * 0.08f);
+        p.setStrokeCap(android.graphics.Paint.Cap.ROUND);
+        float c = px / 2f;
+        if ("light".equals(cur)) {
+            cv.drawCircle(c, c, px * 0.17f, p);
+            for (int i = 0; i < 8; i++) {
+                double ang = Math.PI / 4 * i;
+                cv.drawLine(c + (float) Math.cos(ang) * px * 0.28f, c + (float) Math.sin(ang) * px * 0.28f,
+                    c + (float) Math.cos(ang) * px * 0.40f, c + (float) Math.sin(ang) * px * 0.40f, p);
+            }
+        } else if ("auto".equals(cur)) {
+            float r = px * 0.34f;
+            cv.drawCircle(c, c, r, p);
+            p.setStyle(android.graphics.Paint.Style.FILL);
+            android.graphics.RectF rf = new android.graphics.RectF(c - r, c - r, c + r, c + r);
+            cv.drawArc(rf, 90, 180, true, p);
+        } else {
+            android.graphics.Path moon = new android.graphics.Path();
+            moon.addCircle(c, c, px * 0.32f, android.graphics.Path.Direction.CW);
+            android.graphics.Path cut = new android.graphics.Path();
+            cut.addCircle(c + px * 0.17f, c - px * 0.12f, px * 0.28f, android.graphics.Path.Direction.CW);
+            moon.op(cut, android.graphics.Path.Op.DIFFERENCE);
+            p.setStyle(android.graphics.Paint.Style.FILL);
+            cv.drawPath(moon, p);
+        }
+        ImageView v = new ImageView(this);
+        v.setImageBitmap(bmp);
+        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(Style.dp(this, 62), Style.dp(this, 62));
+        lp.gravity = Gravity.CENTER_HORIZONTAL;
+        v.setLayoutParams(lp);
+        int pad = Style.dp(this, 11);
+        v.setPadding(pad, pad, pad, pad);
+        return v;
+    }
+
+    private void cycleAppearance() {
+        String cur = Style.appearance(this);
+        String next = "auto".equals(cur) ? "light" : "light".equals(cur) ? "dark" : "auto";
+        Style.setAppearance(this, next);
+        android.widget.Toast.makeText(this, "auto".equals(next) ? "Appearance: follow system"
+            : "light".equals(next) ? "Appearance: light" : "Appearance: dark", android.widget.Toast.LENGTH_SHORT).show();
+        recreate();
     }
 
     private ImageView updateButton() {

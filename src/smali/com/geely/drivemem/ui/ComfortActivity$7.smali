@@ -1,10 +1,10 @@
 .class Lcom/geely/drivemem/ui/ComfortActivity$7;
 .super Ljava/lang/Object;
-.implements Lcom/geely/drivemem/net/OtaUpdater$Callback;
+.implements Lcom/geely/drivemem/ui/OtaDialog$Listener;
 .source "ComfortActivity.java"
 
 .annotation system Ldalvik/annotation/EnclosingMethod;
-  value = Lcom/geely/drivemem/ui/ComfortActivity;->autoCheck()V
+  value = Lcom/geely/drivemem/ui/ComfortActivity;->openOtaDialog(Lcom/geely/drivemem/net/OtaUpdater$Info;)V
 .end annotation
 .annotation system Ldalvik/annotation/InnerClass;
   accessFlags = 0
@@ -16,61 +16,21 @@
 .method constructor <init>(Lcom/geely/drivemem/ui/ComfortActivity;)V
   .registers 2
   .prologue
-  .line 253
+  .line 300
     iput-object p1, p0, Lcom/geely/drivemem/ui/ComfortActivity$7;->this$0:Lcom/geely/drivemem/ui/ComfortActivity;
     invoke-direct { p0 }, Ljava/lang/Object;-><init>()V
     return-void
 .end method
 
-.method public onResult(Lcom/geely/drivemem/net/OtaUpdater$Info;ZLjava/lang/String;)V
-  .registers 7
+.method public onUpdateAvailable(Z)V
+  .registers 3
   .prologue
-    const/4 v1, 1
-  .line 255
+  .line 302
     iget-object v0, p0, Lcom/geely/drivemem/ui/ComfortActivity$7;->this$0:Lcom/geely/drivemem/ui/ComfortActivity;
-    invoke-virtual { v0 }, Lcom/geely/drivemem/ui/ComfortActivity;->isFinishing()Z
-    move-result v0
-    if-eqz v0, :L1
-  :L0
-  .line 263
+    invoke-static { v0, p1 }, Lcom/geely/drivemem/ui/ComfortActivity;->access$302(Lcom/geely/drivemem/ui/ComfortActivity;Z)Z
+  .line 303
+    iget-object v0, p0, Lcom/geely/drivemem/ui/ComfortActivity$7;->this$0:Lcom/geely/drivemem/ui/ComfortActivity;
+    invoke-static { v0 }, Lcom/geely/drivemem/ui/ComfortActivity;->access$400(Lcom/geely/drivemem/ui/ComfortActivity;)V
+  .line 304
     return-void
-  :L1
-  .line 256
-    invoke-static { }, Lcom/geely/drivemem/state/CarState;->isParked()Z
-    move-result v0
-    if-eqz v0, :L5
-    iget-object v0, p0, Lcom/geely/drivemem/ui/ComfortActivity$7;->this$0:Lcom/geely/drivemem/ui/ComfortActivity;
-    invoke-static { v0, p1 }, Lcom/geely/drivemem/net/OtaUpdater;->helperOutdated(Landroid/content/Context;Lcom/geely/drivemem/net/OtaUpdater$Info;)Z
-    move-result v0
-    if-eqz v0, :L5
-    move v0, v1
-  :L2
-  .line 257
-    if-eqz p2, :L3
-  .line 258
-    iget-object v2, p0, Lcom/geely/drivemem/ui/ComfortActivity$7;->this$0:Lcom/geely/drivemem/ui/ComfortActivity;
-    invoke-static { v2, v1 }, Lcom/geely/drivemem/ui/ComfortActivity;->access$202(Lcom/geely/drivemem/ui/ComfortActivity;Z)Z
-  .line 259
-    iget-object v1, p0, Lcom/geely/drivemem/ui/ComfortActivity$7;->this$0:Lcom/geely/drivemem/ui/ComfortActivity;
-    invoke-static { v1 }, Lcom/geely/drivemem/ui/ComfortActivity;->access$300(Lcom/geely/drivemem/ui/ComfortActivity;)V
-  :L3
-  .line 261
-    if-eqz v0, :L4
-    iget-object v0, p0, Lcom/geely/drivemem/ui/ComfortActivity$7;->this$0:Lcom/geely/drivemem/ui/ComfortActivity;
-    invoke-static { v0, p1 }, Lcom/geely/drivemem/ui/HelperUpdateDialog;->show(Landroid/app/Activity;Lcom/geely/drivemem/net/OtaUpdater$Info;)Z
-    move-result v0
-    if-nez v0, :L0
-  :L4
-  .line 262
-    if-eqz p2, :L0
-    invoke-static { }, Lcom/geely/drivemem/state/CarState;->isParked()Z
-    move-result v0
-    if-eqz v0, :L0
-    iget-object v0, p0, Lcom/geely/drivemem/ui/ComfortActivity$7;->this$0:Lcom/geely/drivemem/ui/ComfortActivity;
-    invoke-static { v0, p1 }, Lcom/geely/drivemem/ui/ComfortActivity;->access$100(Lcom/geely/drivemem/ui/ComfortActivity;Lcom/geely/drivemem/net/OtaUpdater$Info;)V
-    goto :L0
-  :L5
-  .line 256
-    const/4 v0, 0
-    goto :L2
 .end method

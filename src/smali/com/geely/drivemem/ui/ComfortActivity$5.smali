@@ -23,11 +23,10 @@
 .end method
 
 .method public onClick(Landroid/view/View;)V
-  .registers 4
+  .registers 3
   .prologue
   .line 154
     iget-object v0, p0, Lcom/geely/drivemem/ui/ComfortActivity$5;->this$0:Lcom/geely/drivemem/ui/ComfortActivity;
-    const/4 v1, 0
-    invoke-static { v0, v1 }, Lcom/geely/drivemem/ui/ComfortActivity;->access$100(Lcom/geely/drivemem/ui/ComfortActivity;Lcom/geely/drivemem/net/OtaUpdater$Info;)V
+    invoke-static { v0 }, Lcom/geely/drivemem/ui/ComfortActivity;->access$100(Lcom/geely/drivemem/ui/ComfortActivity;)V
     return-void
 .end method

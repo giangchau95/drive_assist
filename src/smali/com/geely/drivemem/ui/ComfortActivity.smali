@@ -76,7 +76,15 @@
     return-void
 .end method
 
-.method static synthetic access$100(Lcom/geely/drivemem/ui/ComfortActivity;Lcom/geely/drivemem/net/OtaUpdater$Info;)V
+.method static synthetic access$100(Lcom/geely/drivemem/ui/ComfortActivity;)V
+  .registers 1
+  .prologue
+  .line 22
+    invoke-direct { p0 }, Lcom/geely/drivemem/ui/ComfortActivity;->cycleAppearance()V
+    return-void
+.end method
+
+.method static synthetic access$200(Lcom/geely/drivemem/ui/ComfortActivity;Lcom/geely/drivemem/net/OtaUpdater$Info;)V
   .registers 2
   .prologue
   .line 22
@@ -84,7 +92,7 @@
     return-void
 .end method
 
-.method static synthetic access$202(Lcom/geely/drivemem/ui/ComfortActivity;Z)Z
+.method static synthetic access$302(Lcom/geely/drivemem/ui/ComfortActivity;Z)Z
   .registers 2
   .prologue
   .line 22
@@ -92,7 +100,7 @@
     return p1
 .end method
 
-.method static synthetic access$300(Lcom/geely/drivemem/ui/ComfortActivity;)V
+.method static synthetic access$400(Lcom/geely/drivemem/ui/ComfortActivity;)V
   .registers 1
   .prologue
   .line 22
@@ -100,7 +108,7 @@
     return-void
 .end method
 
-.method static synthetic access$400(Lcom/geely/drivemem/ui/ComfortActivity;)V
+.method static synthetic access$500(Lcom/geely/drivemem/ui/ComfortActivity;)V
   .registers 1
   .prologue
   .line 22
@@ -108,28 +116,220 @@
     return-void
 .end method
 
+.method private appearanceButton()Landroid/widget/ImageView;
+  .registers 15
+  .prologue
+  .line 217
+    invoke-static { p0 }, Lcom/geely/drivemem/util/Style;->appearance(Landroid/content/Context;)Ljava/lang/String;
+    move-result-object v1
+  .line 218
+    const/16 v0, 40
+    invoke-static { p0, v0 }, Lcom/geely/drivemem/util/Style;->dp(Landroid/content/Context;I)I
+    move-result v7
+  .line 219
+    sget-object v0, Landroid/graphics/Bitmap$Config;->ARGB_8888:Landroid/graphics/Bitmap$Config;
+    invoke-static { v7, v7, v0 }, Landroid/graphics/Bitmap;->createBitmap(IILandroid/graphics/Bitmap$Config;)Landroid/graphics/Bitmap;
+    move-result-object v8
+  .line 220
+    new-instance v0, Landroid/graphics/Canvas;
+    invoke-direct { v0, v8 }, Landroid/graphics/Canvas;-><init>(Landroid/graphics/Bitmap;)V
+  .line 221
+    new-instance v5, Landroid/graphics/Paint;
+    const/4 v2, 1
+    invoke-direct { v5, v2 }, Landroid/graphics/Paint;-><init>(I)V
+  .line 222
+    sget v2, Lcom/geely/drivemem/util/Style;->TEXT_DIM:I
+    invoke-virtual { v5, v2 }, Landroid/graphics/Paint;->setColor(I)V
+  .line 223
+    sget-object v2, Landroid/graphics/Paint$Style;->STROKE:Landroid/graphics/Paint$Style;
+    invoke-virtual { v5, v2 }, Landroid/graphics/Paint;->setStyle(Landroid/graphics/Paint$Style;)V
+  .line 224
+    int-to-float v2, v7
+    const v3, 1034147594
+    mul-float/2addr v2, v3
+    invoke-virtual { v5, v2 }, Landroid/graphics/Paint;->setStrokeWidth(F)V
+  .line 225
+    sget-object v2, Landroid/graphics/Paint$Cap;->ROUND:Landroid/graphics/Paint$Cap;
+    invoke-virtual { v5, v2 }, Landroid/graphics/Paint;->setStrokeCap(Landroid/graphics/Paint$Cap;)V
+  .line 226
+    int-to-float v2, v7
+    const/high16 v3, 0x40000000
+    div-float v9, v2, v3
+  .line 227
+    const-string v2, "light"
+    invoke-virtual { v2, v1 }, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+    move-result v2
+    if-eqz v2, :L1
+  .line 228
+    int-to-float v1, v7
+    const v2, 1043207291
+    mul-float/2addr v1, v2
+    invoke-virtual { v0, v9, v9, v1, v5 }, Landroid/graphics/Canvas;->drawCircle(FFFLandroid/graphics/Paint;)V
+  .line 229
+    const/4 v1, 0
+    move v6, v1
+  :L0
+    const/16 v1, 8
+    if-ge v6, v1, :L2
+  .line 230
+    const-wide v2, 4605249457297304856L
+    int-to-double v10, v6
+    mul-double/2addr v10, v2
+  .line 231
+    invoke-static { v10, v11 }, Ljava/lang/Math;->cos(D)D
+    move-result-wide v2
+    double-to-float v1, v2
+    int-to-float v2, v7
+    mul-float/2addr v1, v2
+    const v2, 1049582633
+    mul-float/2addr v1, v2
+    add-float/2addr v1, v9
+    invoke-static { v10, v11 }, Ljava/lang/Math;->sin(D)D
+    move-result-wide v2
+    double-to-float v2, v2
+    int-to-float v3, v7
+    mul-float/2addr v2, v3
+    const v3, 1049582633
+    mul-float/2addr v2, v3
+    add-float/2addr v2, v9
+  .line 232
+    invoke-static { v10, v11 }, Ljava/lang/Math;->cos(D)D
+    move-result-wide v12
+    double-to-float v3, v12
+    int-to-float v4, v7
+    mul-float/2addr v3, v4
+    const v4, 1053609165
+    mul-float/2addr v3, v4
+    add-float/2addr v3, v9
+    invoke-static { v10, v11 }, Ljava/lang/Math;->sin(D)D
+    move-result-wide v10
+    double-to-float v4, v10
+    int-to-float v10, v7
+    mul-float/2addr v4, v10
+    const v10, 1053609165
+    mul-float/2addr v4, v10
+    add-float/2addr v4, v9
+  .line 231
+    invoke-virtual/range { v0 .. v5 }, Landroid/graphics/Canvas;->drawLine(FFFFLandroid/graphics/Paint;)V
+  .line 229
+    add-int/lit8 v1, v6, 1
+    move v6, v1
+    goto :L0
+  :L1
+  .line 234
+    const-string v2, "auto"
+    invoke-virtual { v2, v1 }, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+    move-result v1
+    if-eqz v1, :L3
+  .line 235
+    int-to-float v1, v7
+    const v2, 1051595899
+    mul-float/2addr v2, v1
+  .line 236
+    invoke-virtual { v0, v9, v9, v2, v5 }, Landroid/graphics/Canvas;->drawCircle(FFFLandroid/graphics/Paint;)V
+  .line 237
+    sget-object v1, Landroid/graphics/Paint$Style;->FILL:Landroid/graphics/Paint$Style;
+    invoke-virtual { v5, v1 }, Landroid/graphics/Paint;->setStyle(Landroid/graphics/Paint$Style;)V
+  .line 238
+    new-instance v1, Landroid/graphics/RectF;
+    sub-float v3, v9, v2
+    sub-float v4, v9, v2
+    add-float v6, v9, v2
+    add-float/2addr v2, v9
+    invoke-direct { v1, v3, v4, v6, v2 }, Landroid/graphics/RectF;-><init>(FFFF)V
+  .line 239
+    const/high16 v2, 0x42b40000
+    const/high16 v3, 0x43340000
+    const/4 v4, 1
+    invoke-virtual/range { v0 .. v5 }, Landroid/graphics/Canvas;->drawArc(Landroid/graphics/RectF;FFZLandroid/graphics/Paint;)V
+  :L2
+  .line 249
+    new-instance v0, Landroid/widget/ImageView;
+    invoke-direct { v0, p0 }, Landroid/widget/ImageView;-><init>(Landroid/content/Context;)V
+  .line 250
+    invoke-virtual { v0, v8 }, Landroid/widget/ImageView;->setImageBitmap(Landroid/graphics/Bitmap;)V
+  .line 251
+    new-instance v1, Landroid/widget/LinearLayout$LayoutParams;
+    const/16 v2, 62
+    invoke-static { p0, v2 }, Lcom/geely/drivemem/util/Style;->dp(Landroid/content/Context;I)I
+    move-result v2
+    const/16 v3, 62
+    invoke-static { p0, v3 }, Lcom/geely/drivemem/util/Style;->dp(Landroid/content/Context;I)I
+    move-result v3
+    invoke-direct { v1, v2, v3 }, Landroid/widget/LinearLayout$LayoutParams;-><init>(II)V
+  .line 252
+    const/4 v2, 1
+    iput v2, v1, Landroid/widget/LinearLayout$LayoutParams;->gravity:I
+  .line 253
+    invoke-virtual { v0, v1 }, Landroid/widget/ImageView;->setLayoutParams(Landroid/view/ViewGroup$LayoutParams;)V
+  .line 254
+    const/16 v1, 11
+    invoke-static { p0, v1 }, Lcom/geely/drivemem/util/Style;->dp(Landroid/content/Context;I)I
+    move-result v1
+  .line 255
+    invoke-virtual { v0, v1, v1, v1, v1 }, Landroid/widget/ImageView;->setPadding(IIII)V
+  .line 256
+    return-object v0
+  :L3
+  .line 241
+    new-instance v1, Landroid/graphics/Path;
+    invoke-direct { v1 }, Landroid/graphics/Path;-><init>()V
+  .line 242
+    int-to-float v2, v7
+    const v3, 1050924810
+    mul-float/2addr v2, v3
+    sget-object v3, Landroid/graphics/Path$Direction;->CW:Landroid/graphics/Path$Direction;
+    invoke-virtual { v1, v9, v9, v2, v3 }, Landroid/graphics/Path;->addCircle(FFFLandroid/graphics/Path$Direction;)V
+  .line 243
+    new-instance v2, Landroid/graphics/Path;
+    invoke-direct { v2 }, Landroid/graphics/Path;-><init>()V
+  .line 244
+    int-to-float v3, v7
+    const v4, 1043207291
+    mul-float/2addr v3, v4
+    add-float/2addr v3, v9
+    int-to-float v4, v7
+    const v6, 1039516303
+    mul-float/2addr v4, v6
+    sub-float v4, v9, v4
+    int-to-float v6, v7
+    const v7, 1049582633
+    mul-float/2addr v6, v7
+    sget-object v7, Landroid/graphics/Path$Direction;->CW:Landroid/graphics/Path$Direction;
+    invoke-virtual { v2, v3, v4, v6, v7 }, Landroid/graphics/Path;->addCircle(FFFLandroid/graphics/Path$Direction;)V
+  .line 245
+    sget-object v3, Landroid/graphics/Path$Op;->DIFFERENCE:Landroid/graphics/Path$Op;
+    invoke-virtual { v1, v2, v3 }, Landroid/graphics/Path;->op(Landroid/graphics/Path;Landroid/graphics/Path$Op;)Z
+  .line 246
+    sget-object v2, Landroid/graphics/Paint$Style;->FILL:Landroid/graphics/Paint$Style;
+    invoke-virtual { v5, v2 }, Landroid/graphics/Paint;->setStyle(Landroid/graphics/Paint$Style;)V
+  .line 247
+    invoke-virtual { v0, v1, v5 }, Landroid/graphics/Canvas;->drawPath(Landroid/graphics/Path;Landroid/graphics/Paint;)V
+    goto :L2
+.end method
+
 .method private appsIcon()Landroid/graphics/Bitmap;
   .registers 15
   .prologue
-  .line 171
+  .line 177
     const/16 v0, 38
     invoke-static { p0, v0 }, Lcom/geely/drivemem/util/Style;->dp(Landroid/content/Context;I)I
     move-result v0
-  .line 172
+  .line 178
     sget-object v1, Landroid/graphics/Bitmap$Config;->ARGB_8888:Landroid/graphics/Bitmap$Config;
     invoke-static { v0, v0, v1 }, Landroid/graphics/Bitmap;->createBitmap(IILandroid/graphics/Bitmap$Config;)Landroid/graphics/Bitmap;
     move-result-object v2
-  .line 173
+  .line 179
     new-instance v3, Landroid/graphics/Canvas;
     invoke-direct { v3, v2 }, Landroid/graphics/Canvas;-><init>(Landroid/graphics/Bitmap;)V
-  .line 174
+  .line 180
     new-instance v4, Landroid/graphics/Paint;
     const/4 v1, 1
     invoke-direct { v4, v1 }, Landroid/graphics/Paint;-><init>(I)V
-  .line 175
+  .line 181
     const/4 v1, -1
     invoke-virtual { v4, v1 }, Landroid/graphics/Paint;->setColor(I)V
-  .line 176
+  .line 182
     int-to-float v1, v0
     const v5, 1034147594
     mul-float/2addr v5, v1
@@ -147,11 +347,11 @@
     int-to-float v1, v0
     const v7, 1034147594
     mul-float/2addr v7, v1
-  .line 177
+  .line 183
     int-to-float v0, v0
     const v1, 1035489772
     mul-float v8, v0, v1
-  .line 178
+  .line 184
     const/4 v0, 0
     move v1, v0
   :L0
@@ -161,7 +361,7 @@
   :L1
     const/4 v9, 2
     if-ge v0, v9, :L2
-  .line 179
+  .line 185
     const/high16 v9, 0x3f000000
     mul-float/2addr v9, v5
     add-float/2addr v9, v7
@@ -176,13 +376,13 @@
     add-float v12, v6, v5
     mul-float/2addr v11, v12
     add-float/2addr v10, v11
-  .line 180
+  .line 186
     new-instance v11, Landroid/graphics/RectF;
     add-float v12, v9, v6
     add-float v13, v10, v6
     invoke-direct { v11, v9, v10, v12, v13 }, Landroid/graphics/RectF;-><init>(FFFF)V
     invoke-virtual { v3, v11, v8, v8, v4 }, Landroid/graphics/Canvas;->drawRoundRect(Landroid/graphics/RectF;FFLandroid/graphics/Paint;)V
-  .line 178
+  .line 184
     add-int/lit8 v0, v0, 1
     goto :L1
   :L2
@@ -190,17 +390,17 @@
     move v1, v0
     goto :L0
   :L3
-  .line 182
+  .line 188
     return-object v2
 .end method
 
 .method private autoCheck()V
   .registers 7
   .prologue
-  .line 250
+  .line 309
     invoke-static { }, Ljava/lang/System;->currentTimeMillis()J
     move-result-wide v0
-  .line 251
+  .line 310
     sget-wide v2, Lcom/geely/drivemem/ui/ComfortActivity;->lastAutoCheckMs:J
     sub-long v2, v0, v2
     const-wide/32 v4, 21600000
@@ -210,80 +410,137 @@
     move-result v2
     if-nez v2, :L1
   :L0
-  .line 265
+  .line 324
     return-void
   :L1
-  .line 252
+  .line 311
     sput-wide v0, Lcom/geely/drivemem/ui/ComfortActivity;->lastAutoCheckMs:J
-  .line 253
-    new-instance v0, Lcom/geely/drivemem/ui/ComfortActivity$7;
-    invoke-direct { v0, p0 }, Lcom/geely/drivemem/ui/ComfortActivity$7;-><init>(Lcom/geely/drivemem/ui/ComfortActivity;)V
+  .line 312
+    new-instance v0, Lcom/geely/drivemem/ui/ComfortActivity$8;
+    invoke-direct { v0, p0 }, Lcom/geely/drivemem/ui/ComfortActivity$8;-><init>(Lcom/geely/drivemem/ui/ComfortActivity;)V
     invoke-static { p0, v0 }, Lcom/geely/drivemem/net/OtaUpdater;->check(Landroid/content/Context;Lcom/geely/drivemem/net/OtaUpdater$Callback;)V
     goto :L0
+.end method
+
+.method private cycleAppearance()V
+  .registers 3
+  .prologue
+  .line 260
+    invoke-static { p0 }, Lcom/geely/drivemem/util/Style;->appearance(Landroid/content/Context;)Ljava/lang/String;
+    move-result-object v0
+  .line 261
+    const-string v1, "auto"
+    invoke-virtual { v1, v0 }, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+    move-result v1
+    if-eqz v1, :L2
+    const-string v0, "light"
+  :L0
+  .line 262
+    invoke-static { p0, v0 }, Lcom/geely/drivemem/util/Style;->setAppearance(Landroid/content/Context;Ljava/lang/String;)V
+  .line 263
+    const-string v1, "auto"
+    invoke-virtual { v1, v0 }, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+    move-result v1
+    if-eqz v1, :L4
+    const-string v0, "Appearance: follow system"
+  :L1
+  .line 264
+    const/4 v1, 0
+  .line 263
+    invoke-static { p0, v0, v1 }, Landroid/widget/Toast;->makeText(Landroid/content/Context;Ljava/lang/CharSequence;I)Landroid/widget/Toast;
+    move-result-object v0
+  .line 264
+    invoke-virtual { v0 }, Landroid/widget/Toast;->show()V
+  .line 265
+    invoke-virtual { p0 }, Lcom/geely/drivemem/ui/ComfortActivity;->recreate()V
+  .line 266
+    return-void
+  :L2
+  .line 261
+    const-string v1, "light"
+    invoke-virtual { v1, v0 }, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+    move-result v0
+    if-eqz v0, :L3
+    const-string v0, "dark"
+    goto :L0
+  :L3
+    const-string v0, "auto"
+    goto :L0
+  :L4
+  .line 264
+    const-string v1, "light"
+    invoke-virtual { v1, v0 }, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+    move-result v0
+    if-eqz v0, :L5
+    const-string v0, "Appearance: light"
+    goto :L1
+  :L5
+    const-string v0, "Appearance: dark"
+    goto :L1
 .end method
 
 .method private dockButton(ILandroid/view/View$OnClickListener;)Landroid/widget/ImageView;
   .registers 6
   .prologue
-  .line 268
+  .line 327
     new-instance v0, Landroid/widget/ImageView;
     invoke-direct { v0, p0 }, Landroid/widget/ImageView;-><init>(Landroid/content/Context;)V
-  .line 269
+  .line 328
     if-eqz p1, :L0
     invoke-virtual { v0, p1 }, Landroid/widget/ImageView;->setImageResource(I)V
   :L0
-  .line 270
+  .line 329
     sget-object v1, Landroid/widget/ImageView$ScaleType;->FIT_CENTER:Landroid/widget/ImageView$ScaleType;
     invoke-virtual { v0, v1 }, Landroid/widget/ImageView;->setScaleType(Landroid/widget/ImageView$ScaleType;)V
-  .line 271
+  .line 330
     const/16 v1, 12
     invoke-static { p0, v1 }, Lcom/geely/drivemem/util/Style;->dp(Landroid/content/Context;I)I
     move-result v1
-  .line 272
+  .line 331
     invoke-virtual { v0, v1, v1, v1, v1 }, Landroid/widget/ImageView;->setPadding(IIII)V
-  .line 273
+  .line 332
     const/16 v1, 62
     invoke-static { p0, v1 }, Lcom/geely/drivemem/util/Style;->dp(Landroid/content/Context;I)I
     move-result v1
-  .line 274
+  .line 333
     new-instance v2, Landroid/widget/LinearLayout$LayoutParams;
     invoke-direct { v2, v1, v1 }, Landroid/widget/LinearLayout$LayoutParams;-><init>(II)V
-  .line 275
+  .line 334
     const/4 v1, 1
     iput v1, v2, Landroid/widget/LinearLayout$LayoutParams;->gravity:I
-  .line 276
+  .line 335
     invoke-virtual { v0, v2 }, Landroid/widget/ImageView;->setLayoutParams(Landroid/view/ViewGroup$LayoutParams;)V
-  .line 277
+  .line 336
     invoke-virtual { v0, p2 }, Landroid/widget/ImageView;->setOnClickListener(Landroid/view/View$OnClickListener;)V
-  .line 278
+  .line 337
     return-object v0
 .end method
 
 .method private openOtaDialog(Lcom/geely/drivemem/net/OtaUpdater$Info;)V
   .registers 3
   .prologue
-  .line 241
-    new-instance v0, Lcom/geely/drivemem/ui/ComfortActivity$6;
-    invoke-direct { v0, p0 }, Lcom/geely/drivemem/ui/ComfortActivity$6;-><init>(Lcom/geely/drivemem/ui/ComfortActivity;)V
+  .line 300
+    new-instance v0, Lcom/geely/drivemem/ui/ComfortActivity$7;
+    invoke-direct { v0, p0 }, Lcom/geely/drivemem/ui/ComfortActivity$7;-><init>(Lcom/geely/drivemem/ui/ComfortActivity;)V
     invoke-static { p0, p1, v0 }, Lcom/geely/drivemem/ui/OtaDialog;->show(Landroid/app/Activity;Lcom/geely/drivemem/net/OtaUpdater$Info;Lcom/geely/drivemem/ui/OtaDialog$Listener;)Landroid/app/AlertDialog;
-  .line 247
+  .line 306
     return-void
 .end method
 
 .method private refreshCurrent()V
   .registers 3
   .prologue
-  .line 282
+  .line 341
     iget v0, p0, Lcom/geely/drivemem/ui/ComfortActivity;->mode:I
     const/4 v1, 1
     if-ne v0, v1, :L1
     iget-object v0, p0, Lcom/geely/drivemem/ui/ComfortActivity;->dailyStatsView:Lcom/geely/drivemem/ui/DailyStatsView;
     invoke-virtual { v0 }, Lcom/geely/drivemem/ui/DailyStatsView;->refresh()V
   :L0
-  .line 286
+  .line 345
     return-void
   :L1
-  .line 283
+  .line 342
     iget v0, p0, Lcom/geely/drivemem/ui/ComfortActivity;->mode:I
     const/4 v1, 3
     if-ne v0, v1, :L2
@@ -291,7 +548,7 @@
     invoke-virtual { v0 }, Lcom/geely/drivemem/ui/TrendsView;->refresh()V
     goto :L0
   :L2
-  .line 284
+  .line 343
     iget v0, p0, Lcom/geely/drivemem/ui/ComfortActivity;->mode:I
     const/4 v1, 4
     if-ne v0, v1, :L3
@@ -299,7 +556,7 @@
     invoke-virtual { v0 }, Lcom/geely/drivemem/ui/AppsView;->refresh()V
     goto :L0
   :L3
-  .line 285
+  .line 344
     iget-object v0, p0, Lcom/geely/drivemem/ui/ComfortActivity;->chargeStatsView:Lcom/geely/drivemem/ui/ChargeStatsView;
     invoke-virtual { v0 }, Lcom/geely/drivemem/ui/ChargeStatsView;->refresh()V
     goto :L0
@@ -308,17 +565,17 @@
 .method private refreshUpdateButton()V
   .registers 3
   .prologue
-  .line 235
+  .line 294
     iget-object v0, p0, Lcom/geely/drivemem/ui/ComfortActivity;->updateBtn:Landroid/widget/ImageView;
     if-nez v0, :L1
   :L0
-  .line 238
+  .line 297
     return-void
   :L1
-  .line 236
+  .line 295
     invoke-direct { p0 }, Lcom/geely/drivemem/ui/ComfortActivity;->updateButton()Landroid/widget/ImageView;
     move-result-object v0
-  .line 237
+  .line 296
     iget-object v1, p0, Lcom/geely/drivemem/ui/ComfortActivity;->updateBtn:Landroid/widget/ImageView;
     invoke-virtual { v0 }, Landroid/widget/ImageView;->getDrawable()Landroid/graphics/drawable/Drawable;
     move-result-object v0
@@ -334,62 +591,62 @@
     const/16 v2, 8
     const/4 v3, 1
     const/4 v1, 0
-  .line 289
+  .line 348
     iget v0, p0, Lcom/geely/drivemem/ui/ComfortActivity;->mode:I
     if-ne v0, p1, :L1
   :L0
-  .line 300
+  .line 359
     return-void
   :L1
-  .line 290
+  .line 349
     iput p1, p0, Lcom/geely/drivemem/ui/ComfortActivity;->mode:I
-  .line 291
+  .line 350
     iget-object v4, p0, Lcom/geely/drivemem/ui/ComfortActivity;->statsContainer:Landroid/widget/FrameLayout;
     if-ne p1, v3, :L10
     move v0, v1
   :L2
     invoke-virtual { v4, v0 }, Landroid/widget/FrameLayout;->setVisibility(I)V
-  .line 292
+  .line 351
     iget-object v4, p0, Lcom/geely/drivemem/ui/ComfortActivity;->chargeStatsContainer:Landroid/widget/FrameLayout;
     if-ne p1, v5, :L11
     move v0, v1
   :L3
     invoke-virtual { v4, v0 }, Landroid/widget/FrameLayout;->setVisibility(I)V
-  .line 293
+  .line 352
     iget-object v4, p0, Lcom/geely/drivemem/ui/ComfortActivity;->trendsContainer:Landroid/widget/FrameLayout;
     if-ne p1, v6, :L12
     move v0, v1
   :L4
     invoke-virtual { v4, v0 }, Landroid/widget/FrameLayout;->setVisibility(I)V
-  .line 294
+  .line 353
     iget-object v0, p0, Lcom/geely/drivemem/ui/ComfortActivity;->appsContainer:Landroid/widget/FrameLayout;
     const/4 v4, 4
     if-ne p1, v4, :L5
     move v2, v1
   :L5
     invoke-virtual { v0, v2 }, Landroid/widget/FrameLayout;->setVisibility(I)V
-  .line 295
+  .line 354
     invoke-direct { p0 }, Lcom/geely/drivemem/ui/ComfortActivity;->refreshCurrent()V
-  .line 296
+  .line 355
     iget-object v2, p0, Lcom/geely/drivemem/ui/ComfortActivity;->appsDockIcon:Landroid/widget/ImageView;
     const/4 v0, 4
     if-ne p1, v0, :L13
     move v0, v3
   :L6
     invoke-direct { p0, v2, v0 }, Lcom/geely/drivemem/ui/ComfortActivity;->styleDock(Landroid/widget/ImageView;Z)V
-  .line 297
+  .line 356
     iget-object v2, p0, Lcom/geely/drivemem/ui/ComfortActivity;->trendsDockIcon:Landroid/widget/ImageView;
     if-ne p1, v6, :L14
     move v0, v3
   :L7
     invoke-direct { p0, v2, v0 }, Lcom/geely/drivemem/ui/ComfortActivity;->styleDock(Landroid/widget/ImageView;Z)V
-  .line 298
+  .line 357
     iget-object v2, p0, Lcom/geely/drivemem/ui/ComfortActivity;->statsDockIcon:Landroid/widget/ImageView;
     if-ne p1, v3, :L15
     move v0, v3
   :L8
     invoke-direct { p0, v2, v0 }, Lcom/geely/drivemem/ui/ComfortActivity;->styleDock(Landroid/widget/ImageView;Z)V
-  .line 299
+  .line 358
     iget-object v0, p0, Lcom/geely/drivemem/ui/ComfortActivity;->chargeDockIcon:Landroid/widget/ImageView;
     if-ne p1, v5, :L16
   :L9
@@ -397,47 +654,47 @@
     goto :L0
   :L10
     move v0, v2
-  .line 291
+  .line 350
     goto :L2
   :L11
     move v0, v2
-  .line 292
+  .line 351
     goto :L3
   :L12
     move v0, v2
-  .line 293
+  .line 352
     goto :L4
   :L13
     move v0, v1
-  .line 296
+  .line 355
     goto :L6
   :L14
     move v0, v1
-  .line 297
+  .line 356
     goto :L7
   :L15
     move v0, v1
-  .line 298
+  .line 357
     goto :L8
   :L16
     move v3, v1
-  .line 299
+  .line 358
     goto :L9
 .end method
 
 .method private styleDock(Landroid/widget/ImageView;Z)V
   .registers 6
   .prologue
-  .line 304
+  .line 363
     new-instance v1, Landroid/graphics/drawable/GradientDrawable;
     invoke-direct { v1 }, Landroid/graphics/drawable/GradientDrawable;-><init>()V
-  .line 305
+  .line 364
     const/16 v0, 20
     invoke-static { p0, v0 }, Lcom/geely/drivemem/util/Style;->dp(Landroid/content/Context;I)I
     move-result v0
     int-to-float v0, v0
     invoke-virtual { v1, v0 }, Landroid/graphics/drawable/GradientDrawable;->setCornerRadius(F)V
-  .line 306
+  .line 365
     if-eqz p2, :L2
     sget v0, Lcom/geely/drivemem/util/Style;->ACCENT:I
     const v2, 16777215
@@ -446,21 +703,21 @@
     or-int/2addr v0, v2
   :L0
     invoke-virtual { v1, v0 }, Landroid/graphics/drawable/GradientDrawable;->setColor(I)V
-  .line 307
+  .line 366
     invoke-virtual { p1, v1 }, Landroid/widget/ImageView;->setBackground(Landroid/graphics/drawable/Drawable;)V
-  .line 308
+  .line 367
     if-eqz p2, :L3
     sget v0, Lcom/geely/drivemem/util/Style;->ACCENT:I
   :L1
     invoke-virtual { p1, v0 }, Landroid/widget/ImageView;->setColorFilter(I)V
-  .line 309
+  .line 368
     return-void
   :L2
-  .line 306
+  .line 365
     const/4 v0, 0
     goto :L0
   :L3
-  .line 308
+  .line 367
     sget v0, Lcom/geely/drivemem/util/Style;->TEXT_DIM:I
     goto :L1
 .end method
@@ -470,42 +727,42 @@
   .prologue
     const v9, 1063675494
     const v8, 1045220557
-  .line 186
+  .line 192
     const/16 v0, 38
     invoke-static { p0, v0 }, Lcom/geely/drivemem/util/Style;->dp(Landroid/content/Context;I)I
     move-result v0
-  .line 187
+  .line 193
     sget-object v1, Landroid/graphics/Bitmap$Config;->ARGB_8888:Landroid/graphics/Bitmap$Config;
     invoke-static { v0, v0, v1 }, Landroid/graphics/Bitmap;->createBitmap(IILandroid/graphics/Bitmap$Config;)Landroid/graphics/Bitmap;
     move-result-object v1
-  .line 188
+  .line 194
     new-instance v2, Landroid/graphics/Canvas;
     invoke-direct { v2, v1 }, Landroid/graphics/Canvas;-><init>(Landroid/graphics/Bitmap;)V
-  .line 189
+  .line 195
     new-instance v3, Landroid/graphics/Paint;
     const/4 v4, 1
     invoke-direct { v3, v4 }, Landroid/graphics/Paint;-><init>(I)V
-  .line 190
+  .line 196
     const/4 v4, -1
     invoke-virtual { v3, v4 }, Landroid/graphics/Paint;->setColor(I)V
-  .line 191
+  .line 197
     sget-object v4, Landroid/graphics/Paint$Style;->STROKE:Landroid/graphics/Paint$Style;
     invoke-virtual { v3, v4 }, Landroid/graphics/Paint;->setStyle(Landroid/graphics/Paint$Style;)V
-  .line 192
+  .line 198
     int-to-float v4, v0
     const v5, 1034818683
     mul-float/2addr v4, v5
     invoke-virtual { v3, v4 }, Landroid/graphics/Paint;->setStrokeWidth(F)V
-  .line 193
+  .line 199
     sget-object v4, Landroid/graphics/Paint$Cap;->ROUND:Landroid/graphics/Paint$Cap;
     invoke-virtual { v3, v4 }, Landroid/graphics/Paint;->setStrokeCap(Landroid/graphics/Paint$Cap;)V
-  .line 194
+  .line 200
     sget-object v4, Landroid/graphics/Paint$Join;->ROUND:Landroid/graphics/Paint$Join;
     invoke-virtual { v3, v4 }, Landroid/graphics/Paint;->setStrokeJoin(Landroid/graphics/Paint$Join;)V
-  .line 195
+  .line 201
     new-instance v4, Landroid/graphics/Path;
     invoke-direct { v4 }, Landroid/graphics/Path;-><init>()V
-  .line 196
+  .line 202
     int-to-float v5, v0
     const v6, 1036831949
     mul-float/2addr v5, v6
@@ -513,7 +770,7 @@
     const v7, 1060655596
     mul-float/2addr v6, v7
     invoke-virtual { v4, v5, v6 }, Landroid/graphics/Path;->moveTo(FF)V
-  .line 197
+  .line 203
     int-to-float v5, v0
     const v6, 1052266988
     mul-float/2addr v5, v6
@@ -521,7 +778,7 @@
     const v7, 1054951342
     mul-float/2addr v6, v7
     invoke-virtual { v4, v5, v6 }, Landroid/graphics/Path;->lineTo(FF)V
-  .line 198
+  .line 204
     int-to-float v5, v0
     const v6, 1057971241
     mul-float/2addr v5, v6
@@ -529,85 +786,85 @@
     const v7, 1058977874
     mul-float/2addr v6, v7
     invoke-virtual { v4, v5, v6 }, Landroid/graphics/Path;->lineTo(FF)V
-  .line 199
+  .line 205
     int-to-float v5, v0
     mul-float/2addr v5, v9
     int-to-float v6, v0
     mul-float/2addr v6, v8
     invoke-virtual { v4, v5, v6 }, Landroid/graphics/Path;->lineTo(FF)V
-  .line 200
+  .line 206
     invoke-virtual { v2, v4, v3 }, Landroid/graphics/Canvas;->drawPath(Landroid/graphics/Path;Landroid/graphics/Paint;)V
-  .line 201
+  .line 207
     invoke-virtual { v4 }, Landroid/graphics/Path;->reset()V
-  .line 202
+  .line 208
     int-to-float v5, v0
     const v6, 1060320051
     mul-float/2addr v5, v6
     int-to-float v6, v0
     mul-float/2addr v6, v8
     invoke-virtual { v4, v5, v6 }, Landroid/graphics/Path;->moveTo(FF)V
-  .line 203
+  .line 209
     int-to-float v5, v0
     mul-float/2addr v5, v9
     int-to-float v6, v0
     mul-float/2addr v6, v8
     invoke-virtual { v4, v5, v6 }, Landroid/graphics/Path;->lineTo(FF)V
-  .line 204
+  .line 210
     int-to-float v5, v0
     mul-float/2addr v5, v9
     int-to-float v0, v0
     const v6, 1053609165
     mul-float/2addr v0, v6
     invoke-virtual { v4, v5, v0 }, Landroid/graphics/Path;->lineTo(FF)V
-  .line 205
+  .line 211
     invoke-virtual { v2, v4, v3 }, Landroid/graphics/Canvas;->drawPath(Landroid/graphics/Path;Landroid/graphics/Paint;)V
-  .line 206
+  .line 212
     return-object v1
 .end method
 
 .method private updateButton()Landroid/widget/ImageView;
   .registers 15
   .prologue
-  .line 210
+  .line 269
     const/16 v0, 40
     invoke-static { p0, v0 }, Lcom/geely/drivemem/util/Style;->dp(Landroid/content/Context;I)I
     move-result v12
-  .line 211
+  .line 270
     sget-object v0, Landroid/graphics/Bitmap$Config;->ARGB_8888:Landroid/graphics/Bitmap$Config;
     invoke-static { v12, v12, v0 }, Landroid/graphics/Bitmap;->createBitmap(IILandroid/graphics/Bitmap$Config;)Landroid/graphics/Bitmap;
     move-result-object v13
-  .line 212
+  .line 271
     new-instance v0, Landroid/graphics/Canvas;
     invoke-direct { v0, v13 }, Landroid/graphics/Canvas;-><init>(Landroid/graphics/Bitmap;)V
-  .line 213
+  .line 272
     new-instance v5, Landroid/graphics/Paint;
     const/4 v1, 1
     invoke-direct { v5, v1 }, Landroid/graphics/Paint;-><init>(I)V
-  .line 214
+  .line 273
     iget-boolean v1, p0, Lcom/geely/drivemem/ui/ComfortActivity;->updateAvailable:Z
     if-eqz v1, :L1
     const v1, -13577896
   :L0
     invoke-virtual { v5, v1 }, Landroid/graphics/Paint;->setColor(I)V
-  .line 215
+  .line 274
     sget-object v1, Landroid/graphics/Paint$Style;->STROKE:Landroid/graphics/Paint$Style;
     invoke-virtual { v5, v1 }, Landroid/graphics/Paint;->setStyle(Landroid/graphics/Paint$Style;)V
-  .line 216
+  .line 275
     int-to-float v1, v12
     const v2, 1035489772
     mul-float/2addr v1, v2
     invoke-virtual { v5, v1 }, Landroid/graphics/Paint;->setStrokeWidth(F)V
-  .line 217
+  .line 276
     sget-object v1, Landroid/graphics/Paint$Cap;->ROUND:Landroid/graphics/Paint$Cap;
     invoke-virtual { v5, v1 }, Landroid/graphics/Paint;->setStrokeCap(Landroid/graphics/Paint$Cap;)V
-  .line 218
+  .line 277
     sget-object v1, Landroid/graphics/Paint$Join;->ROUND:Landroid/graphics/Paint$Join;
     invoke-virtual { v5, v1 }, Landroid/graphics/Paint;->setStrokeJoin(Landroid/graphics/Paint$Join;)V
-  .line 219
+  .line 278
     int-to-float v1, v12
     const/high16 v2, 0x40000000
     div-float/2addr v1, v2
-  .line 220
+  .line 279
     int-to-float v2, v12
     const v3, 1041865114
     mul-float/2addr v2, v3
@@ -616,7 +873,7 @@
     mul-float/2addr v4, v3
     move v3, v1
     invoke-virtual/range { v0 .. v5 }, Landroid/graphics/Canvas;->drawLine(FFFFLandroid/graphics/Paint;)V
-  .line 221
+  .line 280
     int-to-float v2, v12
     const v3, 1045220557
     mul-float/2addr v2, v3
@@ -631,7 +888,7 @@
     move v9, v1
     move-object v11, v5
     invoke-virtual/range { v6 .. v11 }, Landroid/graphics/Canvas;->drawLine(FFFFLandroid/graphics/Paint;)V
-  .line 222
+  .line 281
     int-to-float v2, v12
     const v3, 1045220557
     mul-float/2addr v2, v3
@@ -646,7 +903,7 @@
     move v9, v1
     move-object v11, v5
     invoke-virtual/range { v6 .. v11 }, Landroid/graphics/Canvas;->drawLine(FFFFLandroid/graphics/Paint;)V
-  .line 223
+  .line 282
     int-to-float v1, v12
     const v2, 1045220557
     mul-float/2addr v1, v2
@@ -660,12 +917,12 @@
     const v6, 1062668861
     mul-float/2addr v4, v6
     invoke-virtual/range { v0 .. v5 }, Landroid/graphics/Canvas;->drawLine(FFFFLandroid/graphics/Paint;)V
-  .line 224
+  .line 283
     new-instance v0, Landroid/widget/ImageView;
     invoke-direct { v0, p0 }, Landroid/widget/ImageView;-><init>(Landroid/content/Context;)V
-  .line 225
+  .line 284
     invoke-virtual { v0, v13 }, Landroid/widget/ImageView;->setImageBitmap(Landroid/graphics/Bitmap;)V
-  .line 226
+  .line 285
     new-instance v1, Landroid/widget/LinearLayout$LayoutParams;
     const/16 v2, 62
     invoke-static { p0, v2 }, Lcom/geely/drivemem/util/Style;->dp(Landroid/content/Context;I)I
@@ -674,21 +931,21 @@
     invoke-static { p0, v3 }, Lcom/geely/drivemem/util/Style;->dp(Landroid/content/Context;I)I
     move-result v3
     invoke-direct { v1, v2, v3 }, Landroid/widget/LinearLayout$LayoutParams;-><init>(II)V
-  .line 227
+  .line 286
     const/4 v2, 1
     iput v2, v1, Landroid/widget/LinearLayout$LayoutParams;->gravity:I
-  .line 228
+  .line 287
     invoke-virtual { v0, v1 }, Landroid/widget/ImageView;->setLayoutParams(Landroid/view/ViewGroup$LayoutParams;)V
-  .line 229
+  .line 288
     const/16 v1, 11
     invoke-static { p0, v1 }, Lcom/geely/drivemem/util/Style;->dp(Landroid/content/Context;I)I
     move-result v1
-  .line 230
+  .line 289
     invoke-virtual { v0, v1, v1, v1, v1 }, Landroid/widget/ImageView;->setPadding(IIII)V
-  .line 231
+  .line 290
     return-object v0
   :L1
-  .line 214
+  .line 273
     sget v1, Lcom/geely/drivemem/util/Style;->TEXT_DIM:I
     goto/16 :L0
 .end method
@@ -1092,44 +1349,56 @@
     invoke-direct { v7, v8, v9, v10 }, Landroid/widget/LinearLayout$LayoutParams;-><init>(IIF)V
     invoke-virtual { v4, v0, v7 }, Landroid/widget/LinearLayout;->addView(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V
   .line 152
-    invoke-direct { p0 }, Lcom/geely/drivemem/ui/ComfortActivity;->updateButton()Landroid/widget/ImageView;
+    invoke-direct { p0 }, Lcom/geely/drivemem/ui/ComfortActivity;->appearanceButton()Landroid/widget/ImageView;
     move-result-object v0
-    iput-object v0, p0, Lcom/geely/drivemem/ui/ComfortActivity;->updateBtn:Landroid/widget/ImageView;
   .line 153
-    iget-object v0, p0, Lcom/geely/drivemem/ui/ComfortActivity;->updateBtn:Landroid/widget/ImageView;
     new-instance v7, Lcom/geely/drivemem/ui/ComfortActivity$5;
     invoke-direct { v7, p0 }, Lcom/geely/drivemem/ui/ComfortActivity$5;-><init>(Lcom/geely/drivemem/ui/ComfortActivity;)V
     invoke-virtual { v0, v7 }, Landroid/widget/ImageView;->setOnClickListener(Landroid/view/View$OnClickListener;)V
   .line 156
-    iget-object v0, p0, Lcom/geely/drivemem/ui/ComfortActivity;->updateBtn:Landroid/widget/ImageView;
     invoke-virtual { v4, v0 }, Landroid/widget/LinearLayout;->addView(Landroid/view/View;)V
   .line 157
     const/16 v0, 14
     invoke-static { v4, p0, v0 }, Lcom/geely/drivemem/util/Style;->gap(Landroid/widget/LinearLayout;Landroid/content/Context;I)V
   .line 158
+    invoke-direct { p0 }, Lcom/geely/drivemem/ui/ComfortActivity;->updateButton()Landroid/widget/ImageView;
+    move-result-object v0
+    iput-object v0, p0, Lcom/geely/drivemem/ui/ComfortActivity;->updateBtn:Landroid/widget/ImageView;
+  .line 159
+    iget-object v0, p0, Lcom/geely/drivemem/ui/ComfortActivity;->updateBtn:Landroid/widget/ImageView;
+    new-instance v7, Lcom/geely/drivemem/ui/ComfortActivity$6;
+    invoke-direct { v7, p0 }, Lcom/geely/drivemem/ui/ComfortActivity$6;-><init>(Lcom/geely/drivemem/ui/ComfortActivity;)V
+    invoke-virtual { v0, v7 }, Landroid/widget/ImageView;->setOnClickListener(Landroid/view/View$OnClickListener;)V
+  .line 162
+    iget-object v0, p0, Lcom/geely/drivemem/ui/ComfortActivity;->updateBtn:Landroid/widget/ImageView;
+    invoke-virtual { v4, v0 }, Landroid/widget/LinearLayout;->addView(Landroid/view/View;)V
+  .line 163
+    const/16 v0, 14
+    invoke-static { v4, p0, v0 }, Lcom/geely/drivemem/util/Style;->gap(Landroid/widget/LinearLayout;Landroid/content/Context;I)V
+  .line 164
     new-instance v0, Landroid/widget/FrameLayout$LayoutParams;
     const/4 v7, -1
     const v8, 8388611
     invoke-direct { v0, v2, v7, v8 }, Landroid/widget/FrameLayout$LayoutParams;-><init>(III)V
-  .line 160
+  .line 166
     iput v3, v0, Landroid/widget/FrameLayout$LayoutParams;->leftMargin:I
-  .line 161
+  .line 167
     invoke-static { p0 }, Lcom/geely/drivemem/util/Style;->statusBarHeight(Landroid/content/Context;)I
     move-result v2
     add-int/2addr v2, v6
     iput v2, v0, Landroid/widget/FrameLayout$LayoutParams;->topMargin:I
-  .line 162
+  .line 168
     iput v5, v0, Landroid/widget/FrameLayout$LayoutParams;->bottomMargin:I
-  .line 163
+  .line 169
     invoke-virtual { v1, v4, v0 }, Landroid/widget/FrameLayout;->addView(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V
-  .line 165
+  .line 171
     invoke-virtual { p0, v1 }, Lcom/geely/drivemem/ui/ComfortActivity;->setContentView(Landroid/view/View;)V
-  .line 166
+  .line 172
     invoke-static { p0 }, Lcom/geely/drivemem/util/FullCharge;->touch(Landroid/content/Context;)V
-  .line 167
+  .line 173
     const/4 v0, 1
     invoke-direct { p0, v0 }, Lcom/geely/drivemem/ui/ComfortActivity;->setMode(I)V
-  .line 168
+  .line 174
     return-void
   :L4
   .line 139
@@ -1153,11 +1422,11 @@
   .catch Ljava/lang/Throwable; { :L2 .. :L3 } :L4
   .registers 5
   .prologue
-  .line 312
+  .line 371
     invoke-super { p0 }, Landroid/app/Activity;->onResume()V
-  .line 313
+  .line 372
     invoke-static { p0 }, Lcom/geely/drivemem/util/Style;->load(Landroid/content/Context;)V
-  .line 314
+  .line 373
     invoke-static { }, Lcom/geely/drivemem/util/Style;->current()Lcom/geely/drivemem/util/Style$Theme;
     move-result-object v0
     iget-object v0, v0, Lcom/geely/drivemem/util/Style$Theme;->id:Ljava/lang/String;
@@ -1171,31 +1440,31 @@
   :L0
     invoke-virtual { p0 }, Lcom/geely/drivemem/ui/ComfortActivity;->recreate()V
   :L1
-  .line 329
+  .line 388
     return-void
   :L2
-  .line 316
+  .line 375
     invoke-static { p0 }, Lcom/geely/drivemem/util/BootReceiver;->scheduleWatchdog(Landroid/content/Context;)V
-  .line 317
+  .line 376
     invoke-static { p0 }, Lcom/geely/drivemem/util/BootReceiver;->ensureAll(Landroid/content/Context;)V
   :L3
-  .line 319
+  .line 378
     new-instance v0, Ljava/lang/Thread;
-    new-instance v1, Lcom/geely/drivemem/ui/ComfortActivity$8;
-    invoke-direct { v1, p0 }, Lcom/geely/drivemem/ui/ComfortActivity$8;-><init>(Lcom/geely/drivemem/ui/ComfortActivity;)V
+    new-instance v1, Lcom/geely/drivemem/ui/ComfortActivity$9;
+    invoke-direct { v1, p0 }, Lcom/geely/drivemem/ui/ComfortActivity$9;-><init>(Lcom/geely/drivemem/ui/ComfortActivity;)V
     const-string v2, "autocost"
     invoke-direct { v0, v1, v2 }, Ljava/lang/Thread;-><init>(Ljava/lang/Runnable;Ljava/lang/String;)V
-  .line 324
+  .line 383
     invoke-virtual { v0 }, Ljava/lang/Thread;->start()V
-  .line 325
+  .line 384
     invoke-direct { p0 }, Lcom/geely/drivemem/ui/ComfortActivity;->autoCheck()V
-  .line 326
-    new-instance v0, Lcom/geely/drivemem/ui/ComfortActivity$9;
-    invoke-direct { v0, p0 }, Lcom/geely/drivemem/ui/ComfortActivity$9;-><init>(Lcom/geely/drivemem/ui/ComfortActivity;)V
+  .line 385
+    new-instance v0, Lcom/geely/drivemem/ui/ComfortActivity$10;
+    invoke-direct { v0, p0 }, Lcom/geely/drivemem/ui/ComfortActivity$10;-><init>(Lcom/geely/drivemem/ui/ComfortActivity;)V
     invoke-static { p0, v0 }, Lcom/geely/drivemem/ui/MonthlySummary;->check(Landroid/app/Activity;Ljava/lang/Runnable;)V
     goto :L1
   :L4
-  .line 318
+  .line 377
     move-exception v0
     const-string v1, "DriveMem"
     new-instance v2, Ljava/lang/StringBuilder;
