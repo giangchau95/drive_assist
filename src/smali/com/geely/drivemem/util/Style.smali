@@ -86,7 +86,7 @@
 .method static constructor <clinit>()V
     .locals 46
 
-    const/4 v0, 0x3
+    const/4 v0, 0x4
 
     .line 119
     new-array v0, v0, [Lcom/geely/drivemem/util/Style$Theme;
@@ -187,7 +187,7 @@
 
     invoke-direct/range {v1 .. v6}, Lcom/geely/drivemem/util/Style$Theme;-><init>(Ljava/lang/String;Ljava/lang/String;ILcom/geely/drivemem/util/Style$Palette;Lcom/geely/drivemem/util/Style$Palette;)V
 
-    const/4 v1, 0x0
+    const/4 v1, 0x1
 
     aput-object v7, v0, v1
 
@@ -245,7 +245,7 @@
 
     invoke-direct/range {v8 .. v13}, Lcom/geely/drivemem/util/Style$Theme;-><init>(Ljava/lang/String;Ljava/lang/String;ILcom/geely/drivemem/util/Style$Palette;Lcom/geely/drivemem/util/Style$Palette;)V
 
-    const/4 v3, 0x1
+    const/4 v3, 0x2
 
     aput-object v2, v0, v3
 
@@ -303,9 +303,65 @@
 
     invoke-direct/range {v4 .. v9}, Lcom/geely/drivemem/util/Style$Theme;-><init>(Ljava/lang/String;Ljava/lang/String;ILcom/geely/drivemem/util/Style$Palette;Lcom/geely/drivemem/util/Style$Palette;)V
 
-    const/4 v3, 0x2
+    const/4 v3, 0x3
 
     aput-object v2, v0, v3
+
+    new-instance v42, Lcom/geely/drivemem/util/Style$Palette;
+    move-object/from16 v4, v42
+    const v5, 0xff10131a
+    const v6, 0xff0a0c11
+    const v7, 0xff1b2030
+    const v8, 0xff262d42
+    const v9, 0xff0a84ff
+    const v10, 0xfff5f7fa
+    const v11, 0xff9aa3b5
+    const v12, 0xffffffff
+    const v13, 0xff0a84ff
+    const v14, 0xff32d1ff
+    const v15, 0xffff9f1c
+    const v16, 0x14
+    const v17, 0x1
+    const v18, 0x14ffffff
+    const v19, 0x0
+    const v20, 0x0
+    const v21, 0x0
+    const v22, 0x0
+    invoke-direct/range {v4 .. v22}, Lcom/geely/drivemem/util/Style$Palette;-><init>(IIIIIIIIIIIIIIZZZI)V
+
+    new-instance v43, Lcom/geely/drivemem/util/Style$Palette;
+    move-object/from16 v4, v43
+    const v5, 0xfff5f7fa
+    const v6, 0xffeef1f6
+    const v7, 0xffffffff
+    const v8, 0xffe6eeff
+    const v9, 0xff007aff
+    const v10, 0xff10131a
+    const v11, 0xff5b6475
+    const v12, 0xffffffff
+    const v13, 0xff007aff
+    const v14, 0xff0a5cff
+    const v15, 0xffff7a00
+    const v16, 0x14
+    const v17, 0x1
+    const v18, 0xffe3e8f0
+    const v19, 0x0
+    const v20, 0x1
+    const v21, 0x0
+    const v22, 0x0
+    invoke-direct/range {v4 .. v22}, Lcom/geely/drivemem/util/Style$Palette;-><init>(IIIIIIIIIIIIIIZZZI)V
+
+    new-instance v2, Lcom/geely/drivemem/util/Style$Theme;
+    move-object v4, v2
+    const-string v5, "ex2"
+    const-string v6, "EX2"
+    sget v7, Lcom/geely/drivemem/R$string;->theme_ex2_blurb:I
+    move-object/from16 v8, v42
+    move-object/from16 v9, v43
+    invoke-direct/range {v4 .. v9}, Lcom/geely/drivemem/util/Style$Theme;-><init>(Ljava/lang/String;Ljava/lang/String;ILcom/geely/drivemem/util/Style$Palette;Lcom/geely/drivemem/util/Style$Palette;)V
+    const/4 v3, 0x0
+    aput-object v2, v0, v3
+    const/4 v1, 0x0
 
     sput-object v0, Lcom/geely/drivemem/util/Style;->THEMES:[Lcom/geely/drivemem/util/Style$Theme;
 

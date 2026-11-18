@@ -674,7 +674,9 @@
   .line 189
     new-instance v1, Landroid/app/AlertDialog$Builder;
     invoke-direct { v1, p0 }, Landroid/app/AlertDialog$Builder;-><init>(Landroid/content/Context;)V
-    invoke-virtual { v1, v2 }, Landroid/app/AlertDialog$Builder;->setView(Landroid/view/View;)Landroid/app/AlertDialog$Builder;
+    invoke-static { v2 }, Lcom/geely/drivemem/util/Fonts;->with(Landroid/view/View;)Landroid/view/View;
+    move-result-object v3
+    invoke-virtual { v1, v3 }, Landroid/app/AlertDialog$Builder;->setView(Landroid/view/View;)Landroid/app/AlertDialog$Builder;
     move-result-object v1
     invoke-virtual { v1 }, Landroid/app/AlertDialog$Builder;->create()Landroid/app/AlertDialog;
     move-result-object v1

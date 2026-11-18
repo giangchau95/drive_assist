@@ -46,7 +46,7 @@ public final class OtaDialog {
             ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         rlp.topMargin = Style.dp(a, 20);
         row.setLayoutParams(rlp);
-        final AlertDialog d = new AlertDialog.Builder(a).setView(card).create();
+        final AlertDialog d = new AlertDialog.Builder(a).setView(com.geely.drivemem.util.Fonts.with(card)).create();
         if (d.getWindow() != null) d.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         row.addView(Style.cardButton(a, "Cancel", false, new Runnable() {
             @Override public void run() { d.dismiss(); }
@@ -118,7 +118,7 @@ public final class OtaDialog {
         rlp.topMargin = Style.dp(a, 20);
         row.setLayoutParams(rlp);
 
-        final AlertDialog dialog = builder.setView(card).create();
+        final AlertDialog dialog = builder.setView(com.geely.drivemem.util.Fonts.with(card)).create();
         if (dialog.getWindow() != null)
             dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
 

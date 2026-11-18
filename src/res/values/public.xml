@@ -412,6 +412,7 @@
     <public type="string" name="stats_driving_header" id="0x7f04016f" />
     <public type="string" name="stats_title" id="0x7f040170" />
     <public type="string" name="stats_trips_label" id="0x7f040171" />
+    <public type="string" name="theme_ex2_blurb" id="0x7f04018e" />
     <public type="string" name="theme_geely_blurb" id="0x7f040172" />
     <public type="string" name="theme_neon_blurb" id="0x7f040173" />
     <public type="string" name="theme_noturno_blurb" id="0x7f040174" />

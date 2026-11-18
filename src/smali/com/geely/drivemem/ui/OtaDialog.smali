@@ -114,7 +114,9 @@
   .line 49
     new-instance v2, Landroid/app/AlertDialog$Builder;
     invoke-direct { v2, p0 }, Landroid/app/AlertDialog$Builder;-><init>(Landroid/content/Context;)V
-    invoke-virtual { v2, v0 }, Landroid/app/AlertDialog$Builder;->setView(Landroid/view/View;)Landroid/app/AlertDialog$Builder;
+    invoke-static { v0 }, Lcom/geely/drivemem/util/Fonts;->with(Landroid/view/View;)Landroid/view/View;
+    move-result-object v3
+    invoke-virtual { v2, v3 }, Landroid/app/AlertDialog$Builder;->setView(Landroid/view/View;)Landroid/app/AlertDialog$Builder;
     move-result-object v2
     invoke-virtual { v2 }, Landroid/app/AlertDialog$Builder;->create()Landroid/app/AlertDialog;
     move-result-object v2
@@ -348,8 +350,9 @@
     move-object/from16 v0, v18
     invoke-virtual { v0, v3 }, Landroid/widget/LinearLayout;->setLayoutParams(Landroid/view/ViewGroup$LayoutParams;)V
   .line 121
-    move-object/from16 v0, v17
-    invoke-virtual { v2, v0 }, Landroid/app/AlertDialog$Builder;->setView(Landroid/view/View;)Landroid/app/AlertDialog$Builder;
+    invoke-static/range { v17 .. v17 }, Lcom/geely/drivemem/util/Fonts;->with(Landroid/view/View;)Landroid/view/View;
+    move-result-object v3
+    invoke-virtual { v2, v3 }, Landroid/app/AlertDialog$Builder;->setView(Landroid/view/View;)Landroid/app/AlertDialog$Builder;
     move-result-object v2
     invoke-virtual { v2 }, Landroid/app/AlertDialog$Builder;->create()Landroid/app/AlertDialog;
     move-result-object v8

@@ -18,6 +18,7 @@ import android.app.Application;
 public final class DriveMemApplication extends Application {
     @Override public void onCreate() {
         super.onCreate();
+        com.geely.drivemem.util.Fonts.install(this);
         CarActor.get(this);
         DbMigration.runOnce(this);
         TelemetryRollup.runIfDue(this);

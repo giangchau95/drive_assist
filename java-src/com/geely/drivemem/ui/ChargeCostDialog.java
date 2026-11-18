@@ -91,7 +91,7 @@ public final class ChargeCostDialog {
         brLp.topMargin = Style.dp(context, 20);
         btnRow.setLayoutParams(brLp);
 
-        final AlertDialog dialog = builder.setView(card).create();
+        final AlertDialog dialog = builder.setView(com.geely.drivemem.util.Fonts.with(card)).create();
         if (dialog.getWindow() != null) {
             dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         }

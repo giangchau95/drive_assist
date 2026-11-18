@@ -372,6 +372,7 @@ Drive Assist is still installed, but inert."</string>
     <string name="stats_driving_header">This week</string>
     <string name="stats_title">Driving stats</string>
     <string name="stats_trips_label">trips</string>
+    <string name="theme_ex2_blurb">Blue accent, Onest font, soft rounded cards</string>
     <string name="theme_geely_blurb">Gunmetal gray by night, ivory by day</string>
     <string name="theme_neon_blurb">Lit outline, cyan and magenta</string>
     <string name="theme_noturno_blurb">Black and amber · vaporwave panel</string>

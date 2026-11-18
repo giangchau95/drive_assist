@@ -754,6 +754,8 @@
 
 .field public static stats_trips_label:I = 0x7f040171
 
+.field public static theme_ex2_blurb:I = 0x7f04018e
+
 .field public static theme_geely_blurb:I = 0x7f040172
 
 .field public static theme_neon_blurb:I = 0x7f040173

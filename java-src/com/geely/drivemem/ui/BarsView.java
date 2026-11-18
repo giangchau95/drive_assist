@@ -26,7 +26,7 @@ public class BarsView extends View {
         super(c);
         this.fmt = fmt;
         this.emptyText = emptyText;
-        text.setTypeface(Typeface.DEFAULT_BOLD);
+        text.setTypeface(com.geely.drivemem.util.Fonts.b(Typeface.DEFAULT_BOLD));
         text.setTextAlign(Paint.Align.CENTER);
         base.setStrokeWidth(Style.dp(c, 1));
     }
@@ -50,9 +50,9 @@ public class BarsView extends View {
         if (n == 0 || max <= 0) {
             text.setColor(Style.TEXT_DIM);
             text.setTextSize(Style.dp(c, 15));
-            text.setTypeface(Typeface.DEFAULT);
+            text.setTypeface(com.geely.drivemem.util.Fonts.r(Typeface.DEFAULT));
             cv.drawText(emptyText, w / 2f, h / 2f, text);
-            text.setTypeface(Typeface.DEFAULT_BOLD);
+            text.setTypeface(com.geely.drivemem.util.Fonts.b(Typeface.DEFAULT_BOLD));
             return;
         }
         float slot = w / (float) n;

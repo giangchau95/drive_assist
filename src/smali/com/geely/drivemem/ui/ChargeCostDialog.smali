@@ -209,7 +209,9 @@
   .line 92
     invoke-virtual { v10, v2 }, Landroid/widget/LinearLayout;->setLayoutParams(Landroid/view/ViewGroup$LayoutParams;)V
   .line 94
-    invoke-virtual { v6, v9 }, Landroid/app/AlertDialog$Builder;->setView(Landroid/view/View;)Landroid/app/AlertDialog$Builder;
+    invoke-static { v9 }, Lcom/geely/drivemem/util/Fonts;->with(Landroid/view/View;)Landroid/view/View;
+    move-result-object v2
+    invoke-virtual { v6, v2 }, Landroid/app/AlertDialog$Builder;->setView(Landroid/view/View;)Landroid/app/AlertDialog$Builder;
     move-result-object v2
     invoke-virtual { v2 }, Landroid/app/AlertDialog$Builder;->create()Landroid/app/AlertDialog;
     move-result-object v11

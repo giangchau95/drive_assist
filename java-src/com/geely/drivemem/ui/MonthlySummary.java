@@ -186,7 +186,7 @@ public final class MonthlySummary {
         LinearLayout.LayoutParams rlp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         rlp.topMargin = Style.dp(a, 22);
         row.setLayoutParams(rlp);
-        final AlertDialog dlg = new AlertDialog.Builder(a).setView(card).create();
+        final AlertDialog dlg = new AlertDialog.Builder(a).setView(com.geely.drivemem.util.Fonts.with(card)).create();
         if (dlg.getWindow() != null) dlg.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         dlg.setOnDismissListener(new android.content.DialogInterface.OnDismissListener() {
             @Override public void onDismiss(android.content.DialogInterface x) {

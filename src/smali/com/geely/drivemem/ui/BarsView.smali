@@ -60,6 +60,8 @@
   .line 29
     iget-object v0, p0, Lcom/geely/drivemem/ui/BarsView;->text:Landroid/graphics/Paint;
     sget-object v1, Landroid/graphics/Typeface;->DEFAULT_BOLD:Landroid/graphics/Typeface;
+    invoke-static { v1 }, Lcom/geely/drivemem/util/Fonts;->b(Landroid/graphics/Typeface;)Landroid/graphics/Typeface;
+    move-result-object v1
     invoke-virtual { v0, v1 }, Landroid/graphics/Paint;->setTypeface(Landroid/graphics/Typeface;)Landroid/graphics/Typeface;
   .line 30
     iget-object v0, p0, Lcom/geely/drivemem/ui/BarsView;->text:Landroid/graphics/Paint;
@@ -158,6 +160,8 @@
     move-object/from16 v0, p0
     iget-object v4, v0, Lcom/geely/drivemem/ui/BarsView;->text:Landroid/graphics/Paint;
     sget-object v5, Landroid/graphics/Typeface;->DEFAULT:Landroid/graphics/Typeface;
+    invoke-static { v5 }, Lcom/geely/drivemem/util/Fonts;->r(Landroid/graphics/Typeface;)Landroid/graphics/Typeface;
+    move-result-object v5
     invoke-virtual { v4, v5 }, Landroid/graphics/Paint;->setTypeface(Landroid/graphics/Typeface;)Landroid/graphics/Typeface;
   .line 54
     move-object/from16 v0, p0
@@ -176,6 +180,8 @@
     move-object/from16 v0, p0
     iget-object v4, v0, Lcom/geely/drivemem/ui/BarsView;->text:Landroid/graphics/Paint;
     sget-object v5, Landroid/graphics/Typeface;->DEFAULT_BOLD:Landroid/graphics/Typeface;
+    invoke-static { v5 }, Lcom/geely/drivemem/util/Fonts;->b(Landroid/graphics/Typeface;)Landroid/graphics/Typeface;
+    move-result-object v5
     invoke-virtual { v4, v5 }, Landroid/graphics/Paint;->setTypeface(Landroid/graphics/Typeface;)Landroid/graphics/Typeface;
   :L4
   .line 84
