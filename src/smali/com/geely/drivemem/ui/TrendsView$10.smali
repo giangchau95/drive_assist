@@ -25,7 +25,7 @@
   .end annotation
   .registers 6
   .prologue
-  .line 385
+  .line 386
     iput-object p1, p0, Lcom/geely/drivemem/ui/TrendsView$10;->this$0:Lcom/geely/drivemem/ui/TrendsView;
     iput-object p2, p0, Lcom/geely/drivemem/ui/TrendsView$10;->val$c:Landroid/content/Context;
     iput-wide p3, p0, Lcom/geely/drivemem/ui/TrendsView$10;->val$last:J
@@ -37,7 +37,7 @@
   .registers 5
   .prologue
     const/16 v0, 30
-  .line 387
+  .line 388
     iget-object v1, p0, Lcom/geely/drivemem/ui/TrendsView$10;->val$c:Landroid/content/Context;
     iget-object v2, p0, Lcom/geely/drivemem/ui/TrendsView$10;->val$c:Landroid/content/Context;
     invoke-static { v2 }, Lcom/geely/drivemem/util/FullCharge;->intervalDays(Landroid/content/Context;)I
@@ -46,10 +46,10 @@
     const/16 v0, 15
   :L0
     invoke-static { v1, v0 }, Lcom/geely/drivemem/util/FullCharge;->setIntervalDays(Landroid/content/Context;I)V
-  .line 388
+  .line 389
     iget-object v0, p0, Lcom/geely/drivemem/ui/TrendsView$10;->this$0:Lcom/geely/drivemem/ui/TrendsView;
     iget-wide v2, p0, Lcom/geely/drivemem/ui/TrendsView$10;->val$last:J
     invoke-static { v0, v2, v3 }, Lcom/geely/drivemem/ui/TrendsView;->access$1100(Lcom/geely/drivemem/ui/TrendsView;J)V
-  .line 389
+  .line 390
     return-void
 .end method

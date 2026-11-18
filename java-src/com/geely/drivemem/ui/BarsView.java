@@ -21,6 +21,8 @@ public class BarsView extends View {
     private final Paint base = new Paint(Paint.ANTI_ALIAS_FLAG);
     private final RectF rect = new RectF();
     private final String emptyText;
+    private int barColor = Style.ACCENT;
+    private boolean barColorSet;
 
     public BarsView(Context c, Formatter fmt, String emptyText) {
         super(c);
@@ -30,6 +32,8 @@ public class BarsView extends View {
         text.setTextAlign(Paint.Align.CENTER);
         base.setStrokeWidth(Style.dp(c, 1));
     }
+
+    public void setBarColor(int color) { barColor = color; barColorSet = true; invalidate(); }
 
     public void setData(double[] values, String[] labels) {
         this.values = values == null ? new double[0] : values;
@@ -57,6 +61,12 @@ public class BarsView extends View {
         }
         float slot = w / (float) n;
         float barW = Math.min(slot * 0.62f, Style.dp(c, 54));
+        int main = barColorSet ? barColor : Style.ACCENT;
+        base.setColor((Style.TEXT_DIM & 0x00FFFFFF) | 0x1F000000);
+        for (int g = 1; g <= 3; g++) {
+            float gy = chartBottom - (chartBottom - topPad) * g / 3f;
+            cv.drawLine(0, gy, w, gy, base);
+        }
         base.setColor((Style.TEXT_DIM & 0x00FFFFFF) | 0x55000000);
         cv.drawLine(0, chartBottom, w, chartBottom, base);
         boolean roomForValues = slot >= Style.dp(c, 44);
@@ -68,8 +78,8 @@ public class BarsView extends View {
             float bh = (float) (values[i] / max) * (chartBottom - topPad);
             if (values[i] > 0 && bh < Style.dp(c, 3)) bh = Style.dp(c, 3);
             rect.set(cx - barW / 2f, chartBottom - bh, cx + barW / 2f, chartBottom);
-            bar.setColor(last ? Style.ACCENT : ((Style.TEXT_DIM & 0x00FFFFFF) | 0x88000000));
-            if (bh > 0) cv.drawRoundRect(rect, Style.dp(c, 5), Style.dp(c, 5), bar);
+            bar.setColor(last ? main : ((main & 0x00FFFFFF) | 0x66000000));
+            if (bh > 0) cv.drawRoundRect(rect, Style.dp(c, 9), Style.dp(c, 9), bar);
             if ((roomForValues || last) && values[i] > 0) {
                 text.setColor(last ? Style.TEXT : Style.TEXT_DIM);
                 text.setTextSize(valueSp);

@@ -23,7 +23,7 @@
   .end annotation
   .registers 3
   .prologue
-  .line 254
+  .line 255
     iput-object p1, p0, Lcom/geely/drivemem/ui/TrendsView$8;->this$0:Lcom/geely/drivemem/ui/TrendsView;
     iput-object p2, p0, Lcom/geely/drivemem/ui/TrendsView$8;->val$act:Landroid/app/Activity;
     invoke-direct { p0 }, Ljava/lang/Object;-><init>()V
@@ -33,7 +33,7 @@
 .method public run()V
   .registers 2
   .prologue
-  .line 255
+  .line 256
     iget-object v0, p0, Lcom/geely/drivemem/ui/TrendsView$8;->val$act:Landroid/app/Activity;
     invoke-static { v0 }, Lcom/geely/drivemem/ui/MonthlySummary;->showLastMonth(Landroid/app/Activity;)V
     return-void

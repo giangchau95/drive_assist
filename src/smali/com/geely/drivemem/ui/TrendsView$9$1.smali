@@ -25,7 +25,7 @@
   .end annotation
   .registers 6
   .prologue
-  .line 324
+  .line 325
     iput-object p1, p0, Lcom/geely/drivemem/ui/TrendsView$9$1;->this$1:Lcom/geely/drivemem/ui/TrendsView$9;
     iput-object p2, p0, Lcom/geely/drivemem/ui/TrendsView$9$1;->val$fs:Lcom/geely/drivemem/ui/TrendsView$Series;
     iput-wide p3, p0, Lcom/geely/drivemem/ui/TrendsView$9$1;->val$last:J
@@ -36,7 +36,7 @@
 .method public run()V
   .registers 5
   .prologue
-  .line 326
+  .line 327
     iget-object v0, p0, Lcom/geely/drivemem/ui/TrendsView$9$1;->this$1:Lcom/geely/drivemem/ui/TrendsView$9;
     iget v0, v0, Lcom/geely/drivemem/ui/TrendsView$9;->val$my:I
     iget-object v1, p0, Lcom/geely/drivemem/ui/TrendsView$9$1;->this$1:Lcom/geely/drivemem/ui/TrendsView$9;
@@ -45,10 +45,10 @@
     move-result v1
     if-eq v0, v1, :L1
   :L0
-  .line 329
+  .line 330
     return-void
   :L1
-  .line 327
+  .line 328
     iget-object v0, p0, Lcom/geely/drivemem/ui/TrendsView$9$1;->val$fs:Lcom/geely/drivemem/ui/TrendsView$Series;
     if-eqz v0, :L2
     iget-object v0, p0, Lcom/geely/drivemem/ui/TrendsView$9$1;->this$1:Lcom/geely/drivemem/ui/TrendsView$9;
@@ -58,7 +58,7 @@
     iget v2, v2, Lcom/geely/drivemem/ui/TrendsView$9;->val$per:I
     invoke-static { v0, v1, v2 }, Lcom/geely/drivemem/ui/TrendsView;->access$1000(Lcom/geely/drivemem/ui/TrendsView;Lcom/geely/drivemem/ui/TrendsView$Series;I)V
   :L2
-  .line 328
+  .line 329
     iget-object v0, p0, Lcom/geely/drivemem/ui/TrendsView$9$1;->this$1:Lcom/geely/drivemem/ui/TrendsView$9;
     iget-object v0, v0, Lcom/geely/drivemem/ui/TrendsView$9;->this$0:Lcom/geely/drivemem/ui/TrendsView;
     iget-wide v2, p0, Lcom/geely/drivemem/ui/TrendsView$9$1;->val$last:J

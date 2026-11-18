@@ -23,7 +23,7 @@
   .end annotation
   .registers 3
   .prologue
-  .line 183
+  .line 184
     iput-object p1, p0, Lcom/geely/drivemem/ui/TrendsView$6;->this$0:Lcom/geely/drivemem/ui/TrendsView;
     iput-object p2, p0, Lcom/geely/drivemem/ui/TrendsView$6;->val$c:Landroid/content/Context;
     invoke-direct { p0 }, Ljava/lang/Object;-><init>()V
@@ -33,14 +33,14 @@
 .method public onClick(Landroid/content/DialogInterface;I)V
   .registers 6
   .prologue
-  .line 185
+  .line 186
     new-instance v0, Ljava/lang/Thread;
     new-instance v1, Lcom/geely/drivemem/ui/TrendsView$6$1;
     invoke-direct { v1, p0 }, Lcom/geely/drivemem/ui/TrendsView$6$1;-><init>(Lcom/geely/drivemem/ui/TrendsView$6;)V
     const-string v2, "autocost"
     invoke-direct { v0, v1, v2 }, Ljava/lang/Thread;-><init>(Ljava/lang/Runnable;Ljava/lang/String;)V
-  .line 190
-    invoke-virtual { v0 }, Ljava/lang/Thread;->start()V
   .line 191
+    invoke-virtual { v0 }, Ljava/lang/Thread;->start()V
+  .line 192
     return-void
 .end method

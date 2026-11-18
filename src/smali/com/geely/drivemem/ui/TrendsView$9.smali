@@ -27,7 +27,7 @@
   .end annotation
   .registers 5
   .prologue
-  .line 317
+  .line 318
     iput-object p1, p0, Lcom/geely/drivemem/ui/TrendsView$9;->this$0:Lcom/geely/drivemem/ui/TrendsView;
     iput-object p2, p0, Lcom/geely/drivemem/ui/TrendsView$9;->val$ctx:Landroid/content/Context;
     iput p3, p0, Lcom/geely/drivemem/ui/TrendsView$9;->val$per:I
@@ -41,15 +41,15 @@
   .catch Ljava/lang/Throwable; { :L1 .. :L2 } :L4
   .registers 6
   .prologue
-  .line 319
+  .line 320
     const/4 v0, 0
   :L0
-  .line 320
+  .line 321
     iget-object v1, p0, Lcom/geely/drivemem/ui/TrendsView$9;->val$ctx:Landroid/content/Context;
     const/4 v2, 0
     invoke-static { v1, v2 }, Lcom/geely/drivemem/util/AutoCost;->run(Landroid/content/Context;Z)I
   :L1
-  .line 321
+  .line 322
     iget-object v1, p0, Lcom/geely/drivemem/ui/TrendsView$9;->this$0:Lcom/geely/drivemem/ui/TrendsView;
     iget-object v2, p0, Lcom/geely/drivemem/ui/TrendsView$9;->val$ctx:Landroid/content/Context;
     iget v3, p0, Lcom/geely/drivemem/ui/TrendsView$9;->val$per:I
@@ -57,25 +57,25 @@
   :L2
     move-result-object v0
   :L3
-  .line 323
+  .line 324
     iget-object v1, p0, Lcom/geely/drivemem/ui/TrendsView$9;->val$ctx:Landroid/content/Context;
     invoke-static { v1 }, Lcom/geely/drivemem/util/FullCharge;->lastFullMs(Landroid/content/Context;)J
     move-result-wide v2
-  .line 324
+  .line 325
     iget-object v1, p0, Lcom/geely/drivemem/ui/TrendsView$9;->this$0:Lcom/geely/drivemem/ui/TrendsView;
     invoke-static { v1 }, Lcom/geely/drivemem/ui/TrendsView;->access$400(Lcom/geely/drivemem/ui/TrendsView;)Landroid/os/Handler;
     move-result-object v1
     new-instance v4, Lcom/geely/drivemem/ui/TrendsView$9$1;
     invoke-direct { v4, p0, v0, v2, v3 }, Lcom/geely/drivemem/ui/TrendsView$9$1;-><init>(Lcom/geely/drivemem/ui/TrendsView$9;Lcom/geely/drivemem/ui/TrendsView$Series;J)V
     invoke-virtual { v1, v4 }, Landroid/os/Handler;->post(Ljava/lang/Runnable;)Z
-  .line 331
+  .line 332
     return-void
   :L4
-  .line 321
+  .line 322
     move-exception v1
     goto :L3
   :L5
-  .line 320
+  .line 321
     move-exception v1
     goto :L1
 .end method

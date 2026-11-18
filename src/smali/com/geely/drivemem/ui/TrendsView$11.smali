@@ -23,7 +23,7 @@
   .end annotation
   .registers 4
   .prologue
-  .line 391
+  .line 392
     iput-object p1, p0, Lcom/geely/drivemem/ui/TrendsView$11;->this$0:Lcom/geely/drivemem/ui/TrendsView;
     iput-wide p2, p0, Lcom/geely/drivemem/ui/TrendsView$11;->val$last:J
     invoke-direct { p0 }, Ljava/lang/Object;-><init>()V
@@ -33,7 +33,7 @@
 .method public run()V
   .registers 5
   .prologue
-  .line 392
+  .line 393
     iget-object v0, p0, Lcom/geely/drivemem/ui/TrendsView$11;->this$0:Lcom/geely/drivemem/ui/TrendsView;
     iget-wide v2, p0, Lcom/geely/drivemem/ui/TrendsView$11;->val$last:J
     invoke-static { v0, v2, v3 }, Lcom/geely/drivemem/ui/TrendsView;->access$1200(Lcom/geely/drivemem/ui/TrendsView;J)V

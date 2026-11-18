@@ -23,7 +23,7 @@
   .end annotation
   .registers 3
   .prologue
-  .line 238
+  .line 239
     iput-object p1, p0, Lcom/geely/drivemem/ui/TrendsView$7;->this$0:Lcom/geely/drivemem/ui/TrendsView;
     iput p2, p0, Lcom/geely/drivemem/ui/TrendsView$7;->val$idx:I
     invoke-direct { p0 }, Ljava/lang/Object;-><init>()V
@@ -33,24 +33,24 @@
 .method public run()V
   .registers 3
   .prologue
-  .line 240
+  .line 241
     iget-object v0, p0, Lcom/geely/drivemem/ui/TrendsView$7;->this$0:Lcom/geely/drivemem/ui/TrendsView;
     invoke-static { v0 }, Lcom/geely/drivemem/ui/TrendsView;->access$500(Lcom/geely/drivemem/ui/TrendsView;)I
     move-result v0
     iget v1, p0, Lcom/geely/drivemem/ui/TrendsView$7;->val$idx:I
     if-ne v0, v1, :L1
   :L0
-  .line 244
+  .line 245
     return-void
   :L1
-  .line 241
+  .line 242
     iget-object v0, p0, Lcom/geely/drivemem/ui/TrendsView$7;->this$0:Lcom/geely/drivemem/ui/TrendsView;
     iget v1, p0, Lcom/geely/drivemem/ui/TrendsView$7;->val$idx:I
     invoke-static { v0, v1 }, Lcom/geely/drivemem/ui/TrendsView;->access$502(Lcom/geely/drivemem/ui/TrendsView;I)I
-  .line 242
+  .line 243
     iget-object v0, p0, Lcom/geely/drivemem/ui/TrendsView$7;->this$0:Lcom/geely/drivemem/ui/TrendsView;
     invoke-static { v0 }, Lcom/geely/drivemem/ui/TrendsView;->access$600(Lcom/geely/drivemem/ui/TrendsView;)V
-  .line 243
+  .line 244
     iget-object v0, p0, Lcom/geely/drivemem/ui/TrendsView$7;->this$0:Lcom/geely/drivemem/ui/TrendsView;
     invoke-virtual { v0 }, Lcom/geely/drivemem/ui/TrendsView;->refresh()V
     goto :L0

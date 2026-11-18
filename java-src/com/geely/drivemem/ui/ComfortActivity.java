@@ -136,6 +136,10 @@ public class ComfortActivity extends Activity {
             @Override public void onClick(View v) { setMode(MODE_APPS); }
         });
         appsDockIcon.setImageBitmap(appsIcon());
+        styleDock(statsDockIcon, mode == MODE_DAILY);
+        styleDock(chargeDockIcon, mode == MODE_CHARGE);
+        styleDock(trendsDockIcon, mode == MODE_TRENDS);
+        styleDock(appsDockIcon, mode == MODE_APPS);
         bar.addView(new View(this), new LinearLayout.LayoutParams(0, 0, 1f));
         bar.addView(statsDockIcon);
         Style.gap(bar, this, 14);
@@ -288,15 +292,20 @@ public class ComfortActivity extends Activity {
         chargeStatsContainer.setVisibility(m == MODE_CHARGE ? View.VISIBLE : View.GONE);
         trendsContainer.setVisibility(m == MODE_TRENDS ? View.VISIBLE : View.GONE);
         appsContainer.setVisibility(m == MODE_APPS ? View.VISIBLE : View.GONE);
-        appsDockIcon.setBackground(Style.card(m == MODE_APPS ? Style.CARD_ON : 0x00000000, this, 18));
-        appsDockIcon.setColorFilter(m == MODE_APPS ? Style.onFill(Style.CARD_ON) : Style.TEXT_DIM);
         refreshCurrent();
-        trendsDockIcon.setBackground(Style.card(m == MODE_TRENDS ? Style.CARD_ON : 0x00000000, this, 18));
-        trendsDockIcon.setColorFilter(m == MODE_TRENDS ? Style.onFill(Style.CARD_ON) : Style.TEXT_DIM);
-        statsDockIcon.setBackground(Style.card(m == MODE_DAILY ? Style.CARD_ON : 0x00000000, this, 18));
-        statsDockIcon.setColorFilter(m == MODE_DAILY ? Style.onFill(Style.CARD_ON) : Style.TEXT_DIM);
-        chargeDockIcon.setBackground(Style.card(m == MODE_CHARGE ? Style.CARD_ON : 0x00000000, this, 18));
-        chargeDockIcon.setColorFilter(m == MODE_CHARGE ? Style.onFill(Style.CARD_ON) : Style.TEXT_DIM);
+        styleDock(appsDockIcon, m == MODE_APPS);
+        styleDock(trendsDockIcon, m == MODE_TRENDS);
+        styleDock(statsDockIcon, m == MODE_DAILY);
+        styleDock(chargeDockIcon, m == MODE_CHARGE);
+    }
+
+    /** Selected tab: accent-tinted rounded pill with an accent icon; the others are plain and dim. */
+    private void styleDock(ImageView v, boolean on) {
+        android.graphics.drawable.GradientDrawable g = new android.graphics.drawable.GradientDrawable();
+        g.setCornerRadius(Style.dp(this, 20));
+        g.setColor(on ? ((Style.ACCENT & 0x00FFFFFF) | 0x33000000) : 0x00000000);
+        v.setBackground(g);
+        v.setColorFilter(on ? Style.ACCENT : Style.TEXT_DIM);
     }
 
     @Override protected void onResume() {

@@ -25,7 +25,7 @@
   .end annotation
   .registers 4
   .prologue
-  .line 164
+  .line 165
     iput-object p1, p0, Lcom/geely/drivemem/ui/TrendsView$5;->this$0:Lcom/geely/drivemem/ui/TrendsView;
     iput-object p2, p0, Lcom/geely/drivemem/ui/TrendsView$5;->val$in:Landroid/widget/EditText;
     iput-object p3, p0, Lcom/geely/drivemem/ui/TrendsView$5;->val$c:Landroid/content/Context;
@@ -39,8 +39,8 @@
   .prologue
     const-wide/16 v2, 0
   :L0
-  .line 166
   .line 167
+  .line 168
     iget-object v0, p0, Lcom/geely/drivemem/ui/TrendsView$5;->val$in:Landroid/widget/EditText;
     invoke-virtual { v0 }, Landroid/widget/EditText;->getText()Landroid/text/Editable;
     move-result-object v0
@@ -52,25 +52,25 @@
   :L1
     move-result-wide v0
   :L2
-  .line 168
+  .line 169
     cmp-long v2, v0, v2
     if-gtz v2, :L5
   :L3
-  .line 172
+  .line 173
     return-void
   :L4
-  .line 167
+  .line 168
     move-exception v0
     move-wide v0, v2
     goto :L2
   :L5
-  .line 169
+  .line 170
     iget-object v2, p0, Lcom/geely/drivemem/ui/TrendsView$5;->val$c:Landroid/content/Context;
     invoke-static { v2, v0, v1 }, Lcom/geely/drivemem/util/AutoCost;->setAcPrice(Landroid/content/Context;J)V
-  .line 170
+  .line 171
     iget-object v0, p0, Lcom/geely/drivemem/ui/TrendsView$5;->this$0:Lcom/geely/drivemem/ui/TrendsView;
     invoke-static { v0 }, Lcom/geely/drivemem/ui/TrendsView;->access$300(Lcom/geely/drivemem/ui/TrendsView;)V
-  .line 171
+  .line 172
     iget-object v0, p0, Lcom/geely/drivemem/ui/TrendsView$5;->this$0:Lcom/geely/drivemem/ui/TrendsView;
     invoke-virtual { v0 }, Lcom/geely/drivemem/ui/TrendsView;->refresh()V
     goto :L3

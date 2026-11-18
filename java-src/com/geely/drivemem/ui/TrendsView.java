@@ -62,18 +62,19 @@ public class TrendsView extends LinearLayout {
         LayoutParams clp = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         addView(charts, clp);
 
-        distHead = text(c, "—", 34f, Style.TEXT, true);
+        distHead = text(c, "—", 40f, Style.TEXT, true);
         distSub = text(c, "", 16f, Style.TEXT_DIM, false);
         distBars = new BarsView(c, new BarsView.Formatter() {
             @Override public String format(double v) { return String.format(Locale.US, "%.0f", v); }
         }, "No data yet");
         charts.addView(chartCard(c, "Distance driven", distHead, distSub, distBars, true));
 
-        costHead = text(c, "—", 34f, Style.TEXT, true);
+        costHead = text(c, "—", 40f, Style.TEXT, true);
         costSub = text(c, "", 16f, Style.TEXT_DIM, false);
         costBars = new BarsView(c, new BarsView.Formatter() {
             @Override public String format(double v) { return compactVnd(v); }
         }, "No costs entered yet");
+        costBars.setBarColor(Style.HEAT);
         charts.addView(chartCard(c, "Charging cost", costHead, costSub, costBars, false));
 
         note = text(c, "", 15f, Style.TEXT_DIM, false);
@@ -83,20 +84,20 @@ public class TrendsView extends LinearLayout {
         LinearLayout infoRow = new LinearLayout(c);
         infoRow.setOrientation(HORIZONTAL);
         LayoutParams irp = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        irp.topMargin = Style.dp(c, 12);
+        irp.topMargin = Style.dp(c, 16);
         addView(infoRow, irp);
 
         // ---- 100% charge card ----
         LinearLayout full = new LinearLayout(c);
         full.setOrientation(VERTICAL);
-        int pad = Style.dp(c, 18);
+        int pad = Style.dp(c, 22);
         full.setPadding(pad, pad, pad, pad);
         full.setBackground(Style.card(Style.cardFillColor(), c));
         LayoutParams flp = new LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f);
-        flp.rightMargin = Style.dp(c, 12);
+        flp.rightMargin = Style.dp(c, 16);
         full.setLayoutParams(flp);
-        full.addView(text(c, "Full charge (LFP battery)", 15.5f, Style.TEXT_DIM, true));
-        fullHead = text(c, "…", 28f, Style.TEXT, true);
+        full.addView(text(c, "Full charge (LFP battery)", 16f, Style.TEXT_DIM, true));
+        fullHead = text(c, "…", 30f, Style.TEXT, true);
         fullHead.setPadding(0, Style.dp(c, 6), 0, 0);
         full.addView(fullHead);
         fullSub = text(c, "", 17f, Style.TEXT_DIM, false);
@@ -114,8 +115,8 @@ public class TrendsView extends LinearLayout {
         price.setBackground(Style.card(Style.cardFillColor(), c));
         LayoutParams plp2 = new LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f);
         price.setLayoutParams(plp2);
-        price.addView(text(c, "Charging price", 15.5f, Style.TEXT_DIM, true));
-        priceHead = text(c, "", 28f, Style.TEXT, true);
+        price.addView(text(c, "Charging price", 16f, Style.TEXT_DIM, true));
+        priceHead = text(c, "", 30f, Style.TEXT, true);
         priceHead.setPadding(0, Style.dp(c, 6), 0, 0);
         price.addView(priceHead);
         TextView psub = text(c, "AC sessions are costed automatically. For DC fast charging the price depends on the "
@@ -204,13 +205,13 @@ public class TrendsView extends LinearLayout {
     private LinearLayout chartCard(Context c, String title, TextView head, TextView sub, BarsView bars, boolean margin) {
         LinearLayout card = new LinearLayout(c);
         card.setOrientation(VERTICAL);
-        int pad = Style.dp(c, 18);
+        int pad = Style.dp(c, 22);
         card.setPadding(pad, pad, pad, pad);
         card.setBackground(Style.card(Style.cardFillColor(), c));
         LayoutParams lp = new LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f);
-        if (margin) lp.rightMargin = Style.dp(c, 12);
+        if (margin) lp.rightMargin = Style.dp(c, 16);
         card.setLayoutParams(lp);
-        card.addView(text(c, title, 15.5f, Style.TEXT_DIM, true));
+        card.addView(text(c, title, 16f, Style.TEXT_DIM, true));
         head.setPadding(0, Style.dp(c, 6), 0, 0);
         card.addView(head);
         sub.setPadding(0, Style.dp(c, 2), 0, Style.dp(c, 8));

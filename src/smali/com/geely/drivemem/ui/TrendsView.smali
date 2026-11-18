@@ -132,7 +132,7 @@
     invoke-virtual { p0, v7, v0 }, Lcom/geely/drivemem/ui/TrendsView;->addView(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V
   .line 65
     const-string v0, "\u2014"
-    const/high16 v1, 0x42080000
+    const/high16 v1, 0x42200000
     sget v2, Lcom/geely/drivemem/util/Style;->TEXT:I
     const/4 v3, 1
     invoke-static { p1, v0, v1, v2, v3 }, Lcom/geely/drivemem/ui/TrendsView;->text(Landroid/content/Context;Ljava/lang/String;FIZ)Landroid/widget/TextView;
@@ -166,7 +166,7 @@
     invoke-virtual { v7, v0 }, Landroid/widget/LinearLayout;->addView(Landroid/view/View;)V
   .line 72
     const-string v0, "\u2014"
-    const/high16 v1, 0x42080000
+    const/high16 v1, 0x42200000
     sget v2, Lcom/geely/drivemem/util/Style;->TEXT:I
     const/4 v3, 1
     invoke-static { p1, v0, v1, v2, v3 }, Lcom/geely/drivemem/ui/TrendsView;->text(Landroid/content/Context;Ljava/lang/String;FIZ)Landroid/widget/TextView;
@@ -188,6 +188,10 @@
     invoke-direct { v0, p1, v1, v2 }, Lcom/geely/drivemem/ui/BarsView;-><init>(Landroid/content/Context;Lcom/geely/drivemem/ui/BarsView$Formatter;Ljava/lang/String;)V
     iput-object v0, p0, Lcom/geely/drivemem/ui/TrendsView;->costBars:Lcom/geely/drivemem/ui/BarsView;
   .line 77
+    iget-object v0, p0, Lcom/geely/drivemem/ui/TrendsView;->costBars:Lcom/geely/drivemem/ui/BarsView;
+    sget v1, Lcom/geely/drivemem/util/Style;->HEAT:I
+    invoke-virtual { v0, v1 }, Lcom/geely/drivemem/ui/BarsView;->setBarColor(I)V
+  .line 78
     const-string v2, "Charging cost"
     iget-object v3, p0, Lcom/geely/drivemem/ui/TrendsView;->costHead:Landroid/widget/TextView;
     iget-object v4, p0, Lcom/geely/drivemem/ui/TrendsView;->costSub:Landroid/widget/TextView;
@@ -198,7 +202,7 @@
     invoke-direct/range { v0 .. v6 }, Lcom/geely/drivemem/ui/TrendsView;->chartCard(Landroid/content/Context;Ljava/lang/String;Landroid/widget/TextView;Landroid/widget/TextView;Lcom/geely/drivemem/ui/BarsView;Z)Landroid/widget/LinearLayout;
     move-result-object v0
     invoke-virtual { v7, v0 }, Landroid/widget/LinearLayout;->addView(Landroid/view/View;)V
-  .line 79
+  .line 80
     const-string v0, ""
     const/high16 v1, 0x41700000
     sget v2, Lcom/geely/drivemem/util/Style;->TEXT_DIM:I
@@ -206,7 +210,7 @@
     invoke-static { p1, v0, v1, v2, v3 }, Lcom/geely/drivemem/ui/TrendsView;->text(Landroid/content/Context;Ljava/lang/String;FIZ)Landroid/widget/TextView;
     move-result-object v0
     iput-object v0, p0, Lcom/geely/drivemem/ui/TrendsView;->note:Landroid/widget/TextView;
-  .line 80
+  .line 81
     iget-object v0, p0, Lcom/geely/drivemem/ui/TrendsView;->note:Landroid/widget/TextView;
     const/4 v1, 4
     invoke-static { p1, v1 }, Lcom/geely/drivemem/util/Style;->dp(Landroid/content/Context;I)I
@@ -219,75 +223,75 @@
     invoke-static { p1, v4 }, Lcom/geely/drivemem/util/Style;->dp(Landroid/content/Context;I)I
     move-result v4
     invoke-virtual { v0, v1, v2, v3, v4 }, Landroid/widget/TextView;->setPadding(IIII)V
-  .line 81
+  .line 82
     iget-object v0, p0, Lcom/geely/drivemem/ui/TrendsView;->note:Landroid/widget/TextView;
     invoke-virtual { p0, v0 }, Lcom/geely/drivemem/ui/TrendsView;->addView(Landroid/view/View;)V
-  .line 83
+  .line 84
     new-instance v0, Landroid/widget/LinearLayout;
     invoke-direct { v0, p1 }, Landroid/widget/LinearLayout;-><init>(Landroid/content/Context;)V
-  .line 84
+  .line 85
     const/4 v1, 0
     invoke-virtual { v0, v1 }, Landroid/widget/LinearLayout;->setOrientation(I)V
-  .line 85
+  .line 86
     new-instance v1, Landroid/widget/LinearLayout$LayoutParams;
     const/4 v2, -1
     const/4 v3, -2
     invoke-direct { v1, v2, v3 }, Landroid/widget/LinearLayout$LayoutParams;-><init>(II)V
-  .line 86
-    const/16 v2, 12
+  .line 87
+    const/16 v2, 16
     invoke-static { p1, v2 }, Lcom/geely/drivemem/util/Style;->dp(Landroid/content/Context;I)I
     move-result v2
     iput v2, v1, Landroid/widget/LinearLayout$LayoutParams;->topMargin:I
-  .line 87
+  .line 88
     invoke-virtual { p0, v0, v1 }, Lcom/geely/drivemem/ui/TrendsView;->addView(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V
-  .line 90
+  .line 91
     new-instance v1, Landroid/widget/LinearLayout;
     invoke-direct { v1, p1 }, Landroid/widget/LinearLayout;-><init>(Landroid/content/Context;)V
-  .line 91
+  .line 92
     const/4 v2, 1
     invoke-virtual { v1, v2 }, Landroid/widget/LinearLayout;->setOrientation(I)V
-  .line 92
-    const/16 v2, 18
+  .line 93
+    const/16 v2, 22
     invoke-static { p1, v2 }, Lcom/geely/drivemem/util/Style;->dp(Landroid/content/Context;I)I
     move-result v2
-  .line 93
-    invoke-virtual { v1, v2, v2, v2, v2 }, Landroid/widget/LinearLayout;->setPadding(IIII)V
   .line 94
+    invoke-virtual { v1, v2, v2, v2, v2 }, Landroid/widget/LinearLayout;->setPadding(IIII)V
+  .line 95
     invoke-static { }, Lcom/geely/drivemem/util/Style;->cardFillColor()I
     move-result v3
     invoke-static { v3, p1 }, Lcom/geely/drivemem/util/Style;->card(ILandroid/content/Context;)Landroid/graphics/drawable/GradientDrawable;
     move-result-object v3
     invoke-virtual { v1, v3 }, Landroid/widget/LinearLayout;->setBackground(Landroid/graphics/drawable/Drawable;)V
-  .line 95
+  .line 96
     new-instance v3, Landroid/widget/LinearLayout$LayoutParams;
     const/4 v4, 0
     const/4 v5, -2
     const/high16 v6, 0x3f800000
     invoke-direct { v3, v4, v5, v6 }, Landroid/widget/LinearLayout$LayoutParams;-><init>(IIF)V
-  .line 96
-    const/16 v4, 12
+  .line 97
+    const/16 v4, 16
     invoke-static { p1, v4 }, Lcom/geely/drivemem/util/Style;->dp(Landroid/content/Context;I)I
     move-result v4
     iput v4, v3, Landroid/widget/LinearLayout$LayoutParams;->rightMargin:I
-  .line 97
-    invoke-virtual { v1, v3 }, Landroid/widget/LinearLayout;->setLayoutParams(Landroid/view/ViewGroup$LayoutParams;)V
   .line 98
+    invoke-virtual { v1, v3 }, Landroid/widget/LinearLayout;->setLayoutParams(Landroid/view/ViewGroup$LayoutParams;)V
+  .line 99
     const-string v3, "Full charge (LFP battery)"
-    const/high16 v4, 0x41780000
+    const/high16 v4, 0x41800000
     sget v5, Lcom/geely/drivemem/util/Style;->TEXT_DIM:I
     const/4 v6, 1
     invoke-static { p1, v3, v4, v5, v6 }, Lcom/geely/drivemem/ui/TrendsView;->text(Landroid/content/Context;Ljava/lang/String;FIZ)Landroid/widget/TextView;
     move-result-object v3
     invoke-virtual { v1, v3 }, Landroid/widget/LinearLayout;->addView(Landroid/view/View;)V
-  .line 99
+  .line 100
     const-string v3, "\u2026"
-    const/high16 v4, 0x41e00000
+    const/high16 v4, 0x41f00000
     sget v5, Lcom/geely/drivemem/util/Style;->TEXT:I
     const/4 v6, 1
     invoke-static { p1, v3, v4, v5, v6 }, Lcom/geely/drivemem/ui/TrendsView;->text(Landroid/content/Context;Ljava/lang/String;FIZ)Landroid/widget/TextView;
     move-result-object v3
     iput-object v3, p0, Lcom/geely/drivemem/ui/TrendsView;->fullHead:Landroid/widget/TextView;
-  .line 100
+  .line 101
     iget-object v3, p0, Lcom/geely/drivemem/ui/TrendsView;->fullHead:Landroid/widget/TextView;
     const/4 v4, 0
     const/4 v5, 6
@@ -296,10 +300,10 @@
     const/4 v6, 0
     const/4 v7, 0
     invoke-virtual { v3, v4, v5, v6, v7 }, Landroid/widget/TextView;->setPadding(IIII)V
-  .line 101
+  .line 102
     iget-object v3, p0, Lcom/geely/drivemem/ui/TrendsView;->fullHead:Landroid/widget/TextView;
     invoke-virtual { v1, v3 }, Landroid/widget/LinearLayout;->addView(Landroid/view/View;)V
-  .line 102
+  .line 103
     const-string v3, ""
     const/high16 v4, 0x41880000
     sget v5, Lcom/geely/drivemem/util/Style;->TEXT_DIM:I
@@ -307,7 +311,7 @@
     invoke-static { p1, v3, v4, v5, v6 }, Lcom/geely/drivemem/ui/TrendsView;->text(Landroid/content/Context;Ljava/lang/String;FIZ)Landroid/widget/TextView;
     move-result-object v3
     iput-object v3, p0, Lcom/geely/drivemem/ui/TrendsView;->fullSub:Landroid/widget/TextView;
-  .line 103
+  .line 104
     iget-object v3, p0, Lcom/geely/drivemem/ui/TrendsView;->fullSub:Landroid/widget/TextView;
     const/4 v4, 0
     const/4 v5, 4
@@ -318,61 +322,61 @@
     invoke-static { p1, v7 }, Lcom/geely/drivemem/util/Style;->dp(Landroid/content/Context;I)I
     move-result v7
     invoke-virtual { v3, v4, v5, v6, v7 }, Landroid/widget/TextView;->setPadding(IIII)V
-  .line 104
+  .line 105
     iget-object v3, p0, Lcom/geely/drivemem/ui/TrendsView;->fullSub:Landroid/widget/TextView;
     invoke-virtual { v1, v3 }, Landroid/widget/LinearLayout;->addView(Landroid/view/View;)V
-  .line 105
+  .line 106
     new-instance v3, Landroid/widget/LinearLayout;
     invoke-direct { v3, p1 }, Landroid/widget/LinearLayout;-><init>(Landroid/content/Context;)V
     iput-object v3, p0, Lcom/geely/drivemem/ui/TrendsView;->fullBtns:Landroid/widget/LinearLayout;
-  .line 106
+  .line 107
     iget-object v3, p0, Lcom/geely/drivemem/ui/TrendsView;->fullBtns:Landroid/widget/LinearLayout;
     const/4 v4, 1
     invoke-virtual { v3, v4 }, Landroid/widget/LinearLayout;->setOrientation(I)V
-  .line 107
+  .line 108
     iget-object v3, p0, Lcom/geely/drivemem/ui/TrendsView;->fullBtns:Landroid/widget/LinearLayout;
     invoke-virtual { v1, v3 }, Landroid/widget/LinearLayout;->addView(Landroid/view/View;)V
-  .line 108
+  .line 109
     invoke-virtual { v0, v1 }, Landroid/widget/LinearLayout;->addView(Landroid/view/View;)V
-  .line 111
+  .line 112
     new-instance v1, Landroid/widget/LinearLayout;
     invoke-direct { v1, p1 }, Landroid/widget/LinearLayout;-><init>(Landroid/content/Context;)V
-  .line 112
+  .line 113
     const/4 v3, 1
     invoke-virtual { v1, v3 }, Landroid/widget/LinearLayout;->setOrientation(I)V
-  .line 113
-    invoke-virtual { v1, v2, v2, v2, v2 }, Landroid/widget/LinearLayout;->setPadding(IIII)V
   .line 114
+    invoke-virtual { v1, v2, v2, v2, v2 }, Landroid/widget/LinearLayout;->setPadding(IIII)V
+  .line 115
     invoke-static { }, Lcom/geely/drivemem/util/Style;->cardFillColor()I
     move-result v2
     invoke-static { v2, p1 }, Lcom/geely/drivemem/util/Style;->card(ILandroid/content/Context;)Landroid/graphics/drawable/GradientDrawable;
     move-result-object v2
     invoke-virtual { v1, v2 }, Landroid/widget/LinearLayout;->setBackground(Landroid/graphics/drawable/Drawable;)V
-  .line 115
+  .line 116
     new-instance v2, Landroid/widget/LinearLayout$LayoutParams;
     const/4 v3, 0
     const/4 v4, -2
     const/high16 v5, 0x3f800000
     invoke-direct { v2, v3, v4, v5 }, Landroid/widget/LinearLayout$LayoutParams;-><init>(IIF)V
-  .line 116
-    invoke-virtual { v1, v2 }, Landroid/widget/LinearLayout;->setLayoutParams(Landroid/view/ViewGroup$LayoutParams;)V
   .line 117
+    invoke-virtual { v1, v2 }, Landroid/widget/LinearLayout;->setLayoutParams(Landroid/view/ViewGroup$LayoutParams;)V
+  .line 118
     const-string v2, "Charging price"
-    const/high16 v3, 0x41780000
+    const/high16 v3, 0x41800000
     sget v4, Lcom/geely/drivemem/util/Style;->TEXT_DIM:I
     const/4 v5, 1
     invoke-static { p1, v2, v3, v4, v5 }, Lcom/geely/drivemem/ui/TrendsView;->text(Landroid/content/Context;Ljava/lang/String;FIZ)Landroid/widget/TextView;
     move-result-object v2
     invoke-virtual { v1, v2 }, Landroid/widget/LinearLayout;->addView(Landroid/view/View;)V
-  .line 118
+  .line 119
     const-string v2, ""
-    const/high16 v3, 0x41e00000
+    const/high16 v3, 0x41f00000
     sget v4, Lcom/geely/drivemem/util/Style;->TEXT:I
     const/4 v5, 1
     invoke-static { p1, v2, v3, v4, v5 }, Lcom/geely/drivemem/ui/TrendsView;->text(Landroid/content/Context;Ljava/lang/String;FIZ)Landroid/widget/TextView;
     move-result-object v2
     iput-object v2, p0, Lcom/geely/drivemem/ui/TrendsView;->priceHead:Landroid/widget/TextView;
-  .line 119
+  .line 120
     iget-object v2, p0, Lcom/geely/drivemem/ui/TrendsView;->priceHead:Landroid/widget/TextView;
     const/4 v3, 0
     const/4 v4, 6
@@ -381,17 +385,17 @@
     const/4 v5, 0
     const/4 v6, 0
     invoke-virtual { v2, v3, v4, v5, v6 }, Landroid/widget/TextView;->setPadding(IIII)V
-  .line 120
+  .line 121
     iget-object v2, p0, Lcom/geely/drivemem/ui/TrendsView;->priceHead:Landroid/widget/TextView;
     invoke-virtual { v1, v2 }, Landroid/widget/LinearLayout;->addView(Landroid/view/View;)V
-  .line 121
+  .line 122
     const-string v2, "AC sessions are costed automatically. For DC fast charging the price depends on the provider: open Charging history and enter the price per kWh (or the total) for each DC session."
     const/high16 v3, 0x41880000
     sget v4, Lcom/geely/drivemem/util/Style;->TEXT_DIM:I
     const/4 v5, 0
     invoke-static { p1, v2, v3, v4, v5 }, Lcom/geely/drivemem/ui/TrendsView;->text(Landroid/content/Context;Ljava/lang/String;FIZ)Landroid/widget/TextView;
     move-result-object v2
-  .line 123
+  .line 124
     const/4 v3, 0
     const/4 v4, 4
     invoke-static { p1, v4 }, Lcom/geely/drivemem/util/Style;->dp(Landroid/content/Context;I)I
@@ -401,15 +405,15 @@
     invoke-static { p1, v6 }, Lcom/geely/drivemem/util/Style;->dp(Landroid/content/Context;I)I
     move-result v6
     invoke-virtual { v2, v3, v4, v5, v6 }, Landroid/widget/TextView;->setPadding(IIII)V
-  .line 124
-    invoke-virtual { v1, v2 }, Landroid/widget/LinearLayout;->addView(Landroid/view/View;)V
   .line 125
+    invoke-virtual { v1, v2 }, Landroid/widget/LinearLayout;->addView(Landroid/view/View;)V
+  .line 126
     new-instance v2, Landroid/widget/LinearLayout;
     invoke-direct { v2, p1 }, Landroid/widget/LinearLayout;-><init>(Landroid/content/Context;)V
-  .line 126
+  .line 127
     const/4 v3, 1
     invoke-virtual { v2, v3 }, Landroid/widget/LinearLayout;->setOrientation(I)V
-  .line 127
+  .line 128
     const-string v3, "Change AC price"
     const/4 v4, 0
     new-instance v5, Lcom/geely/drivemem/ui/TrendsView$3;
@@ -417,7 +421,7 @@
     invoke-static { p1, v3, v4, v5 }, Lcom/geely/drivemem/util/Style;->cardButton(Landroid/content/Context;Ljava/lang/String;ZLjava/lang/Runnable;)Landroid/widget/TextView;
     move-result-object v3
     invoke-virtual { v2, v3 }, Landroid/widget/LinearLayout;->addView(Landroid/view/View;)V
-  .line 130
+  .line 131
     const-string v3, "Recalculate AC sessions"
     const/4 v4, 0
     new-instance v5, Lcom/geely/drivemem/ui/TrendsView$4;
@@ -425,17 +429,17 @@
     invoke-static { p1, v3, v4, v5 }, Lcom/geely/drivemem/util/Style;->cardButton(Landroid/content/Context;Ljava/lang/String;ZLjava/lang/Runnable;)Landroid/widget/TextView;
     move-result-object v3
     invoke-virtual { v2, v3 }, Landroid/widget/LinearLayout;->addView(Landroid/view/View;)V
-  .line 133
-    invoke-static { v2, p1 }, Lcom/geely/drivemem/ui/TrendsView;->spaceChildren(Landroid/widget/LinearLayout;Landroid/content/Context;)V
   .line 134
-    invoke-virtual { v1, v2 }, Landroid/widget/LinearLayout;->addView(Landroid/view/View;)V
+    invoke-static { v2, p1 }, Lcom/geely/drivemem/ui/TrendsView;->spaceChildren(Landroid/widget/LinearLayout;Landroid/content/Context;)V
   .line 135
-    invoke-virtual { v0, v1 }, Landroid/widget/LinearLayout;->addView(Landroid/view/View;)V
+    invoke-virtual { v1, v2 }, Landroid/widget/LinearLayout;->addView(Landroid/view/View;)V
   .line 136
+    invoke-virtual { v0, v1 }, Landroid/widget/LinearLayout;->addView(Landroid/view/View;)V
+  .line 137
     invoke-direct { p0 }, Lcom/geely/drivemem/ui/TrendsView;->showPrice()V
-  .line 138
-    invoke-direct { p0 }, Lcom/geely/drivemem/ui/TrendsView;->buildPeriodRow()V
   .line 139
+    invoke-direct { p0 }, Lcom/geely/drivemem/ui/TrendsView;->buildPeriodRow()V
+  .line 140
     return-void
 .end method
 
@@ -548,22 +552,22 @@
 .method private static add(Lcom/geely/drivemem/ui/TrendsView$Series;Ljava/lang/String;Lcom/geely/drivemem/sensors/DailyStatsProvider$DayOverview;)V
   .registers 7
   .prologue
-  .line 300
+  .line 301
     iget-object v0, p0, Lcom/geely/drivemem/ui/TrendsView$Series;->labels:Ljava/util/List;
     invoke-interface { v0, p1 }, Ljava/util/List;->add(Ljava/lang/Object;)Z
-  .line 301
+  .line 302
     iget-object v0, p0, Lcom/geely/drivemem/ui/TrendsView$Series;->dist:Ljava/util/List;
     iget-wide v2, p2, Lcom/geely/drivemem/sensors/DailyStatsProvider$DayOverview;->distanceKm:D
     invoke-static { v2, v3 }, Ljava/lang/Double;->valueOf(D)Ljava/lang/Double;
     move-result-object v1
     invoke-interface { v0, v1 }, Ljava/util/List;->add(Ljava/lang/Object;)Z
-  .line 302
+  .line 303
     iget-object v0, p0, Lcom/geely/drivemem/ui/TrendsView$Series;->cost:Ljava/util/List;
     iget-wide v2, p2, Lcom/geely/drivemem/sensors/DailyStatsProvider$DayOverview;->chargeCost:D
     invoke-static { v2, v3 }, Ljava/lang/Double;->valueOf(D)Ljava/lang/Double;
     move-result-object v1
     invoke-interface { v0, v1 }, Ljava/util/List;->add(Ljava/lang/Object;)Z
-  .line 303
+  .line 304
     return-void
 .end method
 
@@ -571,7 +575,7 @@
   .registers 9
   .prologue
     const/4 v0, 0
-  .line 355
+  .line 356
     array-length v2, p0
     move v1, v0
   :L0
@@ -600,11 +604,11 @@
   .end annotation
   .registers 7
   .prologue
-  .line 306
+  .line 307
     invoke-interface { p0 }, Ljava/util/List;->size()I
     move-result v0
     new-array v2, v0, [D
-  .line 307
+  .line 308
     const/4 v0, 0
     move v1, v0
   :L0
@@ -620,7 +624,7 @@
     move v1, v0
     goto :L0
   :L1
-  .line 308
+  .line 309
     return-object v2
 .end method
 
@@ -630,13 +634,13 @@
     const/4 v8, 3
     const/4 v2, 1
     const/4 v3, 0
-  .line 233
+  .line 234
     invoke-virtual { p0 }, Lcom/geely/drivemem/ui/TrendsView;->getContext()Landroid/content/Context;
     move-result-object v1
-  .line 234
+  .line 235
     iget-object v0, p0, Lcom/geely/drivemem/ui/TrendsView;->periodRow:Landroid/widget/LinearLayout;
     invoke-virtual { v0 }, Landroid/widget/LinearLayout;->removeAllViews()V
-  .line 235
+  .line 236
     new-array v5, v8, [Ljava/lang/String;
     const-string v0, "Day"
     aput-object v0, v5, v3
@@ -647,9 +651,9 @@
     aput-object v4, v5, v0
     move v4, v3
   :L0
-  .line 236
+  .line 237
     if-ge v4, v8, :L3
-  .line 238
+  .line 239
     aget-object v6, v5, v4
     iget v0, p0, Lcom/geely/drivemem/ui/TrendsView;->period:I
     if-ne v0, v4, :L2
@@ -659,23 +663,23 @@
     invoke-direct { v7, p0, v4 }, Lcom/geely/drivemem/ui/TrendsView$7;-><init>(Lcom/geely/drivemem/ui/TrendsView;I)V
     invoke-static { v1, v6, v0, v7 }, Lcom/geely/drivemem/util/Style;->cardButton(Landroid/content/Context;Ljava/lang/String;ZLjava/lang/Runnable;)Landroid/widget/TextView;
     move-result-object v0
-  .line 246
+  .line 247
     iget-object v6, p0, Lcom/geely/drivemem/ui/TrendsView;->periodRow:Landroid/widget/LinearLayout;
     invoke-virtual { v6, v0 }, Landroid/widget/LinearLayout;->addView(Landroid/view/View;)V
-  .line 247
+  .line 248
     iget-object v0, p0, Lcom/geely/drivemem/ui/TrendsView;->periodRow:Landroid/widget/LinearLayout;
     const/16 v6, 10
     invoke-static { v0, v1, v6 }, Lcom/geely/drivemem/util/Style;->gap(Landroid/widget/LinearLayout;Landroid/content/Context;I)V
-  .line 236
+  .line 237
     add-int/lit8 v0, v4, 1
     move v4, v0
     goto :L0
   :L2
     move v0, v3
-  .line 238
+  .line 239
     goto :L1
   :L3
-  .line 249
+  .line 250
     iget v0, p0, Lcom/geely/drivemem/ui/TrendsView;->period:I
     if-nez v0, :L6
     const-string v0, "last 14 days"
@@ -684,20 +688,20 @@
     sget v4, Lcom/geely/drivemem/util/Style;->TEXT_DIM:I
     invoke-static { v1, v0, v2, v4, v3 }, Lcom/geely/drivemem/ui/TrendsView;->text(Landroid/content/Context;Ljava/lang/String;FIZ)Landroid/widget/TextView;
     move-result-object v0
-  .line 250
+  .line 251
     iget-object v2, p0, Lcom/geely/drivemem/ui/TrendsView;->periodRow:Landroid/widget/LinearLayout;
     invoke-virtual { v2, v0 }, Landroid/widget/LinearLayout;->addView(Landroid/view/View;)V
-  .line 251
+  .line 252
     instance-of v0, v1, Landroid/app/Activity;
     if-eqz v0, :L5
     move-object v0, v1
-  .line 252
-    check-cast v0, Landroid/app/Activity;
   .line 253
+    check-cast v0, Landroid/app/Activity;
+  .line 254
     iget-object v2, p0, Lcom/geely/drivemem/ui/TrendsView;->periodRow:Landroid/widget/LinearLayout;
     const/16 v4, 24
     invoke-static { v2, v1, v4 }, Lcom/geely/drivemem/util/Style;->gap(Landroid/widget/LinearLayout;Landroid/content/Context;I)V
-  .line 254
+  .line 255
     iget-object v2, p0, Lcom/geely/drivemem/ui/TrendsView;->periodRow:Landroid/widget/LinearLayout;
     const-string v4, "Last month summary"
     new-instance v5, Lcom/geely/drivemem/ui/TrendsView$8;
@@ -706,10 +710,10 @@
     move-result-object v0
     invoke-virtual { v2, v0 }, Landroid/widget/LinearLayout;->addView(Landroid/view/View;)V
   :L5
-  .line 258
+  .line 259
     return-void
   :L6
-  .line 249
+  .line 250
     iget v0, p0, Lcom/geely/drivemem/ui/TrendsView;->period:I
     if-ne v0, v2, :L7
     const-string v0, "last 8 weeks"
@@ -724,51 +728,51 @@
   .prologue
     const/4 v5, 1
     const/4 v4, 0
-  .line 205
+  .line 206
     new-instance v0, Landroid/widget/LinearLayout;
     invoke-direct { v0, p1 }, Landroid/widget/LinearLayout;-><init>(Landroid/content/Context;)V
-  .line 206
-    invoke-virtual { v0, v5 }, Landroid/widget/LinearLayout;->setOrientation(I)V
   .line 207
-    const/16 v1, 18
+    invoke-virtual { v0, v5 }, Landroid/widget/LinearLayout;->setOrientation(I)V
+  .line 208
+    const/16 v1, 22
     invoke-static { p1, v1 }, Lcom/geely/drivemem/util/Style;->dp(Landroid/content/Context;I)I
     move-result v1
-  .line 208
-    invoke-virtual { v0, v1, v1, v1, v1 }, Landroid/widget/LinearLayout;->setPadding(IIII)V
   .line 209
+    invoke-virtual { v0, v1, v1, v1, v1 }, Landroid/widget/LinearLayout;->setPadding(IIII)V
+  .line 210
     invoke-static { }, Lcom/geely/drivemem/util/Style;->cardFillColor()I
     move-result v1
     invoke-static { v1, p1 }, Lcom/geely/drivemem/util/Style;->card(ILandroid/content/Context;)Landroid/graphics/drawable/GradientDrawable;
     move-result-object v1
     invoke-virtual { v0, v1 }, Landroid/widget/LinearLayout;->setBackground(Landroid/graphics/drawable/Drawable;)V
-  .line 210
+  .line 211
     new-instance v1, Landroid/widget/LinearLayout$LayoutParams;
     const/4 v2, -2
     const/high16 v3, 0x3f800000
     invoke-direct { v1, v4, v2, v3 }, Landroid/widget/LinearLayout$LayoutParams;-><init>(IIF)V
-  .line 211
+  .line 212
     if-eqz p6, :L0
-    const/16 v2, 12
+    const/16 v2, 16
     invoke-static { p1, v2 }, Lcom/geely/drivemem/util/Style;->dp(Landroid/content/Context;I)I
     move-result v2
     iput v2, v1, Landroid/widget/LinearLayout$LayoutParams;->rightMargin:I
   :L0
-  .line 212
-    invoke-virtual { v0, v1 }, Landroid/widget/LinearLayout;->setLayoutParams(Landroid/view/ViewGroup$LayoutParams;)V
   .line 213
-    const/high16 v1, 0x41780000
+    invoke-virtual { v0, v1 }, Landroid/widget/LinearLayout;->setLayoutParams(Landroid/view/ViewGroup$LayoutParams;)V
+  .line 214
+    const/high16 v1, 0x41800000
     sget v2, Lcom/geely/drivemem/util/Style;->TEXT_DIM:I
     invoke-static { p1, p2, v1, v2, v5 }, Lcom/geely/drivemem/ui/TrendsView;->text(Landroid/content/Context;Ljava/lang/String;FIZ)Landroid/widget/TextView;
     move-result-object v1
     invoke-virtual { v0, v1 }, Landroid/widget/LinearLayout;->addView(Landroid/view/View;)V
-  .line 214
+  .line 215
     const/4 v1, 6
     invoke-static { p1, v1 }, Lcom/geely/drivemem/util/Style;->dp(Landroid/content/Context;I)I
     move-result v1
     invoke-virtual { p3, v4, v1, v4, v4 }, Landroid/widget/TextView;->setPadding(IIII)V
-  .line 215
-    invoke-virtual { v0, p3 }, Landroid/widget/LinearLayout;->addView(Landroid/view/View;)V
   .line 216
+    invoke-virtual { v0, p3 }, Landroid/widget/LinearLayout;->addView(Landroid/view/View;)V
+  .line 217
     const/4 v1, 2
     invoke-static { p1, v1 }, Lcom/geely/drivemem/util/Style;->dp(Landroid/content/Context;I)I
     move-result v1
@@ -776,9 +780,9 @@
     invoke-static { p1, v2 }, Lcom/geely/drivemem/util/Style;->dp(Landroid/content/Context;I)I
     move-result v2
     invoke-virtual { p4, v4, v1, v4, v2 }, Landroid/widget/TextView;->setPadding(IIII)V
-  .line 217
-    invoke-virtual { v0, p4 }, Landroid/widget/LinearLayout;->addView(Landroid/view/View;)V
   .line 218
+    invoke-virtual { v0, p4 }, Landroid/widget/LinearLayout;->addView(Landroid/view/View;)V
+  .line 219
     new-instance v1, Landroid/widget/LinearLayout$LayoutParams;
     const/4 v2, -1
     const/16 v3, 270
@@ -786,7 +790,7 @@
     move-result v3
     invoke-direct { v1, v2, v3 }, Landroid/widget/LinearLayout$LayoutParams;-><init>(II)V
     invoke-virtual { v0, p5, v1 }, Landroid/widget/LinearLayout;->addView(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V
-  .line 219
+  .line 220
     return-object v0
 .end method
 
@@ -797,7 +801,7 @@
     const-wide v4, 4652007308841189376L
     const/4 v2, 1
     const/4 v6, 0
-  .line 223
+  .line 224
     cmpl-double v0, p0, v8
     if-ltz v0, :L1
     sget-object v0, Ljava/util/Locale;->US:Ljava/util/Locale;
@@ -810,10 +814,10 @@
     invoke-static { v0, v1, v2 }, Ljava/lang/String;->format(Ljava/util/Locale;Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
     move-result-object v0
   :L0
-  .line 225
+  .line 226
     return-object v0
   :L1
-  .line 224
+  .line 225
     cmpl-double v0, p0, v4
     if-ltz v0, :L2
     sget-object v0, Ljava/util/Locale;->US:Ljava/util/Locale;
@@ -827,7 +831,7 @@
     move-result-object v0
     goto :L0
   :L2
-  .line 225
+  .line 226
     sget-object v0, Ljava/util/Locale;->US:Ljava/util/Locale;
     const-string v1, "%.0f"
     new-array v2, v2, [Ljava/lang/Object;
@@ -842,14 +846,14 @@
 .method private confirmRecalc()V
   .registers 7
   .prologue
-  .line 177
+  .line 178
     invoke-virtual { p0 }, Lcom/geely/drivemem/ui/TrendsView;->getContext()Landroid/content/Context;
     move-result-object v0
-  .line 178
+  .line 179
     new-instance v1, Landroid/app/AlertDialog$Builder;
     invoke-direct { v1, v0 }, Landroid/app/AlertDialog$Builder;-><init>(Landroid/content/Context;)V
     const-string v2, "Recalculate AC sessions?"
-  .line 179
+  .line 180
     invoke-virtual { v1, v2 }, Landroid/app/AlertDialog$Builder;->setTitle(Ljava/lang/CharSequence;)Landroid/app/AlertDialog$Builder;
     move-result-object v1
     new-instance v2, Ljava/lang/StringBuilder;
@@ -857,7 +861,7 @@
     const-string v3, "The cost of every finished AC session will be replaced by kWh \u00d7 "
     invoke-virtual { v2, v3 }, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
     move-result-object v2
-  .line 181
+  .line 182
     invoke-static { v0 }, Lcom/geely/drivemem/util/AutoCost;->acPrice(Landroid/content/Context;)J
     move-result-wide v4
     long-to-double v4, v4
@@ -874,23 +878,23 @@
     move-result-object v2
     invoke-virtual { v2 }, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
     move-result-object v2
-  .line 180
+  .line 181
     invoke-virtual { v1, v2 }, Landroid/app/AlertDialog$Builder;->setMessage(Ljava/lang/CharSequence;)Landroid/app/AlertDialog$Builder;
     move-result-object v1
     const/high16 v2, 0x1040000
     const/4 v3, 0
-  .line 182
+  .line 183
     invoke-virtual { v1, v2, v3 }, Landroid/app/AlertDialog$Builder;->setNegativeButton(ILandroid/content/DialogInterface$OnClickListener;)Landroid/app/AlertDialog$Builder;
     move-result-object v1
     const-string v2, "Recalculate"
     new-instance v3, Lcom/geely/drivemem/ui/TrendsView$6;
     invoke-direct { v3, p0, v0 }, Lcom/geely/drivemem/ui/TrendsView$6;-><init>(Lcom/geely/drivemem/ui/TrendsView;Landroid/content/Context;)V
-  .line 183
+  .line 184
     invoke-virtual { v1, v2, v3 }, Landroid/app/AlertDialog$Builder;->setPositiveButton(Ljava/lang/CharSequence;Landroid/content/DialogInterface$OnClickListener;)Landroid/app/AlertDialog$Builder;
     move-result-object v0
-  .line 192
-    invoke-virtual { v0 }, Landroid/app/AlertDialog$Builder;->show()Landroid/app/AlertDialog;
   .line 193
+    invoke-virtual { v0 }, Landroid/app/AlertDialog$Builder;->show()Landroid/app/AlertDialog;
+  .line 194
     return-void
 .end method
 
@@ -899,26 +903,26 @@
   .prologue
     const/4 v8, 2
     const-wide/16 v6, 0
-  .line 358
-    array-length v0, p0
   .line 359
+    array-length v0, p0
+  .line 360
     if-ge v0, v8, :L1
     const-string v0, ""
   :L0
-  .line 365
+  .line 366
     return-object v0
   :L1
-  .line 360
+  .line 361
     add-int/lit8 v1, v0, -2
     aget-wide v2, p0, v1
     add-int/lit8 v0, v0, -1
     aget-wide v4, p0, v0
-  .line 361
+  .line 362
     if-nez p2, :L3
     const-string v0, "yesterday"
     move-object v1, v0
   :L2
-  .line 362
+  .line 363
     cmpg-double v0, v2, v6
     if-gtz v0, :L5
     cmpl-double v0, v4, v6
@@ -934,7 +938,7 @@
     move-result-object v0
     goto :L0
   :L3
-  .line 361
+  .line 362
     new-instance v0, Ljava/lang/StringBuilder;
     invoke-direct { v0 }, Ljava/lang/StringBuilder;-><init>()V
     const-string v1, "last "
@@ -949,22 +953,22 @@
     move-object v1, v0
     goto :L2
   :L4
-  .line 362
+  .line 363
     const-string v0, ""
     goto :L0
   :L5
-  .line 363
+  .line 364
     sub-double/2addr v4, v2
     div-double v2, v4, v2
     const-wide/high16 v4, 0x4059000000000000L
     mul-double/2addr v2, v4
-  .line 364
+  .line 365
     const-wide/high16 v4, 0x3fe0000000000000L
     cmpl-double v0, v2, v4
     if-lez v0, :L7
     const-string v0, "\u25b2 "
   :L6
-  .line 365
+  .line 366
     sget-object v4, Ljava/util/Locale;->US:Ljava/util/Locale;
     const-string v5, "%s%.0f%% vs %s"
     const/4 v6, 3
@@ -982,7 +986,7 @@
     move-result-object v0
     goto :L0
   :L7
-  .line 364
+  .line 365
     const-wide/high16 v4, 0xbfe0000000000000L
     cmpg-double v0, v2, v4
     if-gez v0, :L8
@@ -996,55 +1000,55 @@
 .method private editAcPrice()V
   .registers 6
   .prologue
-  .line 155
+  .line 156
     invoke-virtual { p0 }, Lcom/geely/drivemem/ui/TrendsView;->getContext()Landroid/content/Context;
     move-result-object v0
-  .line 156
+  .line 157
     new-instance v1, Landroid/widget/EditText;
     invoke-direct { v1, v0 }, Landroid/widget/EditText;-><init>(Landroid/content/Context;)V
-  .line 157
+  .line 158
     const/4 v2, 2
     invoke-virtual { v1, v2 }, Landroid/widget/EditText;->setInputType(I)V
-  .line 158
+  .line 159
     invoke-static { v0 }, Lcom/geely/drivemem/util/AutoCost;->acPrice(Landroid/content/Context;)J
     move-result-wide v2
     invoke-static { v2, v3 }, Ljava/lang/String;->valueOf(J)Ljava/lang/String;
     move-result-object v2
     invoke-virtual { v1, v2 }, Landroid/widget/EditText;->setText(Ljava/lang/CharSequence;)V
-  .line 159
+  .line 160
     const/4 v2, 1
     invoke-virtual { v1, v2 }, Landroid/widget/EditText;->setSelectAllOnFocus(Z)V
-  .line 160
+  .line 161
     new-instance v2, Landroid/app/AlertDialog$Builder;
     invoke-direct { v2, v0 }, Landroid/app/AlertDialog$Builder;-><init>(Landroid/content/Context;)V
     const-string v3, "AC price (VND per kWh)"
-  .line 161
+  .line 162
     invoke-virtual { v2, v3 }, Landroid/app/AlertDialog$Builder;->setTitle(Ljava/lang/CharSequence;)Landroid/app/AlertDialog$Builder;
     move-result-object v2
-  .line 162
+  .line 163
     invoke-virtual { v2, v1 }, Landroid/app/AlertDialog$Builder;->setView(Landroid/view/View;)Landroid/app/AlertDialog$Builder;
     move-result-object v2
     const/high16 v3, 0x1040000
     const/4 v4, 0
-  .line 163
+  .line 164
     invoke-virtual { v2, v3, v4 }, Landroid/app/AlertDialog$Builder;->setNegativeButton(ILandroid/content/DialogInterface$OnClickListener;)Landroid/app/AlertDialog$Builder;
     move-result-object v2
     const v3, 17039370
     new-instance v4, Lcom/geely/drivemem/ui/TrendsView$5;
     invoke-direct { v4, p0, v1, v0 }, Lcom/geely/drivemem/ui/TrendsView$5;-><init>(Lcom/geely/drivemem/ui/TrendsView;Landroid/widget/EditText;Landroid/content/Context;)V
-  .line 164
+  .line 165
     invoke-virtual { v2, v3, v4 }, Landroid/app/AlertDialog$Builder;->setPositiveButton(ILandroid/content/DialogInterface$OnClickListener;)Landroid/app/AlertDialog$Builder;
     move-result-object v0
-  .line 173
-    invoke-virtual { v0 }, Landroid/app/AlertDialog$Builder;->show()Landroid/app/AlertDialog;
   .line 174
+    invoke-virtual { v0 }, Landroid/app/AlertDialog$Builder;->show()Landroid/app/AlertDialog;
+  .line 175
     return-void
 .end method
 
 .method private static fullVnd(D)Ljava/lang/String;
   .registers 8
   .prologue
-  .line 229
+  .line 230
     sget-object v0, Ljava/util/Locale;->US:Ljava/util/Locale;
     const-string v1, "%,.0f \u0111"
     const/4 v2, 1
@@ -1064,11 +1068,11 @@
   .prologue
     const/4 v3, 2
   :L0
-  .line 268
+  .line 269
     const-string v0, "-"
     invoke-virtual { p0, v0 }, Ljava/lang/String;->split(Ljava/lang/String;)[Ljava/lang/String;
     move-result-object v0
-  .line 269
+  .line 270
     const/4 v1, 1
     aget-object v1, v0, v1
     invoke-static { v1 }, Ljava/lang/Integer;->parseInt(Ljava/lang/String;)I
@@ -1077,7 +1081,7 @@
     aget-object v2, v0, v2
     invoke-static { v2 }, Ljava/lang/Integer;->parseInt(Ljava/lang/String;)I
     move-result v2
-  .line 270
+  .line 271
     if-ne p1, v3, :L2
     new-instance v2, Ljava/lang/StringBuilder;
     invoke-direct { v2 }, Ljava/lang/StringBuilder;-><init>()V
@@ -1096,10 +1100,10 @@
     invoke-virtual { v0 }, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
     move-result-object p0
   :L1
-  .line 272
+  .line 273
     return-object p0
   :L2
-  .line 271
+  .line 272
     new-instance v0, Ljava/lang/StringBuilder;
     invoke-direct { v0 }, Ljava/lang/StringBuilder;-><init>()V
     invoke-virtual { v0, v2 }, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
@@ -1114,7 +1118,7 @@
     move-result-object p0
     goto :L1
   :L4
-  .line 272
+  .line 273
     move-exception v0
     goto :L1
 .end method
@@ -1122,58 +1126,58 @@
 .method private load(Landroid/content/Context;I)Lcom/geely/drivemem/ui/TrendsView$Series;
   .registers 9
   .prologue
-  .line 276
+  .line 277
     new-instance v3, Lcom/geely/drivemem/ui/TrendsView$Series;
     const/4 v0, 0
     invoke-direct { v3, v0 }, Lcom/geely/drivemem/ui/TrendsView$Series;-><init>(Lcom/geely/drivemem/ui/TrendsView$1;)V
-  .line 277
+  .line 278
     invoke-static { }, Lcom/geely/drivemem/sensors/DailyStatsProvider;->todayDateStr()Ljava/lang/String;
     move-result-object v2
-  .line 278
-    if-nez p2, :L1
   .line 279
+    if-nez p2, :L1
+  .line 280
     invoke-static { }, Ljava/util/Calendar;->getInstance()Ljava/util/Calendar;
     move-result-object v2
-  .line 280
+  .line 281
     const/16 v0, 13
     move v1, v0
   :L0
     if-ltz v1, :L7
-  .line 281
+  .line 282
     invoke-virtual { v2 }, Ljava/util/Calendar;->clone()Ljava/lang/Object;
     move-result-object v0
     check-cast v0, Ljava/util/Calendar;
-  .line 282
+  .line 283
     const/4 v4, 5
     neg-int v5, v1
     invoke-virtual { v0, v4, v5 }, Ljava/util/Calendar;->add(II)V
-  .line 283
+  .line 284
     sget-object v4, Lcom/geely/drivemem/ui/TrendsView;->DAY:Ljava/text/SimpleDateFormat;
     invoke-virtual { v0 }, Ljava/util/Calendar;->getTime()Ljava/util/Date;
     move-result-object v0
     invoke-virtual { v4, v0 }, Ljava/text/SimpleDateFormat;->format(Ljava/util/Date;)Ljava/lang/String;
     move-result-object v0
-  .line 284
+  .line 285
     invoke-static { p1, v0 }, Lcom/geely/drivemem/sensors/DailyStatsProvider;->getDayOverview(Landroid/content/Context;Ljava/lang/String;)Lcom/geely/drivemem/sensors/DailyStatsProvider$DayOverview;
     move-result-object v4
-  .line 285
+  .line 286
     invoke-static { v0, p2 }, Lcom/geely/drivemem/ui/TrendsView;->label(Ljava/lang/String;I)Ljava/lang/String;
     move-result-object v0
     invoke-static { v3, v0, v4 }, Lcom/geely/drivemem/ui/TrendsView;->add(Lcom/geely/drivemem/ui/TrendsView$Series;Ljava/lang/String;Lcom/geely/drivemem/sensors/DailyStatsProvider$DayOverview;)V
-  .line 280
+  .line 281
     add-int/lit8 v0, v1, -1
     move v1, v0
     goto :L0
   :L1
-  .line 288
+  .line 289
     const/4 v0, 1
     if-ne p2, v0, :L5
-  .line 289
+  .line 290
     const/16 v0, 8
     invoke-static { p1, v2, v0 }, Lcom/geely/drivemem/sensors/DailyStatsProvider;->recentWeeks(Landroid/content/Context;Ljava/lang/String;I)Ljava/util/List;
     move-result-object v0
   :L2
-  .line 291
+  .line 292
     invoke-interface { v0 }, Ljava/util/List;->iterator()Ljava/util/Iterator;
     move-result-object v4
   :L3
@@ -1183,27 +1187,27 @@
     invoke-interface { v4 }, Ljava/util/Iterator;->next()Ljava/lang/Object;
     move-result-object v0
     check-cast v0, Lcom/geely/drivemem/sensors/DailyStatsProvider$PeriodOverview;
-  .line 292
+  .line 293
     iget-object v1, v0, Lcom/geely/drivemem/sensors/DailyStatsProvider$PeriodOverview;->days:Ljava/util/List;
     invoke-interface { v1 }, Ljava/util/List;->isEmpty()Z
     move-result v1
     if-eqz v1, :L6
     move-object v1, v2
   :L4
-  .line 293
+  .line 294
     invoke-static { v1, p2 }, Lcom/geely/drivemem/ui/TrendsView;->label(Ljava/lang/String;I)Ljava/lang/String;
     move-result-object v1
     iget-object v0, v0, Lcom/geely/drivemem/sensors/DailyStatsProvider$PeriodOverview;->totals:Lcom/geely/drivemem/sensors/DailyStatsProvider$DayOverview;
     invoke-static { v3, v1, v0 }, Lcom/geely/drivemem/ui/TrendsView;->add(Lcom/geely/drivemem/ui/TrendsView$Series;Ljava/lang/String;Lcom/geely/drivemem/sensors/DailyStatsProvider$DayOverview;)V
     goto :L3
   :L5
-  .line 290
+  .line 291
     const/4 v0, 6
     invoke-static { p1, v2, v0 }, Lcom/geely/drivemem/sensors/DailyStatsProvider;->recentMonths(Landroid/content/Context;Ljava/lang/String;I)Ljava/util/List;
     move-result-object v0
     goto :L2
   :L6
-  .line 292
+  .line 293
     iget-object v1, v0, Lcom/geely/drivemem/sensors/DailyStatsProvider$PeriodOverview;->days:Ljava/util/List;
     const/4 v5, 0
     invoke-interface { v1, v5 }, Ljava/util/List;->get(I)Ljava/lang/Object;
@@ -1212,25 +1216,25 @@
     iget-object v1, v1, Lcom/geely/drivemem/sensors/DailyStatsProvider$DayOverview;->date:Ljava/lang/String;
     goto :L4
   :L7
-  .line 296
+  .line 297
     return-object v3
 .end method
 
 .method private pickDate(J)V
   .registers 10
   .prologue
-  .line 398
+  .line 399
     invoke-virtual { p0 }, Lcom/geely/drivemem/ui/TrendsView;->getContext()Landroid/content/Context;
     move-result-object v1
-  .line 399
+  .line 400
     invoke-static { }, Ljava/util/Calendar;->getInstance()Ljava/util/Calendar;
     move-result-object v5
-  .line 400
+  .line 401
     new-instance v0, Landroid/app/DatePickerDialog;
     new-instance v2, Lcom/geely/drivemem/ui/TrendsView$12;
     invoke-direct { v2, p0, v1 }, Lcom/geely/drivemem/ui/TrendsView$12;-><init>(Lcom/geely/drivemem/ui/TrendsView;Landroid/content/Context;)V
     const/4 v3, 1
-  .line 409
+  .line 410
     invoke-virtual { v5, v3 }, Ljava/util/Calendar;->get(I)I
     move-result v3
     const/4 v4, 2
@@ -1240,48 +1244,48 @@
     invoke-virtual { v5, v6 }, Ljava/util/Calendar;->get(I)I
     move-result v5
     invoke-direct/range { v0 .. v5 }, Landroid/app/DatePickerDialog;-><init>(Landroid/content/Context;Landroid/app/DatePickerDialog$OnDateSetListener;III)V
-  .line 410
+  .line 411
     invoke-virtual { v0 }, Landroid/app/DatePickerDialog;->getDatePicker()Landroid/widget/DatePicker;
     move-result-object v1
     invoke-static { }, Ljava/lang/System;->currentTimeMillis()J
     move-result-wide v2
     invoke-virtual { v1, v2, v3 }, Landroid/widget/DatePicker;->setMaxDate(J)V
-  .line 411
-    invoke-virtual { v0 }, Landroid/app/DatePickerDialog;->show()V
   .line 412
+    invoke-virtual { v0 }, Landroid/app/DatePickerDialog;->show()V
+  .line 413
     return-void
 .end method
 
 .method private show(Lcom/geely/drivemem/ui/TrendsView$Series;I)V
   .registers 15
   .prologue
-  .line 338
+  .line 339
     iget-object v0, p1, Lcom/geely/drivemem/ui/TrendsView$Series;->dist:Ljava/util/List;
     invoke-static { v0 }, Lcom/geely/drivemem/ui/TrendsView;->arr(Ljava/util/List;)[D
     move-result-object v1
     iget-object v0, p1, Lcom/geely/drivemem/ui/TrendsView$Series;->cost:Ljava/util/List;
     invoke-static { v0 }, Lcom/geely/drivemem/ui/TrendsView;->arr(Ljava/util/List;)[D
     move-result-object v2
-  .line 339
+  .line 340
     iget-object v0, p1, Lcom/geely/drivemem/ui/TrendsView$Series;->labels:Ljava/util/List;
     const/4 v3, 0
     new-array v3, v3, [Ljava/lang/String;
     invoke-interface { v0, v3 }, Ljava/util/List;->toArray([Ljava/lang/Object;)[Ljava/lang/Object;
     move-result-object v0
     check-cast v0, [Ljava/lang/String;
-  .line 340
+  .line 341
     iget-object v3, p0, Lcom/geely/drivemem/ui/TrendsView;->distBars:Lcom/geely/drivemem/ui/BarsView;
     invoke-virtual { v3, v1, v0 }, Lcom/geely/drivemem/ui/BarsView;->setData([D[Ljava/lang/String;)V
-  .line 341
+  .line 342
     iget-object v3, p0, Lcom/geely/drivemem/ui/TrendsView;->costBars:Lcom/geely/drivemem/ui/BarsView;
     invoke-virtual { v3, v2, v0 }, Lcom/geely/drivemem/ui/BarsView;->setData([D[Ljava/lang/String;)V
-  .line 342
-    array-length v3, v1
   .line 343
+    array-length v3, v1
+  .line 344
     if-nez p2, :L5
     const-string v0, "today"
   :L0
-  .line 344
+  .line 345
     iget-object v0, p0, Lcom/geely/drivemem/ui/TrendsView;->distHead:Landroid/widget/TextView;
     sget-object v4, Ljava/util/Locale;->US:Ljava/util/Locale;
     const-string v5, "%.0f km"
@@ -1296,7 +1300,7 @@
     invoke-static { v4, v5, v6 }, Ljava/lang/String;->format(Ljava/util/Locale;Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
     move-result-object v4
     invoke-virtual { v0, v4 }, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
-  .line 345
+  .line 346
     iget-object v4, p0, Lcom/geely/drivemem/ui/TrendsView;->costHead:Landroid/widget/TextView;
     add-int/lit8 v0, v3, -1
     aget-wide v6, v2, v0
@@ -1309,14 +1313,14 @@
     move-result-object v0
   :L1
     invoke-virtual { v4, v0 }, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
-  .line 346
+  .line 347
     iget-object v0, p0, Lcom/geely/drivemem/ui/TrendsView;->distSub:Landroid/widget/TextView;
     const-string v4, "%.0f km"
     const/4 v5, 0
     invoke-static { v1, v4, p2, v5 }, Lcom/geely/drivemem/ui/TrendsView;->delta([DLjava/lang/String;IZ)Ljava/lang/String;
     move-result-object v4
     invoke-virtual { v0, v4 }, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
-  .line 347
+  .line 348
     add-int/lit8 v0, v3, -1
     aget-wide v4, v2, v0
     const-wide/16 v6, 0
@@ -1343,12 +1347,12 @@
     invoke-static { v0, v4, v5 }, Ljava/lang/String;->format(Ljava/util/Locale;Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
     move-result-object v0
   :L2
-  .line 348
+  .line 349
     const/4 v1, 0
     const/4 v4, 1
     invoke-static { v2, v1, p2, v4 }, Lcom/geely/drivemem/ui/TrendsView;->delta([DLjava/lang/String;IZ)Ljava/lang/String;
     move-result-object v1
-  .line 349
+  .line 350
     iget-object v4, p0, Lcom/geely/drivemem/ui/TrendsView;->costSub:Landroid/widget/TextView;
     add-int/lit8 v3, v3, -1
     aget-wide v6, v2, v3
@@ -1359,14 +1363,14 @@
     move-result v2
     if-eqz v2, :L10
   :L3
-  .line 350
+  .line 351
     invoke-virtual { v1 }, Ljava/lang/String;->isEmpty()Z
     move-result v2
     if-eqz v2, :L8
   :L4
-  .line 349
+  .line 350
     invoke-virtual { v4, v0 }, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
-  .line 352
+  .line 353
     iget-object v0, p0, Lcom/geely/drivemem/ui/TrendsView;->note:Landroid/widget/TextView;
     new-instance v1, Ljava/lang/StringBuilder;
     invoke-direct { v1 }, Ljava/lang/StringBuilder;-><init>()V
@@ -1383,10 +1387,10 @@
     invoke-virtual { v1 }, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
     move-result-object v1
     invoke-virtual { v0, v1 }, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
-  .line 353
+  .line 354
     return-void
   :L5
-  .line 343
+  .line 344
     new-instance v0, Ljava/lang/StringBuilder;
     invoke-direct { v0 }, Ljava/lang/StringBuilder;-><init>()V
     const-string v4, "this "
@@ -1399,15 +1403,15 @@
     invoke-virtual { v0 }, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
     goto/16 :L0
   :L6
-  .line 345
+  .line 346
     const-string v0, "\u2014"
     goto/16 :L1
   :L7
-  .line 347
+  .line 348
     const-string v0, ""
     goto :L2
   :L8
-  .line 350
+  .line 351
     invoke-virtual { v0 }, Ljava/lang/String;->isEmpty()Z
     move-result v2
     if-eqz v2, :L9
@@ -1427,7 +1431,7 @@
     move-result-object v0
     goto :L4
   :L10
-  .line 351
+  .line 352
     const-string v0, "No charging costs yet"
     goto :L4
 .end method
@@ -1436,34 +1440,34 @@
   .registers 12
   .prologue
     const/4 v2, 0
-  .line 370
+  .line 371
     invoke-virtual { p0 }, Lcom/geely/drivemem/ui/TrendsView;->getContext()Landroid/content/Context;
     move-result-object v3
-  .line 371
+  .line 372
     invoke-static { v3 }, Lcom/geely/drivemem/util/FullCharge;->intervalDays(Landroid/content/Context;)I
     move-result v4
-  .line 372
+  .line 373
     invoke-static { v3, p1, p2 }, Lcom/geely/drivemem/util/FullCharge;->baseMs(Landroid/content/Context;J)J
     move-result-wide v0
-  .line 373
+  .line 374
     invoke-static { v0, v1 }, Lcom/geely/drivemem/util/FullCharge;->daysSince(J)I
     move-result v5
-  .line 374
+  .line 375
     if-lt v5, v4, :L5
     const/4 v0, 1
     move v1, v0
   :L0
-  .line 375
+  .line 376
     const-wide/16 v6, 0
     cmp-long v0, p1, v6
     if-lez v0, :L7
-  .line 376
+  .line 377
     iget-object v6, p0, Lcom/geely/drivemem/ui/TrendsView;->fullHead:Landroid/widget/TextView;
     if-nez v5, :L6
     const-string v0, "Charged to 100% today"
   :L1
     invoke-virtual { v6, v0 }, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
-  .line 377
+  .line 378
     iget-object v0, p0, Lcom/geely/drivemem/ui/TrendsView;->fullSub:Landroid/widget/TextView;
     new-instance v5, Ljava/lang/StringBuilder;
     invoke-direct { v5 }, Ljava/lang/StringBuilder;-><init>()V
@@ -1486,7 +1490,7 @@
     move-result-object v5
     invoke-virtual { v0, v5 }, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
   :L2
-  .line 383
+  .line 384
     iget-object v5, p0, Lcom/geely/drivemem/ui/TrendsView;->fullHead:Landroid/widget/TextView;
     if-eqz v1, :L8
     const-string v0, "#FF9F0A"
@@ -1494,10 +1498,10 @@
     move-result v0
   :L3
     invoke-virtual { v5, v0 }, Landroid/widget/TextView;->setTextColor(I)V
-  .line 384
+  .line 385
     iget-object v0, p0, Lcom/geely/drivemem/ui/TrendsView;->fullBtns:Landroid/widget/LinearLayout;
     invoke-virtual { v0 }, Landroid/widget/LinearLayout;->removeAllViews()V
-  .line 385
+  .line 386
     iget-object v1, p0, Lcom/geely/drivemem/ui/TrendsView;->fullBtns:Landroid/widget/LinearLayout;
     new-instance v0, Ljava/lang/StringBuilder;
     invoke-direct { v0 }, Ljava/lang/StringBuilder;-><init>()V
@@ -1522,7 +1526,7 @@
     invoke-static { v3, v0, v2, v4 }, Lcom/geely/drivemem/util/Style;->cardButton(Landroid/content/Context;Ljava/lang/String;ZLjava/lang/Runnable;)Landroid/widget/TextView;
     move-result-object v0
     invoke-virtual { v1, v0 }, Landroid/widget/LinearLayout;->addView(Landroid/view/View;)V
-  .line 391
+  .line 392
     iget-object v0, p0, Lcom/geely/drivemem/ui/TrendsView;->fullBtns:Landroid/widget/LinearLayout;
     const-string v1, "I charged to 100% on\u2026"
     new-instance v4, Lcom/geely/drivemem/ui/TrendsView$11;
@@ -1530,17 +1534,17 @@
     invoke-static { v3, v1, v2, v4 }, Lcom/geely/drivemem/util/Style;->cardButton(Landroid/content/Context;Ljava/lang/String;ZLjava/lang/Runnable;)Landroid/widget/TextView;
     move-result-object v1
     invoke-virtual { v0, v1 }, Landroid/widget/LinearLayout;->addView(Landroid/view/View;)V
-  .line 394
+  .line 395
     iget-object v0, p0, Lcom/geely/drivemem/ui/TrendsView;->fullBtns:Landroid/widget/LinearLayout;
     invoke-static { v0, v3 }, Lcom/geely/drivemem/ui/TrendsView;->spaceChildren(Landroid/widget/LinearLayout;Landroid/content/Context;)V
-  .line 395
+  .line 396
     return-void
   :L5
     move v1, v2
-  .line 374
+  .line 375
     goto/16 :L0
   :L6
-  .line 376
+  .line 377
     new-instance v0, Ljava/lang/StringBuilder;
     invoke-direct { v0 }, Ljava/lang/StringBuilder;-><init>()V
     invoke-virtual { v0, v5 }, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
@@ -1552,11 +1556,11 @@
     move-result-object v0
     goto/16 :L1
   :L7
-  .line 379
+  .line 380
     iget-object v0, p0, Lcom/geely/drivemem/ui/TrendsView;->fullHead:Landroid/widget/TextView;
     const-string v6, "No 100% charge recorded yet"
     invoke-virtual { v0, v6 }, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
-  .line 380
+  .line 381
     iget-object v0, p0, Lcom/geely/drivemem/ui/TrendsView;->fullSub:Landroid/widget/TextView;
     new-instance v6, Ljava/lang/StringBuilder;
     invoke-direct { v6 }, Ljava/lang/StringBuilder;-><init>()V
@@ -1578,13 +1582,13 @@
     invoke-virtual { v0, v5 }, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
     goto/16 :L2
   :L8
-  .line 383
+  .line 384
     const-string v0, "#30D158"
     invoke-static { v0 }, Landroid/graphics/Color;->parseColor(Ljava/lang/String;)I
     move-result v0
     goto/16 :L3
   :L9
-  .line 385
+  .line 386
     const-string v0, "30"
     goto :L4
 .end method
@@ -1592,7 +1596,7 @@
 .method private showPrice()V
   .registers 6
   .prologue
-  .line 151
+  .line 152
     iget-object v0, p0, Lcom/geely/drivemem/ui/TrendsView;->priceHead:Landroid/widget/TextView;
     new-instance v1, Ljava/lang/StringBuilder;
     invoke-direct { v1 }, Ljava/lang/StringBuilder;-><init>()V
@@ -1615,68 +1619,68 @@
     invoke-virtual { v1 }, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
     move-result-object v1
     invoke-virtual { v0, v1 }, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
-  .line 152
+  .line 153
     return-void
 .end method
 
 .method private static spaceChildren(Landroid/widget/LinearLayout;Landroid/content/Context;)V
   .registers 6
   .prologue
-  .line 143
+  .line 144
     const/4 v0, 0
   :L0
     invoke-virtual { p0 }, Landroid/widget/LinearLayout;->getChildCount()I
     move-result v1
     if-ge v0, v1, :L2
-  .line 144
+  .line 145
     new-instance v1, Landroid/widget/LinearLayout$LayoutParams;
     const/4 v2, -1
     const/4 v3, -2
     invoke-direct { v1, v2, v3 }, Landroid/widget/LinearLayout$LayoutParams;-><init>(II)V
-  .line 145
+  .line 146
     if-lez v0, :L1
     const/16 v2, 10
     invoke-static { p1, v2 }, Lcom/geely/drivemem/util/Style;->dp(Landroid/content/Context;I)I
     move-result v2
     iput v2, v1, Landroid/widget/LinearLayout$LayoutParams;->topMargin:I
   :L1
-  .line 146
+  .line 147
     invoke-virtual { p0, v0 }, Landroid/widget/LinearLayout;->getChildAt(I)Landroid/view/View;
     move-result-object v2
     invoke-virtual { v2, v1 }, Landroid/view/View;->setLayoutParams(Landroid/view/ViewGroup$LayoutParams;)V
-  .line 143
+  .line 144
     add-int/lit8 v0, v0, 1
     goto :L0
   :L2
-  .line 148
+  .line 149
     return-void
 .end method
 
 .method private static text(Landroid/content/Context;Ljava/lang/String;FIZ)Landroid/widget/TextView;
   .registers 7
   .prologue
-  .line 196
+  .line 197
     new-instance v0, Landroid/widget/TextView;
     invoke-direct { v0, p0 }, Landroid/widget/TextView;-><init>(Landroid/content/Context;)V
-  .line 197
-    invoke-virtual { v0, p1 }, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
   .line 198
-    invoke-virtual { v0, p2 }, Landroid/widget/TextView;->setTextSize(F)V
+    invoke-virtual { v0, p1 }, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
   .line 199
-    invoke-virtual { v0, p3 }, Landroid/widget/TextView;->setTextColor(I)V
+    invoke-virtual { v0, p2 }, Landroid/widget/TextView;->setTextSize(F)V
   .line 200
+    invoke-virtual { v0, p3 }, Landroid/widget/TextView;->setTextColor(I)V
+  .line 201
     if-eqz p4, :L0
     sget-object v1, Landroid/graphics/Typeface;->DEFAULT_BOLD:Landroid/graphics/Typeface;
     invoke-virtual { v0, v1 }, Landroid/widget/TextView;->setTypeface(Landroid/graphics/Typeface;)V
   :L0
-  .line 201
+  .line 202
     return-object v0
 .end method
 
 .method private static unitName(I)Ljava/lang/String;
   .registers 2
   .prologue
-  .line 335
+  .line 336
     if-nez p0, :L1
     const-string v0, "day"
   :L0
@@ -1694,31 +1698,31 @@
 .method public refresh()V
   .registers 6
   .prologue
-  .line 312
+  .line 313
     invoke-virtual { p0 }, Lcom/geely/drivemem/ui/TrendsView;->getContext()Landroid/content/Context;
     move-result-object v0
-  .line 313
+  .line 314
     iget v1, p0, Lcom/geely/drivemem/ui/TrendsView;->token:I
     add-int/lit8 v1, v1, 1
     iput v1, p0, Lcom/geely/drivemem/ui/TrendsView;->token:I
-  .line 314
-    iget v2, p0, Lcom/geely/drivemem/ui/TrendsView;->period:I
   .line 315
+    iget v2, p0, Lcom/geely/drivemem/ui/TrendsView;->period:I
+  .line 316
     iget-object v3, p0, Lcom/geely/drivemem/ui/TrendsView;->distHead:Landroid/widget/TextView;
     const-string v4, "\u2026"
     invoke-virtual { v3, v4 }, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
-  .line 316
+  .line 317
     iget-object v3, p0, Lcom/geely/drivemem/ui/TrendsView;->costHead:Landroid/widget/TextView;
     const-string v4, "\u2026"
     invoke-virtual { v3, v4 }, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
-  .line 317
+  .line 318
     new-instance v3, Ljava/lang/Thread;
     new-instance v4, Lcom/geely/drivemem/ui/TrendsView$9;
     invoke-direct { v4, p0, v0, v2, v1 }, Lcom/geely/drivemem/ui/TrendsView$9;-><init>(Lcom/geely/drivemem/ui/TrendsView;Landroid/content/Context;II)V
     const-string v0, "trends-load"
     invoke-direct { v3, v4, v0 }, Ljava/lang/Thread;-><init>(Ljava/lang/Runnable;Ljava/lang/String;)V
-  .line 332
-    invoke-virtual { v3 }, Ljava/lang/Thread;->start()V
   .line 333
+    invoke-virtual { v3 }, Ljava/lang/Thread;->start()V
+  .line 334
     return-void
 .end method
